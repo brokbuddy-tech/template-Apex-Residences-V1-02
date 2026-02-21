@@ -3,9 +3,16 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Map } from "lucide-react";
+import { Map } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function Hero() {
   const [activeTab, setActiveTab] = useState("primary");
@@ -79,18 +86,35 @@ export function Hero() {
             <div className="space-y-6">
               <div className="space-y-2">
                 <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Property Type</label>
-                <div className="flex items-center justify-between border-b border-white/20 pb-2 cursor-pointer group">
-                  <span className="text-sm font-light">Apartments, Penthouses, Villas</span>
-                  <ChevronDown className="w-4 h-4 text-white/40 group-hover:text-white transition-colors" />
-                </div>
+                <Select>
+                  <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
+                    <SelectValue placeholder="Apartments, Penthouses, Villas" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
+                    <SelectItem value="apartments">Apartments</SelectItem>
+                    <SelectItem value="penthouses">Penthouses</SelectItem>
+                    <SelectItem value="villas">Villas</SelectItem>
+                    <SelectItem value="mansions">Mansions</SelectItem>
+                    <SelectItem value="townhouses">Townhouses</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">
                 <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bedrooms</label>
-                <div className="flex items-center justify-between border-b border-white/20 pb-2 cursor-pointer group">
-                  <span className="text-sm font-light">Any</span>
-                  <ChevronDown className="w-4 h-4 text-white/40 group-hover:text-white transition-colors" />
-                </div>
+                <Select>
+                  <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
+                    <SelectValue placeholder="Any" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
+                    <SelectItem value="any">Any</SelectItem>
+                    <SelectItem value="1">1 Bedroom</SelectItem>
+                    <SelectItem value="2">2 Bedrooms</SelectItem>
+                    <SelectItem value="3">3 Bedrooms</SelectItem>
+                    <SelectItem value="4">4 Bedrooms</SelectItem>
+                    <SelectItem value="5">5+ Bedrooms</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Currency Selector */}
