@@ -48,7 +48,7 @@ export function Header() {
 
         <div className="flex items-center gap-6">
           <Button className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
-            Instant Valuation
+            Contact Us
           </Button>
 
           <Button variant="ghost" size="icon" className="text-white xl:hidden">
