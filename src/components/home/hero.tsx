@@ -30,12 +30,12 @@ export function Hero() {
         {/* Left Content */}
         <div className="space-y-12 animate-in fade-in slide-in-from-left-10 duration-1000">
           <div className="space-y-4">
-            <h1 className="font-headline text-5xl md:text-7xl xl:text-8xl font-thin tracking-[0.1em] leading-tight text-white uppercase">
+            <h1 className="font-headline text-4xl md:text-5xl xl:text-6xl font-thin tracking-[0.1em] leading-tight text-white uppercase">
               Invest in <br />
               Luxury Living <br />
               with <span className="font-bold">Apex Residences</span>
             </h1>
-            <p className="text-white/60 text-lg md:text-xl font-light italic tracking-wider">
+            <p className="text-white/60 text-base md:text-lg font-light italic tracking-wider">
               "Precision, Performance, and Due Diligence at Your Service"
             </p>
           </div>
