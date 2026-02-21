@@ -2,9 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { Heart, Maximize, Bed, Bath, MapPin } from "lucide-react";
+import { Maximize, Bed, Bath, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 interface PropertyCardProps {
   title: string;
@@ -28,56 +27,59 @@ export function PropertyCard({
   type,
 }: PropertyCardProps) {
   return (
-    <div className="group relative bg-card rounded-2xl overflow-hidden border transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
-      <div className="relative aspect-[4/3] overflow-hidden">
+    <div className="group relative bg-[#0a0a0a] overflow-hidden border border-white/5 transition-all duration-700 hover:border-[#B8860B]/30 shadow-2xl">
+      <div className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.85]"
         />
-        <div className="absolute top-4 left-4 z-10 flex gap-2">
-          <Badge className="bg-primary/90 text-white border-none uppercase text-[10px] font-bold tracking-wider">
-            {type}
-          </Badge>
+        <div className="absolute top-4 left-4 z-10">
+          <div className="bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10">
+            <span className="text-white text-[9px] font-bold uppercase tracking-widest">{type}</span>
+          </div>
         </div>
-        <button className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white hover:text-red-500 transition-all">
-          <Heart className="w-4 h-4" />
-        </button>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-          <Button variant="secondary" className="w-full font-bold">Quick View</Button>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+          <Button className="w-full btn-copper h-12">View Details</Button>
         </div>
       </div>
 
-      <div className="p-5">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="font-headline text-xl font-bold line-clamp-1">{title}</h3>
-          <span className="text-primary font-bold text-lg">{price}</span>
-        </div>
-        
-        <div className="flex items-center text-muted-foreground text-sm mb-4 gap-1">
-          <MapPin className="w-3 h-3 text-accent" />
-          <span className="truncate">{location}</span>
+      <div className="p-8 space-y-6">
+        <div className="space-y-1">
+          <h3 className="font-headline text-xl font-bold tracking-wider text-white line-clamp-1">{title}</h3>
+          <div className="flex items-center text-white/40 text-[10px] uppercase font-bold tracking-widest gap-2">
+            <MapPin className="w-3 h-3 text-[#B8860B]" />
+            <span className="truncate">{location}</span>
+          </div>
         </div>
 
-        <div className="flex items-center justify-between border-t pt-4">
-          <div className="flex gap-4">
-            <div className="flex items-center gap-1.5 text-xs">
-              <Bed className="w-4 h-4 text-muted-foreground" />
-              <span className="font-semibold">{beds}</span>
+        <div className="flex items-center justify-between">
+          <span className="text-white font-bold text-lg tracking-wider">{price}</span>
+        </div>
+        
+        <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 text-white/40">
+              <Bed className="w-3 h-3" />
+              <span className="text-[10px] uppercase font-bold tracking-widest">Beds</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs">
-              <Bath className="w-4 h-4 text-muted-foreground" />
-              <span className="font-semibold">{baths}</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs">
-              <Maximize className="w-4 h-4 text-muted-foreground" />
-              <span className="font-semibold">{sqft}</span>
-            </div>
+            <span className="text-sm font-light text-white">{beds}</span>
           </div>
-          <Button variant="link" className="p-0 h-auto text-primary font-bold text-xs uppercase tracking-widest hover:text-accent">
-            Enquire
-          </Button>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 text-white/40">
+              <Bath className="w-3 h-3" />
+              <span className="text-[10px] uppercase font-bold tracking-widest">Baths</span>
+            </div>
+            <span className="text-sm font-light text-white">{baths}</span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 text-white/40">
+              <Maximize className="w-3 h-3" />
+              <span className="text-[10px] uppercase font-bold tracking-widest">Sq Ft</span>
+            </div>
+            <span className="text-sm font-light text-white">{sqft}</span>
+          </div>
         </div>
       </div>
     </div>

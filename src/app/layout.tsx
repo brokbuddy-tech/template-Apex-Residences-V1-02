@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Apex Residences | Modern Luxury Real Estate',
-  description: 'Discover your dream home with Apex Residences. High-end properties, villas, and apartments.',
+  title: 'Apex Residences | Ultra-Luxury Real Estate Dubai',
+  description: 'Precision, Performance, and Due Diligence. Discover your signature address with Apex Residences.',
 };
 
 export default function RootLayout({
@@ -17,9 +17,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=PT+Sans:wght@400;700&family=Source+Code+Pro&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased bg-black">
         {children}
         <Toaster />
       </body>

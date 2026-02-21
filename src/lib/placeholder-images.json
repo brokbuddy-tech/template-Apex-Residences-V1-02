@@ -2,51 +2,39 @@
   "placeholderImages": [
     {
       "id": "hero-bg",
-      "description": "Luxury modern villa with infinity pool at sunset",
-      "imageUrl": "https://images.unsplash.com/photo-1717167398817-121e3c283dbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsdXh1cnklMjB2aWxsYXxlbnwwfHx8fDE3NzE2NTAwNjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "luxury villa"
+      "description": "Dubai skyline at night with cinematic skyscraper silhouettes",
+      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkdWJhaSUyMG5pZ2h0fGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1920",
+      "imageHint": "dubai night"
     },
     {
       "id": "prop-1",
-      "description": "Modern minimalist apartment interior",
-      "imageUrl": "https://images.unsplash.com/photo-1653972233229-1b8c042d6d8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBhcGFydG1lbnR8ZW58MHx8fHwxNzcxNjU3MDU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "modern apartment"
+      "description": "Ultra-luxury penthouse interior at night",
+      "imageUrl": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBwZW50aG91c2V8ZW58MHx8fHwxNzcxNjU3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury penthouse"
     },
     {
       "id": "prop-2",
-      "description": "Contemporary beach house",
-      "imageUrl": "https://images.unsplash.com/photo-1517541866997-ea18e32ea9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiZWFjaCUyMGhvdXNlfGVufDB8fHx8MTc3MTYyMDAyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "beach house"
+      "description": "Bespoke beachfront mansion",
+      "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBtYW5zaW9ufGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern mansion"
     },
     {
       "id": "prop-3",
-      "description": "Downtown skyscraper penthouse",
-      "imageUrl": "https://images.unsplash.com/photo-1609766857326-18a204c2cf31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZW50aG91c2V8ZW58MHx8fHwxNzcxNjU3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "penthouse"
-    },
-    {
-      "id": "agent-1",
-      "description": "Professional real estate agent",
-      "imageUrl": "https://images.unsplash.com/photo-1763478958776-ebd04b6459ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBhZ2VudHxlbnwwfHx8fDE3NzE1Mzg1NTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "professional agent"
-    },
-    {
-      "id": "agent-2",
-      "description": "Expert property consultant",
-      "imageUrl": "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YnVzaW5lc3MlMjBwZXJzb258ZW58MHx8fHwxNzcxNTgyODM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "business person"
+      "description": "Sleek architectural villa",
+      "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMXx8bHV4dXJ5JTIwaG9tZXxlbnwwfHx8fDE3NzE2NTcwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury home"
     },
     {
       "id": "area-1",
-      "description": "Luxury marina district",
-      "imageUrl": "https://images.unsplash.com/photo-1678797571814-115c0fe7626c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaXR5JTIwbWFyaW5hfGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "city marina"
+      "description": "Dubai Marina at night",
+      "imageUrl": "https://images.unsplash.com/photo-1582672098059-02714c351e8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkdWJhaSUyMG1hcmluYSUyMG5pZ2h0fGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "marina night"
     },
     {
       "id": "area-2",
-      "description": "Quiet suburban neighborhood",
-      "imageUrl": "https://images.unsplash.com/photo-1768348255138-5a5cb0042a57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBzdWJ1cmJ8ZW58MHx8fHwxNzcxNjU3MDU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "luxury suburb"
+      "description": "Burj Khalifa glowing at night",
+      "imageUrl": "https://images.unsplash.com/photo-1549944850-84e00be4203b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8YnVyaiUyMGtoYWxpZmF8ZW58MHx8fHwxNzcxNjU3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "burj khalifa"
     }
   ]
 }
