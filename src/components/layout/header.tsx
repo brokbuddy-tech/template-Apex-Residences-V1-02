@@ -37,7 +37,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">
+        <nav className="hidden xl:flex items-center gap-10 text-[12px] font-bold uppercase tracking-[0.2em] text-white/80">
           <Link href="/buy" className="hover:text-[#B8860B] transition-colors">Buy</Link>
           <Link href="/sell" className="hover:text-[#B8860B] transition-colors">Sell</Link>
           <Link href="/invest" className="hover:text-[#B8860B] transition-colors">Invest</Link>
@@ -51,7 +51,7 @@ export function Header() {
             <Search className="w-5 h-5" />
           </button>
           
-          <Button className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
+          <Button className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
             Instant Valuation
           </Button>
 
