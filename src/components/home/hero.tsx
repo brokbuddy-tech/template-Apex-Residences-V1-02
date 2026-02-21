@@ -7,6 +7,7 @@ import { Map } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
 import { ConsultationDialog } from "./consultation-dialog";
+import { OwnerRelationsDialog } from "./owner-relations-dialog";
 import {
   Select,
   SelectContent,
@@ -54,9 +55,11 @@ export function Hero() {
                 Leave a request
               </Button>
             </ConsultationDialog>
-            <Button className="btn-outline-white px-12 h-14">
-              Already an owner?
-            </Button>
+            <OwnerRelationsDialog>
+              <Button className="btn-outline-white px-12 h-14">
+                Already an owner?
+              </Button>
+            </OwnerRelationsDialog>
           </div>
         </div>
 
