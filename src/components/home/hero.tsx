@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Map } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
+import { ConsultationDialog } from "./consultation-dialog";
 import {
   Select,
   SelectContent,
@@ -48,9 +49,11 @@ export function Hero() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6">
-            <Button className="btn-copper px-12 h-14">
-              Leave a request
-            </Button>
+            <ConsultationDialog>
+              <Button className="btn-copper px-12 h-14">
+                Leave a request
+              </Button>
+            </ConsultationDialog>
             <Button className="btn-outline-white px-12 h-14">
               Already an owner?
             </Button>
