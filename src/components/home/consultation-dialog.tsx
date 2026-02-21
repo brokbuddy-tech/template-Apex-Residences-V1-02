@@ -22,7 +22,7 @@ export function ConsultationDialog({ children }: ConsultationDialogProps) {
         {children}
       </DialogTrigger>
       <DialogContent className="max-w-4xl bg-[#0a0a0a] border-white/5 p-8 md:p-16 flex flex-col items-center">
-        <DialogHeader className="mb-12 w-full text-center">
+        <DialogHeader className="mb-12 w-full flex flex-col items-center text-center sm:text-center">
           <DialogTitle className="text-white text-[25px] font-extralight tracking-[0.4em] uppercase mb-4 leading-tight">
             Prompt Consultation
           </DialogTitle>
