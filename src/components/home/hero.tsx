@@ -100,21 +100,39 @@ export function Hero() {
                 </Select>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bedrooms</label>
-                <Select>
-                  <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
-                    <SelectValue placeholder="Any" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
-                    <SelectItem value="any">Any</SelectItem>
-                    <SelectItem value="1">1 Bedroom</SelectItem>
-                    <SelectItem value="2">2 Bedrooms</SelectItem>
-                    <SelectItem value="3">3 Bedrooms</SelectItem>
-                    <SelectItem value="4">4 Bedrooms</SelectItem>
-                    <SelectItem value="5">5+ Bedrooms</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bedrooms</label>
+                  <Select>
+                    <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
+                      <SelectValue placeholder="Any" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
+                      <SelectItem value="any">Any</SelectItem>
+                      <SelectItem value="1">1 Bedroom</SelectItem>
+                      <SelectItem value="2">2 Bedrooms</SelectItem>
+                      <SelectItem value="3">3 Bedrooms</SelectItem>
+                      <SelectItem value="4">4 Bedrooms</SelectItem>
+                      <SelectItem value="5">5+ Bedrooms</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bathrooms</label>
+                  <Select>
+                    <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
+                      <SelectValue placeholder="Any" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
+                      <SelectItem value="any">Any</SelectItem>
+                      <SelectItem value="1">1 Bathroom</SelectItem>
+                      <SelectItem value="2">2 Bathrooms</SelectItem>
+                      <SelectItem value="3">3 Bathrooms</SelectItem>
+                      <SelectItem value="4">4 Bathrooms</SelectItem>
+                      <SelectItem value="5">5+ Bathrooms</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
               {/* Currency Selector */}
