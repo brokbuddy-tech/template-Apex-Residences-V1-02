@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -47,10 +47,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-6">
-          <button className="text-white hover:text-[#B8860B] transition-colors">
-            <Search className="w-5 h-5" />
-          </button>
-          
           <Button className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
             Instant Valuation
           </Button>
