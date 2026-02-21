@@ -19,21 +19,22 @@ export function OwnerRelationsDialog({ children }: OwnerRelationsDialogProps) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl bg-black border-white/5 p-16 md:p-24 flex flex-col items-center text-center justify-center min-h-[400px]">
+      <DialogContent className="max-w-2xl bg-black border-white/5 p-10 md:p-16 flex flex-col items-center text-center justify-center">
         <DialogHeader className="w-full flex flex-col items-center justify-center">
-          <DialogTitle className="text-white text-2xl md:text-5xl font-extralight tracking-[0.2em] uppercase mb-12 leading-tight">
+          <DialogTitle className="text-white text-xl md:text-2xl font-extralight tracking-[0.2em] uppercase mb-8 leading-tight">
             Bought your property <br /> through Apex Residences?
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-10 max-w-2xl">
-          <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed">
+        <div className="space-y-6 max-w-lg">
+          <p className="text-white/60 text-sm md:text-base font-light leading-relaxed">
             We're excited to introduce you to our Owner Relations team! <br />
             Whether you have questions or need support, we're here to help.
           </p>
           
-          <p className="text-white/60 text-lg md:text-xl font-light pt-8">
-            Reach out anytime at <span className="text-[#B8860B] font-medium border-b border-[#B8860B]/30 pb-1">owner.relations@apexresidences.com</span>
+          <p className="text-white/60 text-sm md:text-base font-light pt-4">
+            Reach out anytime at <br className="md:hidden" />
+            <span className="text-[#B8860B] font-medium border-b border-[#B8860B]/30 pb-1 break-all md:break-normal">owner.relations@apexresidences.com</span>
           </p>
         </div>
       </DialogContent>
