@@ -19,8 +19,8 @@ export function OwnerRelationsDialog({ children }: OwnerRelationsDialogProps) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl bg-black border-white/5 p-16 md:p-24 flex flex-col items-center text-center">
-        <DialogHeader className="w-full flex flex-col items-center">
+      <DialogContent className="max-w-4xl bg-black border-white/5 p-16 md:p-24 flex flex-col items-center text-center justify-center min-h-[400px]">
+        <DialogHeader className="w-full flex flex-col items-center justify-center">
           <DialogTitle className="text-white text-2xl md:text-5xl font-extralight tracking-[0.2em] uppercase mb-12 leading-tight">
             Bought your property <br /> through Apex Residences?
           </DialogTitle>
