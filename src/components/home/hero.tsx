@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Map, Phone, MessageSquare, Mail } from "lucide-react";
+import { ChevronDown, Map } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
 
@@ -30,12 +30,12 @@ export function Hero() {
         {/* Left Content */}
         <div className="space-y-12 animate-in fade-in slide-in-from-left-10 duration-1000">
           <div className="space-y-4">
-            <h1 className="font-headline text-4xl md:text-5xl xl:text-6xl font-thin tracking-[0.1em] leading-tight text-white uppercase">
+            <h1 className="font-headline text-3xl md:text-4xl xl:text-5xl font-thin tracking-[0.1em] leading-tight text-white uppercase">
               Invest in <br />
               Luxury Living <br />
               with <span className="font-bold">Apex Residences</span>
             </h1>
-            <p className="text-white/60 text-base md:text-lg font-light italic tracking-wider">
+            <p className="text-white/60 text-sm md:text-base font-light italic tracking-wider">
               "Precision, Performance, and Due Diligence at Your Service"
             </p>
           </div>
@@ -133,21 +133,6 @@ export function Hero() {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Floating Sidebar */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
-        <div className="flex flex-col items-center bg-black/60 backdrop-blur-md rounded-full py-6 px-3 border border-white/10 gap-8">
-          <button className="text-green-500 hover:scale-110 transition-transform">
-            <MessageSquare className="w-5 h-5" />
-          </button>
-          <button className="text-white hover:text-[#B8860B] hover:scale-110 transition-all">
-            <Phone className="w-5 h-5" />
-          </button>
-          <button className="text-white hover:text-[#B8860B] hover:scale-110 transition-all">
-            <Mail className="w-5 h-5" />
-          </button>
         </div>
       </div>
     </section>
