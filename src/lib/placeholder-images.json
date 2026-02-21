@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Luxury modern villa with infinity pool at sunset",
+      "imageUrl": "https://images.unsplash.com/photo-1717167398817-121e3c283dbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsdXh1cnklMjB2aWxsYXxlbnwwfHx8fDE3NzE2NTAwNjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury villa"
+    },
+    {
+      "id": "prop-1",
+      "description": "Modern minimalist apartment interior",
+      "imageUrl": "https://images.unsplash.com/photo-1653972233229-1b8c042d6d8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBhcGFydG1lbnR8ZW58MHx8fHwxNzcxNjU3MDU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern apartment"
+    },
+    {
+      "id": "prop-2",
+      "description": "Contemporary beach house",
+      "imageUrl": "https://images.unsplash.com/photo-1517541866997-ea18e32ea9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiZWFjaCUyMGhvdXNlfGVufDB8fHx8MTc3MTYyMDAyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "beach house"
+    },
+    {
+      "id": "prop-3",
+      "description": "Downtown skyscraper penthouse",
+      "imageUrl": "https://images.unsplash.com/photo-1609766857326-18a204c2cf31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZW50aG91c2V8ZW58MHx8fHwxNzcxNjU3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "penthouse"
+    },
+    {
+      "id": "agent-1",
+      "description": "Professional real estate agent",
+      "imageUrl": "https://images.unsplash.com/photo-1763478958776-ebd04b6459ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBhZ2VudHxlbnwwfHx8fDE3NzE1Mzg1NTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional agent"
+    },
+    {
+      "id": "agent-2",
+      "description": "Expert property consultant",
+      "imageUrl": "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YnVzaW5lc3MlMjBwZXJzb258ZW58MHx8fHwxNzcxNTgyODM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "business person"
+    },
+    {
+      "id": "area-1",
+      "description": "Luxury marina district",
+      "imageUrl": "https://images.unsplash.com/photo-1678797571814-115c0fe7626c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaXR5JTIwbWFyaW5hfGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city marina"
+    },
+    {
+      "id": "area-2",
+      "description": "Quiet suburban neighborhood",
+      "imageUrl": "https://images.unsplash.com/photo-1768348255138-5a5cb0042a57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBzdWJ1cmJ8ZW58MHx8fHwxNzcxNjU3MDU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury suburb"
+    }
+  ]
 }
