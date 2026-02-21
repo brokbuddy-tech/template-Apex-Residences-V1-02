@@ -9,12 +9,12 @@ import { Shield, Award, Gem, Globe } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-background">
       <Header />
       <Hero />
       
       {/* Category Icons */}
-      <section className="py-12 bg-white border-b overflow-x-auto">
+      <section className="py-12 bg-card border-b overflow-x-auto">
         <div className="max-w-7xl mx-auto px-6 flex justify-around items-center min-w-[800px]">
           {[
             { icon: Gem, label: "Luxury Villas" },
@@ -23,7 +23,7 @@ export default function Home() {
             { icon: Shield, label: "Secured Units" },
           ].map((item, idx) => (
             <div key={idx} className="flex flex-col items-center gap-3 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                 <item.icon className="w-7 h-7" />
               </div>
               <span className="text-xs uppercase font-bold tracking-widest text-muted-foreground group-hover:text-primary transition-colors">
@@ -40,9 +40,9 @@ export default function Home() {
       <section className="relative py-32 flex items-center justify-center text-center px-6 overflow-hidden">
         <div className="absolute inset-0 bg-primary opacity-95 z-0" />
         <div className="relative z-10 max-w-3xl mx-auto">
-          <h2 className="font-headline text-4xl md:text-6xl text-white font-bold mb-8">Ready to Find Your <span className="text-accent italic">Signature</span> Address?</h2>
+          <h2 className="font-headline text-4xl md:text-6xl text-primary-foreground font-bold mb-8">Ready to Find Your <span className="text-white italic">Signature</span> Address?</h2>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
               Talk to an Agent
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
