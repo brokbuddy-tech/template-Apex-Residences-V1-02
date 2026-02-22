@@ -5,6 +5,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,6 +23,15 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navLinks = [
+    { href: "/buy", label: "Buy" },
+    { href: "/sell", label: "Sell" },
+    { href: "/invest", label: "Invest" },
+    { href: "/off-plan", label: "Off-Plan" },
+    { href: "/rent", label: "Rent" },
+    { href: "/guides", label: "Guides" },
+  ];
 
   return (
     <header
@@ -38,12 +54,11 @@ export function Header() {
         </Link>
 
         <nav className="hidden xl:flex items-center gap-10 text-[12px] font-bold uppercase tracking-[0.2em] text-white/80">
-          <Link href="/buy" className="hover:text-[#B8860B] transition-colors">Buy</Link>
-          <Link href="/sell" className="hover:text-[#B8860B] transition-colors">Sell</Link>
-          <Link href="/invest" className="hover:text-[#B8860B] transition-colors">Invest</Link>
-          <Link href="/off-plan" className="hover:text-[#B8860B] transition-colors">Off-Plan</Link>
-          <Link href="/rent" className="hover:text-[#B8860B] transition-colors">Rent</Link>
-          <Link href="/guides" className="hover:text-[#B8860B] transition-colors">Guides</Link>
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="hover:text-[#B8860B] transition-colors">
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-6">
@@ -51,9 +66,34 @@ export function Header() {
             Contact Us
           </Button>
 
-          <Button variant="ghost" size="icon" className="text-white xl:hidden">
-            <Menu className="w-6 h-6" />
-          </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-white xl:hidden">
+                <Menu className="w-6 h-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-black border-white/10 text-white w-[300px] pt-16">
+              <SheetHeader className="mb-12">
+                <SheetTitle className="text-left text-white font-headline tracking-[0.2em] uppercase text-xl">
+                  Navigation
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-8 text-[14px] font-bold uppercase tracking-[0.2em]">
+                {navLinks.map((link) => (
+                  <Link 
+                    key={link.href} 
+                    href={link.href} 
+                    className="hover:text-[#B8860B] transition-colors border-b border-white/5 pb-2"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest h-12 rounded-none border-none w-full">
+                  Contact Us
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
