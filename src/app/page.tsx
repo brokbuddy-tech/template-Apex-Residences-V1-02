@@ -5,6 +5,7 @@ import { ListingSection } from "@/components/home/listing-section";
 import { AreaGuides } from "@/components/home/area-guides";
 import { ContactSection } from "@/components/home/contact-section";
 import { ReviewsSection } from "@/components/home/reviews-section";
+import { FaqSection } from "@/components/home/faq-section";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Gem, Globe } from "lucide-react";
@@ -59,6 +60,8 @@ export default function Home() {
       <AreaGuides />
 
       <ReviewsSection />
+
+      <FaqSection />
       
       <ContactSection />
       
