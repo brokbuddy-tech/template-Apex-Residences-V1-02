@@ -37,7 +37,7 @@ export function FaqSection() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="font-headline text-3xl md:text-4xl font-thin tracking-[0.5em] text-white uppercase mb-4">
-            FAQS
+            FAQ
           </h2>
           <p className="text-white/40 text-xs font-light italic tracking-[0.2em]">
             Expert answers to your most common real estate questions
