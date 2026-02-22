@@ -145,7 +145,7 @@ export function TeamSection() {
                   const agentImage = PlaceHolderImages.find(img => img.id === agent.imageId);
                   return (
                     <CarouselItem key={agent.id} className="pl-6 basis-full sm:basis-1/2 xl:basis-1/2 group">
-                      <div className="relative aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                      <div className="relative aspect-[3/4] overflow-hidden md:grayscale group-hover:grayscale-0 transition-all duration-700">
                         <Image
                           src={agentImage?.imageUrl || ""}
                           alt={agent.name}
