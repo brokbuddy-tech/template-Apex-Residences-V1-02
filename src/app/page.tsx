@@ -1,6 +1,5 @@
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
-import { FeaturedProperties } from "@/components/home/featured-properties";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
 import { AreaGuides } from "@/components/home/area-guides";
 import { ContactSection } from "@/components/home/contact-section";
@@ -34,8 +33,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <FeaturedProperties />
 
       <ExclusivesSection />
       
