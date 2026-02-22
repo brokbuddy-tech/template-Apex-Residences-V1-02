@@ -68,7 +68,7 @@ export function ExclusivesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-stretch">
           
           {/* Left Column: Primary Visual (flex-2 equivalent) */}
-          <div className="lg:col-span-2 relative aspect-[3/4] overflow-hidden group">
+          <div key={`img-${activeItem.id}`} className="lg:col-span-2 relative aspect-[3/4] overflow-hidden group animate-in fade-in duration-1000 zoom-in-105">
             <Image
               src={activeItem.image}
               alt={activeItem.title}
@@ -88,7 +88,7 @@ export function ExclusivesSection() {
           </div>
 
           {/* Center Column: Feature Details (flex-2 equivalent) */}
-          <div className="lg:col-span-2 flex flex-col justify-between py-6 space-y-12">
+          <div key={`details-${activeItem.id}`} className="lg:col-span-2 flex flex-col justify-between py-6 space-y-12 animate-in fade-in slide-in-from-right-8 duration-1000">
             {/* Feature Grid */}
             <div className="grid grid-cols-2 gap-x-12 gap-y-16">
               {activeItem.features.map((feature, idx) => (
@@ -128,7 +128,7 @@ export function ExclusivesSection() {
           </div>
 
           {/* Right Column: Peek-Ahead (flex-1 equivalent) */}
-          <div className="hidden lg:block lg:col-span-1 relative h-full grayscale opacity-30 group cursor-pointer transition-all duration-700 hover:opacity-50" onClick={handleNext}>
+          <div key={`peek-${nextItem.id}`} className="hidden lg:block lg:col-span-1 relative h-full grayscale opacity-30 group cursor-pointer transition-all duration-1000 hover:opacity-50 animate-in fade-in slide-in-from-right-12" onClick={handleNext}>
             <Image
               src={nextItem.image}
               alt="Next Property"
