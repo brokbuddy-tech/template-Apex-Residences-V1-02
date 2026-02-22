@@ -3,10 +3,11 @@ import { Hero } from "@/components/home/hero";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
 import { ListingSection } from "@/components/home/listing-section";
 import { AreaGuides } from "@/components/home/area-guides";
-import { NewsSection } from "@/components/home/news-section";
-import { ContactSection } from "@/components/home/contact-section";
+import { TeamSection } from "@/components/home/team-section";
 import { ReviewsSection } from "@/components/home/reviews-section";
 import { FaqSection } from "@/components/home/faq-section";
+import { NewsSection } from "@/components/home/news-section";
+import { ContactSection } from "@/components/home/contact-section";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Gem, Globe } from "lucide-react";
@@ -59,6 +60,8 @@ export default function Home() {
       </section>
 
       <AreaGuides />
+
+      <TeamSection />
 
       <ReviewsSection />
 
