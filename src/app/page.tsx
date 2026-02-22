@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
+import { ListingSection } from "@/components/home/listing-section";
 import { AreaGuides } from "@/components/home/area-guides";
 import { ContactSection } from "@/components/home/contact-section";
 import { ReviewsSection } from "@/components/home/reviews-section";
@@ -36,6 +37,8 @@ export default function Home() {
       </section>
 
       <ExclusivesSection />
+
+      <ListingSection />
       
       {/* Dynamic CTA */}
       <section className="relative py-32 flex items-center justify-center text-center px-6 overflow-hidden">
