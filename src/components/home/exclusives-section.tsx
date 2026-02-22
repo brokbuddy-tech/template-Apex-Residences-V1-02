@@ -52,23 +52,23 @@ export function ExclusivesSection() {
   };
 
   return (
-    <section className="bg-black py-32 px-6 md:px-12 overflow-hidden">
-      <div className="max-w-[1600px] mx-auto">
+    <section className="bg-black py-24 px-6 md:px-12 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-20 animate-in fade-in slide-in-from-top-4 duration-1000">
-          <h2 className="font-headline text-4xl md:text-5xl font-light tracking-[0.4em] text-white uppercase mb-4">
+        <div className="mb-12 animate-in fade-in slide-in-from-top-4 duration-1000">
+          <h2 className="font-headline text-3xl md:text-4xl font-light tracking-[0.4em] text-white uppercase mb-3">
             EXCLUSIVES
           </h2>
-          <p className="text-white/40 text-xs md:text-sm font-light italic tracking-[0.2em]">
+          <p className="text-white/40 text-xs font-light italic tracking-[0.2em]">
             Discover the outstanding range of Dubai properties only with APEX RESIDENCES
           </p>
         </div>
 
         {/* Golden Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
           
           {/* Left Column: Primary Visual (flex-2 equivalent) */}
-          <div key={`img-${activeItem.id}`} className="lg:col-span-2 relative aspect-[3/4] overflow-hidden group animate-in fade-in duration-1000 zoom-in-105">
+          <div key={`img-${activeItem.id}`} className="lg:col-span-2 relative aspect-[4/5] overflow-hidden group animate-in fade-in duration-1000 zoom-in-105">
             <Image
               src={activeItem.image}
               alt={activeItem.title}
@@ -76,90 +76,90 @@ export function ExclusivesSection() {
               className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-10 left-10 space-y-2">
+            <div className="absolute bottom-8 left-8 space-y-2">
               <div className="flex items-center gap-2 text-[#D1A08B]">
-                <MapPin className="w-4 h-4" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">{activeItem.location}</span>
+                <MapPin className="w-3.5 h-3.5" />
+                <span className="text-[9px] font-bold uppercase tracking-widest">{activeItem.location}</span>
               </div>
-              <h3 className="text-white font-headline text-2xl font-bold tracking-wider max-w-xs uppercase">
+              <h3 className="text-white font-headline text-xl font-bold tracking-wider max-w-xs uppercase">
                 {activeItem.title}
               </h3>
             </div>
           </div>
 
           {/* Center Column: Feature Details (flex-2 equivalent) */}
-          <div key={`details-${activeItem.id}`} className="lg:col-span-2 flex flex-col justify-between py-6 space-y-12 animate-in fade-in slide-in-from-right-8 duration-1000">
+          <div key={`details-${activeItem.id}`} className="lg:col-span-2 flex flex-col justify-between py-2 space-y-10 animate-in fade-in slide-in-from-right-8 duration-1000">
             {/* Feature Grid */}
-            <div className="grid grid-cols-2 gap-x-12 gap-y-16">
+            <div className="grid grid-cols-2 gap-x-10 gap-y-12">
               {activeItem.features.map((feature, idx) => (
-                <div key={idx} className="space-y-4 relative group">
-                  <h4 className="text-[#D1A08B] text-[10px] font-bold uppercase tracking-[0.3em]">
+                <div key={idx} className="space-y-3 relative group">
+                  <h4 className="text-[#D1A08B] text-[9px] font-bold uppercase tracking-[0.3em]">
                     {feature.label}
                   </h4>
-                  <p className="text-white/60 text-xs font-light leading-relaxed">
+                  <p className="text-white/60 text-[11px] font-light leading-relaxed">
                     {feature.value}
                   </p>
-                  <div className="absolute -bottom-8 left-0 w-full h-[1px] bg-white/10 group-even:hidden" />
+                  <div className="absolute -bottom-6 left-0 w-full h-[1px] bg-white/5 group-even:hidden" />
                 </div>
               ))}
             </div>
 
             {/* Summary & Handover */}
-            <div className="space-y-8">
-              <p className="text-white/40 text-sm font-light leading-loose tracking-wide">
+            <div className="space-y-6">
+              <p className="text-white/40 text-xs font-light leading-loose tracking-wide">
                 {activeItem.summary}
               </p>
-              <div className="pt-8 border-t border-white/10">
-                <p className="text-white text-xs font-bold uppercase tracking-[0.3em]">
+              <div className="pt-6 border-t border-white/10">
+                <p className="text-white text-[10px] font-bold uppercase tracking-[0.3em]">
                   Handover date: <span className="text-[#D1A08B]">{activeItem.handover}</span>
                 </p>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-6 pt-8">
-              <Button className="bg-[#D1A08B] hover:bg-[#D1A08B]/90 text-white rounded-none px-12 h-14 uppercase tracking-[0.3em] text-[10px] font-bold">
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Button className="bg-[#D1A08B] hover:bg-[#D1A08B]/90 text-white rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold">
                 Enquire now
               </Button>
-              <Button variant="outline" className="border-[#B8860B]/40 text-[#B8860B] hover:bg-[#B8860B]/5 rounded-none px-12 h-14 uppercase tracking-[0.3em] text-[10px] font-bold bg-transparent">
+              <Button variant="outline" className="border-[#B8860B]/30 text-[#B8860B] hover:bg-[#B8860B]/5 rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold bg-transparent">
                 Learn more
               </Button>
             </div>
           </div>
 
           {/* Right Column: Peek-Ahead (flex-1 equivalent) */}
-          <div key={`peek-${nextItem.id}`} className="hidden lg:block lg:col-span-1 relative h-full grayscale opacity-30 group cursor-pointer transition-all duration-1000 hover:opacity-50 animate-in fade-in slide-in-from-right-12" onClick={handleNext}>
+          <div key={`peek-${nextItem.id}`} className="hidden lg:block lg:col-span-1 relative h-full grayscale opacity-20 group cursor-pointer transition-all duration-1000 hover:opacity-40 animate-in fade-in slide-in-from-right-12" onClick={handleNext}>
             <Image
               src={nextItem.image}
               alt="Next Property"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-black/50" />
             <div className="absolute inset-0 flex items-center justify-center">
-               <span className="text-white text-[10px] font-bold uppercase tracking-[0.5em] -rotate-90 whitespace-nowrap">NEXT PROPERTY</span>
+               <span className="text-white text-[9px] font-bold uppercase tracking-[0.5em] -rotate-90 whitespace-nowrap">NEXT PROPERTY</span>
             </div>
           </div>
         </div>
 
         {/* Carousel Controls */}
-        <div className="mt-20 flex items-center justify-between border-t border-white/10 pt-10">
+        <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
           <button 
             onClick={handlePrev}
-            className="text-white/30 hover:text-[#D1A08B] transition-colors text-[10px] font-bold uppercase tracking-[0.4em]"
+            className="text-white/20 hover:text-[#D1A08B] transition-colors text-[9px] font-bold uppercase tracking-[0.4em]"
           >
             PREV
           </button>
           
-          <div className="text-white font-light tracking-[0.4em] text-xs">
+          <div className="text-white font-light tracking-[0.4em] text-[10px]">
             <span className="text-white font-bold">{currentIndex + 1}</span>
-            <span className="mx-4 text-white/20">/</span>
-            <span className="text-white/40">{EXCLUSIVES_DATA.length}</span>
+            <span className="mx-3 text-white/10">/</span>
+            <span className="text-white/30">{EXCLUSIVES_DATA.length}</span>
           </div>
 
           <button 
             onClick={handleNext}
-            className="text-white/30 hover:text-[#D1A08B] transition-colors text-[10px] font-bold uppercase tracking-[0.4em]"
+            className="text-white/20 hover:text-[#D1A08B] transition-colors text-[9px] font-bold uppercase tracking-[0.4em]"
           >
             NEXT
           </button>
