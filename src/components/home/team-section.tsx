@@ -157,7 +157,7 @@ export function TeamSection() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
                         <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                           <div className="space-y-2">
-                            <p className="text-[#B8860B] text-[9px] font-bold uppercase tracking-[0.3em]">
+                            <p className="text-white text-[9px] font-bold uppercase tracking-[0.3em]">
                               {agent.title}
                             </p>
                             <h3 className="text-white text-xl font-headline font-bold tracking-widest uppercase">
