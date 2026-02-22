@@ -1,8 +1,10 @@
+
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
 import { ListingSection } from "@/components/home/listing-section";
 import { AreaGuides } from "@/components/home/area-guides";
+import { NewsSection } from "@/components/home/news-section";
 import { ContactSection } from "@/components/home/contact-section";
 import { ReviewsSection } from "@/components/home/reviews-section";
 import { FaqSection } from "@/components/home/faq-section";
@@ -58,6 +60,8 @@ export default function Home() {
       </section>
 
       <AreaGuides />
+
+      <NewsSection />
 
       <ReviewsSection />
 

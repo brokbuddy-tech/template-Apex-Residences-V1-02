@@ -3,7 +3,7 @@
     {
       "id": "hero-bg",
       "description": "Dubai skyline at night with cinematic skyscraper silhouettes",
-      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkdWJhaSUyMG5pZ2h0fGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1920",
+      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHh8NHx8ZHViYWklMjBuaWdodHxlbnwwfHx8fDE3NzE2NTcwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1920",
       "imageHint": "dubai night"
     },
     {
@@ -27,7 +27,7 @@
     {
       "id": "area-1",
       "description": "Dubai Marina at night",
-      "imageUrl": "https://images.unsplash.com/photo-1582672098059-02714c351e8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw8fHxkdWJhaSUyMG1hcmluYSUyMG5pZ2h0fGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1582672098059-02714c351e8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkdWJhaSUyMG1hcmluYSUyMG5pZ2h0fGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "marina night"
     },
     {
@@ -41,6 +41,24 @@
       "description": "High-end residential skyscraper architectural shot",
       "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8ZHViYWklMjBza3lzY3JhcGVyfGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dubai skyscraper"
+    },
+    {
+      "id": "news-1",
+      "description": "Modern residential development exterior",
+      "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBhcnRjaGl0ZWN0dXJlfGVufDB8fHx8MTc3MTY2NDU5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern architecture"
+    },
+    {
+      "id": "news-2",
+      "description": "Waterfront skyscraper at dawn",
+      "imageUrl": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxza3ljcmFwZXIlMjB3YXRlcmZyb250fGVufDB8fHx8MTc3MTY2NDU5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "waterfront tower"
+    },
+    {
+      "id": "news-3",
+      "description": "Aerial view of a modern city grid",
+      "imageUrl": "https://images.unsplash.com/photo-1518684079-3c830dcef090?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkdWJhaSUyMGFlcmlhbHxlbnwwfHx8fDE3NzE2NjQ1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dubai aerial"
     }
   ]
 }
