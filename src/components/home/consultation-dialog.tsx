@@ -21,8 +21,8 @@ export function ConsultationDialog({ children }: ConsultationDialogProps) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl bg-[#0a0a0a] border-white/5 p-8 md:p-16 flex flex-col items-center">
-        <DialogHeader className="mb-12 w-full flex flex-col items-center text-center sm:text-center">
+      <DialogContent className="max-w-4xl bg-[#0a0a0a] border-white/5 p-6 md:p-10 flex flex-col items-center">
+        <DialogHeader className="mb-8 w-full flex flex-col items-center text-center sm:text-center">
           <DialogTitle className="text-white text-[25px] font-extralight tracking-[0.4em] uppercase mb-4 leading-tight">
             Prompt Consultation
           </DialogTitle>
@@ -57,7 +57,7 @@ export function ConsultationDialog({ children }: ConsultationDialogProps) {
           </div>
         </div>
 
-        <div className="mt-16 flex items-center gap-4 text-white/40 text-[9px] md:text-xs font-light tracking-[0.3em] uppercase">
+        <div className="mt-10 flex items-center gap-4 text-white/40 text-[9px] md:text-xs font-light tracking-[0.3em] uppercase">
           <span>Or contact us right now via</span>
           <a href="#" className="flex items-center gap-2 text-[#B8860B] hover:text-[#B8860B]/80 transition-colors font-bold">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
