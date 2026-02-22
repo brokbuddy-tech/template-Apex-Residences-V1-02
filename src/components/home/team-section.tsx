@@ -1,9 +1,11 @@
+
 "use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
 import { RefreshCcw, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 import {
   Select,
   SelectContent,
@@ -26,7 +28,7 @@ const AGENTS = [
     title: "Head of Secondary",
     experience: "12 Years",
     languages: ["English", "Spanish"],
-    image: "https://picsum.photos/seed/agent-ben/600/800",
+    imageId: "agent-1",
   },
   {
     id: 2,
@@ -34,7 +36,7 @@ const AGENTS = [
     title: "Senior Portfolio Manager",
     experience: "8 Years",
     languages: ["English", "Russian"],
-    image: "https://picsum.photos/seed/agent-alex/600/800",
+    imageId: "agent-2",
   },
   {
     id: 3,
@@ -42,7 +44,7 @@ const AGENTS = [
     title: "Luxury Rental Specialist",
     experience: "10 Years",
     languages: ["Spanish", "French", "English"],
-    image: "https://picsum.photos/seed/agent-elena/600/800",
+    imageId: "agent-3",
   },
   {
     id: 4,
@@ -50,7 +52,7 @@ const AGENTS = [
     title: "Off-Plan Investment Expert",
     experience: "15 Years",
     languages: ["English", "German"],
-    image: "https://picsum.photos/seed/agent-marcus/600/800",
+    imageId: "agent-4",
   },
 ];
 
@@ -139,40 +141,44 @@ export function TeamSection() {
               className="w-full"
             >
               <CarouselContent className="-ml-6">
-                {AGENTS.map((agent) => (
-                  <CarouselItem key={agent.id} className="pl-6 basis-full sm:basis-1/2 xl:basis-1/2 group">
-                    <div className="relative aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                      <Image
-                        src={agent.image}
-                        alt={agent.name}
-                        fill
-                        className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                      />
-                      {/* Metadata Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <div className="space-y-2">
-                          <p className="text-[#B8860B] text-[9px] font-bold uppercase tracking-[0.3em]">
-                            {agent.title}
-                          </p>
-                          <h3 className="text-white text-xl font-headline font-bold tracking-widest uppercase">
-                            {agent.name}
-                          </h3>
-                          <div className="pt-4 flex items-center justify-between border-t border-white/10 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                            <div className="space-y-1">
-                              <p className="text-white/40 text-[8px] uppercase tracking-widest">Experience</p>
-                              <p className="text-white text-[10px] font-bold">{agent.experience}</p>
-                            </div>
-                            <div className="space-y-1 text-right">
-                              <p className="text-white/40 text-[8px] uppercase tracking-widest">Languages</p>
-                              <p className="text-white text-[10px] font-bold">{agent.languages.join(", ")}</p>
+                {AGENTS.map((agent) => {
+                  const agentImage = PlaceHolderImages.find(img => img.id === agent.imageId);
+                  return (
+                    <CarouselItem key={agent.id} className="pl-6 basis-full sm:basis-1/2 xl:basis-1/2 group">
+                      <div className="relative aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <Image
+                          src={agentImage?.imageUrl || ""}
+                          alt={agent.name}
+                          fill
+                          className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                          data-ai-hint={agentImage?.imageHint}
+                        />
+                        {/* Metadata Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                        <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                          <div className="space-y-2">
+                            <p className="text-[#B8860B] text-[9px] font-bold uppercase tracking-[0.3em]">
+                              {agent.title}
+                            </p>
+                            <h3 className="text-white text-xl font-headline font-bold tracking-widest uppercase">
+                              {agent.name}
+                            </h3>
+                            <div className="pt-4 flex items-center justify-between border-t border-white/10 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                              <div className="space-y-1">
+                                <p className="text-white/40 text-[8px] uppercase tracking-widest">Experience</p>
+                                <p className="text-white text-[10px] font-bold">{agent.experience}</p>
+                              </div>
+                              <div className="space-y-1 text-right">
+                                <p className="text-white/40 text-[8px] uppercase tracking-widest">Languages</p>
+                                <p className="text-white text-[10px] font-bold">{agent.languages.join(", ")}</p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </CarouselItem>
-                ))}
+                    </CarouselItem>
+                  );
+                })}
               </CarouselContent>
               
               {/* Navigation Controls */}
