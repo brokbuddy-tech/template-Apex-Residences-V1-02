@@ -1,4 +1,3 @@
-
 import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
@@ -61,11 +60,11 @@ export default function Home() {
 
       <AreaGuides />
 
-      <NewsSection />
-
       <ReviewsSection />
 
       <FaqSection />
+
+      <NewsSection />
       
       <ContactSection />
       
