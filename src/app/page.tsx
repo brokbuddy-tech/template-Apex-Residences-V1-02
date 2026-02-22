@@ -3,6 +3,7 @@ import { Hero } from "@/components/home/hero";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
 import { AreaGuides } from "@/components/home/area-guides";
 import { ContactSection } from "@/components/home/contact-section";
+import { ReviewsSection } from "@/components/home/reviews-section";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Gem, Globe } from "lucide-react";
@@ -53,6 +54,8 @@ export default function Home() {
       </section>
 
       <AreaGuides />
+
+      <ReviewsSection />
       
       <ContactSection />
       
