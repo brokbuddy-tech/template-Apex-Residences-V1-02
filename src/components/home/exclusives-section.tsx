@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
+import { ConsultationDialog } from "./consultation-dialog";
 
 const EXCLUSIVES_DATA = [
   {
@@ -118,9 +119,11 @@ export function ExclusivesSection() {
 
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button className="bg-[#D1A08B] hover:bg-[#D1A08B]/90 text-white rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold">
-                Enquire now
-              </Button>
+              <ConsultationDialog>
+                <Button className="bg-[#D1A08B] hover:bg-[#D1A08B]/90 text-white rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold">
+                  Enquire now
+                </Button>
+              </ConsultationDialog>
               <Button variant="outline" className="border-[#B8860B]/30 text-[#B8860B] hover:bg-[#B8860B]/5 rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold bg-transparent">
                 Learn more
               </Button>
