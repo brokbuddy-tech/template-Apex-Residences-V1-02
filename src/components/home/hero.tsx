@@ -72,7 +72,7 @@ export function Hero() {
               <button 
                 onClick={() => setActiveTab("manual")}
                 className={cn(
-                  "flex-1 pb-4 text-[10px] uppercase font-bold tracking-widest transition-all",
+                  "flex-1 pb-4 text-[12px] uppercase font-bold tracking-[0.2em] transition-all",
                   activeTab === "manual" ? "text-[#B8860B] border-b-2 border-[#B8860B]" : "text-white/40"
                 )}
               >
@@ -81,7 +81,7 @@ export function Hero() {
               <button 
                 onClick={() => setActiveTab("ai")}
                 className={cn(
-                  "flex-1 pb-4 text-[10px] uppercase font-bold tracking-widest transition-all flex items-center justify-center gap-2",
+                  "flex-1 pb-4 text-[12px] uppercase font-bold tracking-[0.2em] transition-all flex items-center justify-center gap-2",
                   activeTab === "ai" ? "text-[#B8860B] border-b-2 border-[#B8860B]" : "text-white/40"
                 )}
               >
