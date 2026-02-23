@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -12,6 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ConsultationDialog } from "@/components/home/consultation-dialog";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,9 +64,11 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-6">
-          <Button className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
-            Contact Us
-          </Button>
+          <ConsultationDialog>
+            <Button className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
+              Contact Us
+            </Button>
+          </ConsultationDialog>
 
           <Sheet>
             <SheetTrigger asChild>
@@ -88,9 +92,11 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                <Button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest h-12 rounded-none border-none w-full">
-                  Contact Us
-                </Button>
+                <ConsultationDialog>
+                  <Button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest h-12 rounded-none border-none w-full">
+                    Contact Us
+                  </Button>
+                </ConsultationDialog>
               </nav>
             </SheetContent>
           </Sheet>
