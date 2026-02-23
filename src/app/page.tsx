@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Hero } from "@/components/home/hero";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
 import { ListingSection } from "@/components/home/listing-section";
@@ -52,8 +53,8 @@ export default function Home() {
                 Talk to an Agent
               </Button>
             </ConsultationDialog>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
-              View Market Insights
+            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
+              <Link href="#news">View Market Insights</Link>
             </Button>
           </div>
         </div>

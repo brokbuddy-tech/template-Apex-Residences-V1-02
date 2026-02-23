@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -12,7 +11,7 @@ export function NewsSection() {
   const news3 = PlaceHolderImages.find((img) => img.id === "news-3")?.imageUrl || "";
 
   return (
-    <section className="bg-black py-32 px-6 md:px-12 border-t border-white/5">
+    <section id="news" className="bg-black py-32 px-6 md:px-12 border-t border-white/5 scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="font-headline text-3xl md:text-4xl font-thin tracking-[0.5em] text-white uppercase mb-4">
@@ -25,7 +24,7 @@ export function NewsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Pillar: Large Featured Story */}
-          <div className="lg:col-span-2 relative group cursor-pointer overflow-hidden min-h-[400px] border border-white/5">
+          <div className="lg:col-span-2 relative group cursor-pointer overflow-hidden min-h-[500px] border border-white/5">
             <Image
               src={news1}
               alt="Hillsedge Sales"
@@ -47,8 +46,8 @@ export function NewsSection() {
           {/* Right Pillar: Stacked Stories */}
           <div className="flex flex-col gap-6">
             {/* Top Story */}
-            <div className="flex-1 flex flex-col group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500 bg-white/[0.02]">
-              <div className="relative w-full aspect-[16/9]">
+            <div className="flex-1 flex flex-col group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500 bg-white/[0.02] min-h-[240px]">
+              <div className="relative w-full aspect-[16/9] flex-1 min-h-[160px]">
                 <Image
                   src={news2}
                   alt="LIV Maritime"
@@ -56,7 +55,7 @@ export function NewsSection() {
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               </div>
-              <div className="p-6 flex flex-col justify-between flex-1">
+              <div className="p-6 flex flex-col justify-between">
                 <h3 className="text-white text-[11px] font-bold tracking-[0.2em] uppercase leading-relaxed">
                   PRELAUNCH: LIV MARITIME
                 </h3>
@@ -67,8 +66,8 @@ export function NewsSection() {
             </div>
 
             {/* Bottom Story */}
-            <div className="flex-1 flex flex-col group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500 bg-white/[0.02]">
-              <div className="relative w-full aspect-[16/9]">
+            <div className="flex-1 flex flex-col group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500 bg-white/[0.02] min-h-[240px]">
+              <div className="relative w-full aspect-[16/9] flex-1 min-h-[160px]">
                 <Image
                   src={news3}
                   alt="Market 2024"
@@ -76,7 +75,7 @@ export function NewsSection() {
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               </div>
-              <div className="p-6 flex flex-col justify-between flex-1">
+              <div className="p-6 flex flex-col justify-between">
                 <h3 className="text-white text-[11px] font-bold tracking-[0.2em] uppercase leading-relaxed">
                   DUBAI REAL ESTATE PROPERTY MARKET IN 2024
                 </h3>
