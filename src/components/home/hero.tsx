@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Map } from "lucide-react";
+import { Map, Sparkles } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
 import { ConsultationDialog } from "./consultation-dialog";
 import { OwnerRelationsDialog } from "./owner-relations-dialog";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -17,7 +18,7 @@ import {
 } from "@/components/ui/select";
 
 export function Hero() {
-  const [activeTab, setActiveTab] = useState("primary");
+  const [activeTab, setActiveTab] = useState("manual");
   const [currency, setCurrency] = useState("AED");
   const heroImage = PlaceHolderImages.find(img => img.id === "hero-bg");
 
@@ -69,116 +70,135 @@ export function Hero() {
             {/* Tabs */}
             <div className="flex border-b border-white/10">
               <button 
-                onClick={() => setActiveTab("primary")}
+                onClick={() => setActiveTab("manual")}
                 className={cn(
                   "flex-1 pb-4 text-[10px] uppercase font-bold tracking-widest transition-all",
-                  activeTab === "primary" ? "text-[#B8860B] border-b-2 border-[#B8860B]" : "text-white/40"
+                  activeTab === "manual" ? "text-[#B8860B] border-b-2 border-[#B8860B]" : "text-white/40"
                 )}
               >
-                Primary
+                Manual
               </button>
               <button 
-                onClick={() => setActiveTab("secondary")}
+                onClick={() => setActiveTab("ai")}
                 className={cn(
                   "flex-1 pb-4 text-[10px] uppercase font-bold tracking-widest transition-all",
-                  activeTab === "secondary" ? "text-[#B8860B] border-b-2 border-[#B8860B]" : "text-white/40"
+                  activeTab === "ai" ? "text-[#B8860B] border-b-2 border-[#B8860B]" : "text-white/40"
                 )}
               >
-                Secondary
+                AI Search
               </button>
             </div>
 
-            {/* Filters */}
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Property Type</label>
-                <Select>
-                  <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
-                    <SelectValue placeholder="Apartments, Penthouses, Villas" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
-                    <SelectItem value="apartments">Apartments</SelectItem>
-                    <SelectItem value="penthouses">Penthouses</SelectItem>
-                    <SelectItem value="villas">Villas</SelectItem>
-                    <SelectItem value="mansions">Mansions</SelectItem>
-                    <SelectItem value="townhouses">Townhouses</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+            {/* Content Area */}
+            <div className="min-h-[300px] flex flex-col justify-between">
+              {activeTab === "manual" ? (
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Property Type</label>
+                    <Select>
+                      <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
+                        <SelectValue placeholder="Apartments, Penthouses, Villas" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
+                        <SelectItem value="apartments">Apartments</SelectItem>
+                        <SelectItem value="penthouses">Penthouses</SelectItem>
+                        <SelectItem value="villas">Villas</SelectItem>
+                        <SelectItem value="mansions">Mansions</SelectItem>
+                        <SelectItem value="townhouses">Townhouses</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bedrooms</label>
-                  <Select>
-                    <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
-                      <SelectValue placeholder="Any" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
-                      <SelectItem value="any">Any</SelectItem>
-                      <SelectItem value="1">1 Bedroom</SelectItem>
-                      <SelectItem value="2">2 Bedrooms</SelectItem>
-                      <SelectItem value="3">3 Bedrooms</SelectItem>
-                      <SelectItem value="4">4 Bedrooms</SelectItem>
-                      <SelectItem value="5">5+ Bedrooms</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bathrooms</label>
-                  <Select>
-                    <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
-                      <SelectValue placeholder="Any" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
-                      <SelectItem value="any">Any</SelectItem>
-                      <SelectItem value="1">1 Bathroom</SelectItem>
-                      <SelectItem value="2">2 Bathrooms</SelectItem>
-                      <SelectItem value="3">3 Bathrooms</SelectItem>
-                      <SelectItem value="4">4 Bathrooms</SelectItem>
-                      <SelectItem value="5">5+ Bathrooms</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bedrooms</label>
+                      <Select>
+                        <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
+                          <SelectValue placeholder="Any" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
+                          <SelectItem value="any">Any</SelectItem>
+                          <SelectItem value="1">1 Bedroom</SelectItem>
+                          <SelectItem value="2">2 Bedrooms</SelectItem>
+                          <SelectItem value="3">3 Bedrooms</SelectItem>
+                          <SelectItem value="4">4 Bedrooms</SelectItem>
+                          <SelectItem value="5">5+ Bedrooms</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Bathrooms</label>
+                      <Select>
+                        <SelectTrigger className="w-full bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-auto pb-2 text-sm font-light text-white hover:border-[#B8860B] transition-colors focus:ring-0 focus:ring-offset-0">
+                          <SelectValue placeholder="Any" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-black/95 border-white/10 text-white rounded-none">
+                          <SelectItem value="any">Any</SelectItem>
+                          <SelectItem value="1">1 Bathroom</SelectItem>
+                          <SelectItem value="2">2 Bathrooms</SelectItem>
+                          <SelectItem value="3">3 Bathrooms</SelectItem>
+                          <SelectItem value="4">4 Bathrooms</SelectItem>
+                          <SelectItem value="5">5+ Bathrooms</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
 
-              {/* Currency Selector */}
-              <div className="flex items-center gap-4 py-2">
-                {['GBP', 'CNY', 'EUR', 'AED', 'USD'].map((curr) => (
-                  <button
-                    key={curr}
-                    onClick={() => setCurrency(curr)}
-                    className={cn(
-                      "text-[10px] font-bold tracking-widest transition-colors",
-                      currency === curr ? "text-[#B8860B]" : "text-white/40 hover:text-white"
-                    )}
-                  >
-                    {curr}
-                  </button>
-                ))}
-              </div>
+                  {/* Currency Selector */}
+                  <div className="flex items-center gap-4 py-2">
+                    {['GBP', 'CNY', 'EUR', 'AED', 'USD'].map((curr) => (
+                      <button
+                        key={curr}
+                        onClick={() => setCurrency(curr)}
+                        className={cn(
+                          "text-[10px] font-bold tracking-widest transition-colors",
+                          currency === curr ? "text-[#B8860B]" : "text-white/40 hover:text-white"
+                        )}
+                      >
+                        {curr}
+                      </button>
+                    ))}
+                  </div>
 
-              {/* Price Range */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Min Price</label>
-                  <input type="text" placeholder="Min" className="bg-transparent border-b border-white/20 w-full pb-2 text-sm outline-none focus:border-[#B8860B] transition-colors" />
+                  {/* Price Range */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Min Price</label>
+                      <input type="text" placeholder="Min" className="bg-transparent border-b border-white/20 w-full pb-2 text-sm outline-none focus:border-[#B8860B] transition-colors" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Max Price</label>
+                      <input type="text" placeholder="Max" className="bg-transparent border-b border-white/20 w-full pb-2 text-sm outline-none focus:border-[#B8860B] transition-colors" />
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase font-bold tracking-tighter text-white/40">Max Price</label>
-                  <input type="text" placeholder="Max" className="bg-transparent border-b border-white/20 w-full pb-2 text-sm outline-none focus:border-[#B8860B] transition-colors" />
+              ) : (
+                <div className="space-y-6 h-full flex flex-col">
+                  <div className="space-y-2 flex-1">
+                    <label className="text-[10px] uppercase font-bold tracking-widest text-[#B8860B] flex items-center gap-2">
+                      <Sparkles className="w-3 h-3" /> Describe your dream home
+                    </label>
+                    <Textarea 
+                      placeholder="e.g. A 4-bedroom modern villa in Palm Jumeirah with a private beach access and sunset views..."
+                      className="bg-white/5 border-white/10 focus:border-[#B8860B] transition-colors rounded-none h-full min-h-[220px] text-white placeholder:text-white/20 resize-none font-light leading-relaxed"
+                    />
+                  </div>
+                  <p className="text-[9px] text-white/40 italic font-light">
+                    Our AI will analyze your request and suggest matching luxury properties from our exclusive portfolio.
+                  </p>
                 </div>
-              </div>
-            </div>
+              )}
 
-            {/* Actions */}
-            <div className="space-y-4 pt-4">
-              <Button className="btn-copper w-full h-14">
-                Show Projects
-              </Button>
-              <Button variant="outline" className="btn-outline-white w-full h-14 flex items-center justify-center gap-2">
-                <Map className="w-4 h-4" />
-                View Properties on Map
-              </Button>
+              {/* Actions */}
+              <div className="space-y-4 pt-8">
+                <Button className="btn-copper w-full h-14">
+                  {activeTab === "manual" ? "Show Projects" : "Start AI Search"}
+                </Button>
+                <Button variant="outline" className="btn-outline-white w-full h-14 flex items-center justify-center gap-2">
+                  <Map className="w-4 h-4" />
+                  View Properties on Map
+                </Button>
+              </div>
             </div>
           </div>
         </div>
