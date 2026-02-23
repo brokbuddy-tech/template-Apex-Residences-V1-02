@@ -24,24 +24,24 @@ const JOURNEY_STEPS = [
     id: "01",
     title: "EXPERTISE",
     desc: "Our journey began with a singular focus on industry mastery. We analyze market cycles with scientific precision to protect and grow our clients' wealth.",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop",
+    imageId: "journey-expertise",
   },
   {
     id: "02",
     title: "STRATEGY",
     desc: "Beyond simple brokerage, we act as strategic advisors. Every signature address in our portfolio is vetted through a rigorous due-diligence framework.",
-    image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?q=80&w=2070&auto=format&fit=crop",
+    imageId: "journey-strategy",
   },
   {
     id: "03",
     title: "CONNECTION",
     desc: "Luxury is personal. We've built a global network that connects high-net-worth individuals with off-market opportunities not found elsewhere.",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop",
+    imageId: "journey-connection",
   },
 ];
 
 export default function AboutPage() {
-  const leadershipImg = PlaceHolderImages.find(img => img.id === "sell-hero")?.imageUrl || "";
+  const leadershipImg = PlaceHolderImages.find(img => img.id === "about-hero")?.imageUrl || "";
 
   return (
     <main className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white">
@@ -92,28 +92,31 @@ export default function AboutPage() {
       {/*  timeline & Milestones: Zigzag Journey */}
       <section className="py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto space-y-40">
-          {JOURNEY_STEPS.map((step, idx) => (
-            <div key={idx} className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
-              <div className={`relative aspect-[4/3] overflow-hidden group ${idx % 2 !== 0 ? 'lg:order-last' : ''}`}>
-                <Image 
-                  src={step.image} 
-                  alt={step.title} 
-                  fill 
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
-                />
-                <div className="absolute inset-0 border border-white/10 m-4 pointer-events-none" />
-              </div>
-              <div className="space-y-8">
-                <span className="text-6xl md:text-8xl font-bold text-[#D1A08B]/10 italic leading-none">{step.id}</span>
-                <div className="space-y-4">
-                  <h3 className="text-3xl font-headline font-bold tracking-[0.3em] uppercase text-[#D1A08B]">{step.title}</h3>
-                  <p className="text-white/50 font-light text-lg leading-relaxed italic max-w-lg">
-                    {step.desc}
-                  </p>
+          {JOURNEY_STEPS.map((step, idx) => {
+            const stepImage = PlaceHolderImages.find(img => img.id === step.imageId)?.imageUrl || "";
+            return (
+              <div key={idx} className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+                <div className={`relative aspect-[4/3] overflow-hidden group ${idx % 2 !== 0 ? 'lg:order-last' : ''}`}>
+                  <Image 
+                    src={stepImage} 
+                    alt={step.title} 
+                    fill 
+                    className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 border border-white/10 m-4 pointer-events-none" />
+                </div>
+                <div className="space-y-8">
+                  <span className="text-6xl md:text-8xl font-bold text-[#D1A08B]/10 italic leading-none">{step.id}</span>
+                  <div className="space-y-4">
+                    <h3 className="text-3xl font-headline text-[#D1A08B] tracking-[0.3em] uppercase">{step.title}</h3>
+                    <p className="text-white/50 font-light text-lg leading-relaxed italic max-w-lg">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
