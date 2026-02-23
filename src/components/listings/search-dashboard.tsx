@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -10,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SlidersHorizontal, RefreshCcw } from "lucide-react";
+import { SlidersHorizontal, RefreshCcw, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SearchDashboardProps {
@@ -18,10 +19,10 @@ interface SearchDashboardProps {
 }
 
 export function SearchDashboard({ title }: SearchDashboardProps) {
-  const [category, setCategory] = useState("All");
   const [beds, setBeds] = useState<string[]>([]);
   const [unit, setUnit] = useState<"SQ.M" | "SQ.FT">("SQ.FT");
   const [currency, setCurrency] = useState("AED");
+  const [aiQuery, setAiQuery] = useState("");
 
   const toggleBed = (val: string) => {
     setBeds(prev => prev.includes(val) ? prev.filter(b => b !== val) : [...prev, val]);
@@ -37,28 +38,22 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
         {/* Primary Filter Dashboard */}
         <div className="grid grid-cols-1 xl:grid-cols-5 gap-8 items-end">
           
-          {/* A. Real Estate Category */}
+          {/* A. AI Search */}
           <div className="space-y-3">
-            <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Category</label>
-            <div className="flex bg-white/5 p-1 rounded-none border border-white/10">
-              {["All", "Primary", "Secondary"].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setCategory(cat)}
-                  className={cn(
-                    "flex-1 py-2 text-[12px] font-bold uppercase tracking-widest transition-all",
-                    category === cat ? "bg-[#B8860B] text-black" : "text-white/60 hover:text-white"
-                  )}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+            <label className="text-[14px] uppercase font-bold tracking-widest text-[#B8860B] flex items-center gap-2">
+              <Sparkles className="w-3 h-3" /> AI Search
+            </label>
+            <Input 
+              value={aiQuery}
+              onChange={(e) => setAiQuery(e.target.value)}
+              placeholder="Describe your dream home..." 
+              className="h-11 bg-white/5 border-white/10 rounded-none text-sm focus:border-[#B8860B] transition-colors placeholder:text-white/20"
+            />
           </div>
 
           {/* B. Property Type Select */}
           <div className="space-y-3">
-            <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
+            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
             <Select>
               <SelectTrigger className="bg-transparent border-white/10 text-white rounded-none h-11 uppercase text-[12px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
                 <SelectValue placeholder="ANY" />
@@ -74,7 +69,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
 
           {/* C. Bedrooms (Multi-select) */}
           <div className="space-y-3">
-            <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
+            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
             <div className="flex gap-2">
               {["1", "2", "3", "4", "5+"].map((num) => (
                 <button
@@ -94,7 +89,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           {/* D. Area Range */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Area</label>
+              <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Area</label>
               <div className="flex gap-3">
                 {["SQ.M", "SQ.FT"].map((u) => (
                   <button
@@ -120,7 +115,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           {/* E. Currency & Price */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
+              <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
               <div className="flex gap-3">
                 {["GBP", "CNY", "EUR", "AED", "USD"].map((curr) => (
                   <button
@@ -172,7 +167,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
             <div className="text-[#B8860B] text-[12px] font-bold uppercase tracking-[0.4em]">
               1,248 PROJECTS
             </div>
-            <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest">
+            <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest" onClick={() => setAiQuery("")}>
               <RefreshCcw className="w-4 h-4" />
               Reset all filters
             </button>
