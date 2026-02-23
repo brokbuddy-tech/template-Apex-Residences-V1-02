@@ -81,10 +81,11 @@ export function Hero() {
               <button 
                 onClick={() => setActiveTab("ai")}
                 className={cn(
-                  "flex-1 pb-4 text-[10px] uppercase font-bold tracking-widest transition-all",
+                  "flex-1 pb-4 text-[10px] uppercase font-bold tracking-widest transition-all flex items-center justify-center gap-2",
                   activeTab === "ai" ? "text-[#B8860B] border-b-2 border-[#B8860B]" : "text-white/40"
                 )}
               >
+                <Sparkles className={cn("w-3.5 h-3.5 transition-opacity", activeTab === "ai" ? "opacity-100" : "opacity-0")} />
                 AI Search
               </button>
             </div>
@@ -191,8 +192,15 @@ export function Hero() {
 
               {/* Actions */}
               <div className="space-y-4 pt-8">
-                <Button className="btn-copper w-full h-14">
-                  {activeTab === "manual" ? "Show Projects" : "Start AI Search"}
+                <Button className="btn-copper w-full h-14 gap-2">
+                  {activeTab === "manual" ? (
+                    "Show Projects"
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4" />
+                      Start AI Search
+                    </>
+                  )}
                 </Button>
                 <Button variant="outline" className="btn-outline-white w-full h-14 flex items-center justify-center gap-2">
                   <Map className="w-4 h-4" />
