@@ -39,14 +39,14 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           
           {/* A. Real Estate Category */}
           <div className="space-y-3">
-            <label className="text-[10px] uppercase font-bold tracking-widest text-white/40">Category</label>
+            <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Category</label>
             <div className="flex bg-white/5 p-1 rounded-none border border-white/10">
               {["All", "Primary", "Secondary"].map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setCategory(cat)}
                   className={cn(
-                    "flex-1 py-2 text-[10px] font-bold uppercase tracking-widest transition-all",
+                    "flex-1 py-2 text-[12px] font-bold uppercase tracking-widest transition-all",
                     category === cat ? "bg-[#B8860B] text-black" : "text-white/60 hover:text-white"
                   )}
                 >
@@ -58,9 +58,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
 
           {/* B. Property Type Select */}
           <div className="space-y-3">
-            <label className="text-[10px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
+            <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
             <Select>
-              <SelectTrigger className="bg-transparent border-white/10 text-white rounded-none h-11 uppercase text-[10px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
+              <SelectTrigger className="bg-transparent border-white/10 text-white rounded-none h-11 uppercase text-[12px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
                 <SelectValue placeholder="ANY" />
               </SelectTrigger>
               <SelectContent className="bg-black border-white/10 text-white rounded-none">
@@ -74,14 +74,14 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
 
           {/* C. Bedrooms (Multi-select) */}
           <div className="space-y-3">
-            <label className="text-[10px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
+            <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
             <div className="flex gap-2">
               {["1", "2", "3", "4", "5+"].map((num) => (
                 <button
                   key={num}
                   onClick={() => toggleBed(num)}
                   className={cn(
-                    "w-10 h-11 flex items-center justify-center text-[10px] font-bold border transition-all",
+                    "w-10 h-11 flex items-center justify-center text-[12px] font-bold border transition-all",
                     beds.includes(num) ? "border-[#B8860B] bg-[#B8860B]/10 text-[#B8860B]" : "border-white/10 text-white/60 hover:border-white/30"
                   )}
                 >
@@ -94,14 +94,14 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           {/* D. Area Range */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] uppercase font-bold tracking-widest text-white/40">Area</label>
+              <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Area</label>
               <div className="flex gap-3">
                 {["SQ.M", "SQ.FT"].map((u) => (
                   <button
                     key={u}
                     onClick={() => setUnit(u as any)}
                     className={cn(
-                      "text-[8px] font-bold tracking-widest transition-colors",
+                      "text-[10px] font-bold tracking-widest transition-colors",
                       unit === u ? "text-[#B8860B]" : "text-white/20"
                     )}
                   >
@@ -111,23 +111,23 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
               </div>
             </div>
             <div className="flex gap-2 items-center">
-              <Input placeholder="Min" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
+              <Input placeholder="Min" className="h-11 bg-transparent border-white/10 rounded-none text-sm text-center" />
               <span className="text-white/20">—</span>
-              <Input placeholder="Max" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
+              <Input placeholder="Max" className="h-11 bg-transparent border-white/10 rounded-none text-sm text-center" />
             </div>
           </div>
 
           {/* E. Currency & Price */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
+              <label className="text-[12px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
               <div className="flex gap-3">
                 {["GBP", "CNY", "EUR", "AED", "USD"].map((curr) => (
                   <button
                     key={curr}
                     onClick={() => setCurrency(curr)}
                     className={cn(
-                      "text-[8px] font-bold tracking-widest transition-colors",
+                      "text-[10px] font-bold tracking-widest transition-colors",
                       currency === curr ? "text-[#B8860B]" : "text-white/20"
                     )}
                   >
@@ -137,9 +137,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
               </div>
             </div>
             <div className="flex gap-2 items-center">
-              <Input placeholder="Min" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
+              <Input placeholder="Min" className="h-11 bg-transparent border-white/10 rounded-none text-sm text-center" />
               <span className="text-white/20">—</span>
-              <Input placeholder="Max" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
+              <Input placeholder="Max" className="h-11 bg-transparent border-white/10 rounded-none text-sm text-center" />
             </div>
           </div>
 
@@ -148,14 +148,14 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
         {/* Bottom Action Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/5">
           <div className="flex flex-wrap items-center gap-6">
-            <Button variant="outline" className="h-12 border-white/10 text-white rounded-none uppercase text-[9px] font-bold tracking-[0.3em] px-8 hover:bg-white hover:text-black gap-2">
-              <SlidersHorizontal className="w-3 h-3" />
+            <Button variant="outline" className="h-12 border-white/10 text-white rounded-none uppercase text-[11px] font-bold tracking-[0.3em] px-8 hover:bg-white hover:text-black gap-2">
+              <SlidersHorizontal className="w-3.5 h-3.5" />
               All Filters
             </Button>
             <div className="flex items-center gap-3">
-              <span className="text-[9px] text-white/40 font-bold uppercase tracking-widest">Sort By:</span>
+              <span className="text-[11px] text-white/40 font-bold uppercase tracking-widest">Sort By:</span>
               <Select defaultValue="popularity">
-                <SelectTrigger className="w-[180px] bg-transparent border-none text-white rounded-none h-auto p-0 uppercase text-[9px] tracking-widest focus:ring-0 focus:ring-offset-0">
+                <SelectTrigger className="w-[180px] bg-transparent border-none text-white rounded-none h-auto p-0 uppercase text-[11px] tracking-widest focus:ring-0 focus:ring-offset-0">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-black border-white/10 text-white rounded-none">
@@ -169,14 +169,14 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           </div>
 
           <div className="flex items-center gap-8">
-            <div className="text-[#B8860B] text-[10px] font-bold uppercase tracking-[0.4em]">
+            <div className="text-[#B8860B] text-[12px] font-bold uppercase tracking-[0.4em]">
               1,248 PROJECTS
             </div>
-            <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[9px] font-bold uppercase tracking-widest">
-              <RefreshCcw className="w-3 h-3" />
+            <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest">
+              <RefreshCcw className="w-4 h-4" />
               Reset all filters
             </button>
-            <Button className="bg-transparent border border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-black rounded-none h-14 px-12 uppercase text-[10px] font-bold tracking-[0.4em] transition-all">
+            <Button className="bg-transparent border border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-black rounded-none h-14 px-12 uppercase text-[12px] font-bold tracking-[0.4em] transition-all">
               SEARCH
             </Button>
           </div>
