@@ -9,6 +9,7 @@ import { NewsSection } from "@/components/home/news-section";
 import { ContactSection } from "@/components/home/contact-section";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Gem, Globe } from "lucide-react";
+import { ConsultationDialog } from "@/components/home/consultation-dialog";
 
 export default function Home() {
   return (
@@ -46,9 +47,11 @@ export default function Home() {
         <div className="relative z-10 max-w-3xl mx-auto">
           <h2 className="font-headline text-4xl md:text-6xl text-primary-foreground font-bold mb-8">Ready to Find Your <span className="text-white italic">Signature</span> Address?</h2>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
-              Talk to an Agent
-            </Button>
+            <ConsultationDialog>
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
+                Talk to an Agent
+              </Button>
+            </ConsultationDialog>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-bold px-10 h-14 rounded-full uppercase tracking-widest text-xs">
               View Market Insights
             </Button>
