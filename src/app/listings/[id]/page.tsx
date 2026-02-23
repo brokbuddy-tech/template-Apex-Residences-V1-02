@@ -91,6 +91,22 @@ function PropertyDetail({ property }: { property: Property }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               
+              {/* Mobile Slide Controls */}
+              <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
+                <button 
+                  onClick={() => setActiveImage((prev) => (prev - 1 + property.gallery.length) % property.gallery.length)}
+                  className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button 
+                  onClick={() => setActiveImage((prev) => (prev + 1) % property.gallery.length)}
+                  className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+
               {/* Mobile View All Button */}
               <div className="absolute bottom-4 right-4 md:hidden z-20">
                 <Button 
@@ -290,6 +306,22 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                   className="object-cover transition-transform duration-1000 group-hover:scale-105" 
                   priority
                 />
+                
+                {/* Mobile Slide Controls for Off-Plan */}
+                <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
+                  <button 
+                    onClick={() => setActiveImage((prev) => (prev - 1 + allImages.length) % allImages.length)}
+                    className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button 
+                    onClick={() => setActiveImage((prev) => (prev + 1) % allImages.length)}
+                    className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </div>
               </div>
               <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
                 {allImages.map((img, idx) => (
