@@ -90,7 +90,7 @@ export const PROPERTIES: Property[] = [
     sqft: 3200,
     type: "Penthouse",
     listingType: 'Rent',
-    image: PlaceHolderImages.find(img => img.id === "area-1")?.imageUrl || "",
+    image: PlaceHolderImages.find(img => img.id === "prop-4")?.imageUrl || "",
     description: "Luxurious penthouse available for annual rent in the heart of Dubai Marina. Fully furnished with designer pieces.",
     features: ["Marina View", "Fully Furnished", "Gym Access", "Pool Access"],
     agent: {
