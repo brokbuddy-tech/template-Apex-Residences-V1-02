@@ -3,85 +3,85 @@
     {
       "id": "hero-bg",
       "description": "Dubai skyline at night with cinematic skyscraper silhouettes",
-      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHh8NHx8ZHViYWklMjBuaWdodHxlbnwwfHx8fDE3NzE2NTcwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1920",
+      "imageUrl": "https://images.unsplash.com/photo-1608991156162-3c55b3cf05d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkdWJhaSUyMG5pZ2h0fGVufDB8fHx8MTc3MTg0OTEwOXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dubai night"
     },
     {
       "id": "prop-1",
       "description": "Ultra-luxury penthouse interior at night",
-      "imageUrl": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBwZW50aG91c2V8ZW58MHx8fHwxNzcxNjU3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1760611656071-a8bef0578874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsdXh1cnklMjBwZW50aG91c2V8ZW58MHx8fHwxNzcxNzg0MDk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury penthouse"
     },
     {
       "id": "prop-2",
       "description": "Bespoke beachfront mansion",
-      "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBtYW5zaW9ufGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBtYW5zaW9ufGVufDB8fHx8MTc3MTg0OTExMHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern mansion"
     },
     {
       "id": "prop-3",
       "description": "Sleek architectural villa",
-      "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMXx8bHV4dXJ5JTIwaG9tZXxlbnwwfHx8fDE3NzE2NTcwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1682184805271-11671b7ecf4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsdXh1cnklMjBob21lfGVufDB8fHx8MTc3MTgwNDQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury home"
     },
     {
       "id": "area-1",
       "description": "Dubai Marina at night",
-      "imageUrl": "https://images.unsplash.com/photo-1582672098059-02714c351e8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkdWJhaSUyMG1hcmluYSUyMG5pZ2h0fGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1562502307-e796076a4982?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYXJpbmElMjBuaWdodHxlbnwwfHx8fDE3NzE4NDkxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "marina night"
     },
     {
       "id": "area-2",
       "description": "Burj Khalifa glowing at night",
-      "imageUrl": "https://images.unsplash.com/photo-1549944850-84e00be4203b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8YnVyaiUyMGtoYWxpZmF8ZW58MHx8fHwxNzcxNjU3MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1546412414-e1885259563a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YnVyaiUyMGtoYWxpZmF8ZW58MHx8fHwxNzcxODQ5MTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "burj khalifa"
     },
     {
       "id": "excl-1",
       "description": "High-end residential skyscraper architectural shot",
-      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8ZHViYWklMjBza3lzY3JhcGVyfGVufDB8fHx8MTc3MTY1NzA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1617018628636-6f3f5dcda7b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkdWJhaSUyMHNreXNjcmFwZXJ8ZW58MHx8fHwxNzcxODQ5MTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dubai skyscraper"
     },
     {
       "id": "news-1",
       "description": "Modern residential development exterior",
-      "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBhcnRjaGl0ZWN0dXJlfGVufDB8fHx8MTc3MTY2NDU5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1615406020658-6c4b805f1f30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzcxNzQ3MDk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern architecture"
     },
     {
       "id": "news-2",
       "description": "Waterfront skyscraper at dawn",
-      "imageUrl": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxza3ljcmFwZXIlMjB3YXRlcmZyb250fGVufDB8fHx8MTc3MTY2NDU5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1740484408615-0beef22972dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3YXRlcmZyb250JTIwdG93ZXJ8ZW58MHx8fHwxNzcxODQ5MTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "waterfront tower"
     },
     {
       "id": "news-3",
       "description": "Aerial view of a modern city grid",
-      "imageUrl": "https://images.unsplash.com/photo-1518684079-3c830dcef090?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkdWJhaSUyMGFlcmlhbHxlbnwwfHx8fDE3NzE2NjQ1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1584546459262-0ddde08da490?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkdWJhaSUyMGFlcmlhbHxlbnwwfHx8fDE3NzE4NDkxMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dubai aerial"
     },
     {
       "id": "agent-1",
       "description": "Professional male real estate agent portrait",
-      "imageUrl": "https://images.unsplash.com/photo-1556157382-97eda2d62296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwcm9mZXNzaW9uYWwlMjBtYW58ZW58MHx8fHwxNzcxNjgwMTI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBtYW58ZW58MHx8fHwxNzcxODA5MTM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "professional man"
     },
     {
       "id": "agent-2",
       "description": "Professional male portfolio manager portrait",
-      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMG1hbnxlbnwwfHx8fDE3NzE3NzYyNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxidXNpbmVzcyUyMG1hbnxlbnwwfHx8fDE3NzE3NzYyNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "business man"
     },
     {
       "id": "agent-3",
       "description": "Professional female luxury specialist portrait",
-      "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxidXNpbmVzcyUyMHdvbWFufGVufDB8fHx8MTc3MTc1ODg4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1507206130118-b5907f817163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxidXNpbmVzcyUyMHdvbWFufGVufDB8fHx8MTc3MTc1ODg4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "business woman"
     },
     {
       "id": "agent-4",
       "description": "Professional male investment expert portrait",
-      "imageUrl": "https://images.unsplash.com/photo-1579156618335-f6245e05236a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwcm9mZXNzaW9uYWwlMjBtYWxlfGVufDB8fHx8MTc3MTc3NjI1OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1660156049794-7f386c3013f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwcm9mZXNzaW9uYWwlMjBtYWxlfGVufDB8fHx8MTc3MTc3NjI1OXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "professional male"
     }
   ]

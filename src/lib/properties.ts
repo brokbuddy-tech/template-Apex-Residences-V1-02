@@ -1,3 +1,4 @@
+
 import { PlaceHolderImages } from "./placeholder-images";
 
 export interface Property {
@@ -37,7 +38,7 @@ export const PROPERTIES: Property[] = [
     features: ["Private Elevator", "Smart Home System", "Infinity Pool", "Maid's Room", "Floor-to-ceiling Windows"],
     agent: {
       name: "Marcus Thorne",
-      image: "https://picsum.photos/seed/agent1/100/100"
+      image: PlaceHolderImages.find(img => img.id === "agent-1")?.imageUrl || ""
     }
   },
   {
@@ -56,7 +57,7 @@ export const PROPERTIES: Property[] = [
     features: ["Private Beach", "Home Cinema", "Spa & Sauna", "Outdoor BBQ Area", "Chef's Kitchen"],
     agent: {
       name: "Elena Rodriguez",
-      image: "https://picsum.photos/seed/agent3/100/100"
+      image: PlaceHolderImages.find(img => img.id === "agent-3")?.imageUrl || ""
     }
   },
   {
@@ -75,7 +76,7 @@ export const PROPERTIES: Property[] = [
     features: ["Golf Course View", "Wine Cellar", "Automated Security", "Solar Energy System", "Zen Garden"],
     agent: {
       name: "Ben Thomas",
-      image: "https://picsum.photos/seed/agent1/100/100"
+      image: PlaceHolderImages.find(img => img.id === "agent-1")?.imageUrl || ""
     }
   },
   {
@@ -94,7 +95,7 @@ export const PROPERTIES: Property[] = [
     features: ["Marina View", "Fully Furnished", "Gym Access", "Pool Access"],
     agent: {
       name: "Alexander Tuguchev",
-      image: "https://picsum.photos/seed/agent2/100/100"
+      image: PlaceHolderImages.find(img => img.id === "agent-2")?.imageUrl || ""
     }
   }
 ];
