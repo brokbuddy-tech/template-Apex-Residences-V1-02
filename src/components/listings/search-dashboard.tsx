@@ -20,12 +20,23 @@ interface SearchDashboardProps {
 
 export function SearchDashboard({ title }: SearchDashboardProps) {
   const [beds, setBeds] = useState<string[]>([]);
+  const [baths, setBaths] = useState<string[]>([]);
   const [unit, setUnit] = useState<"SQ.M" | "SQ.FT">("SQ.FT");
   const [currency, setCurrency] = useState("AED");
   const [aiQuery, setAiQuery] = useState("");
 
   const toggleBed = (val: string) => {
     setBeds(prev => prev.includes(val) ? prev.filter(b => b !== val) : [...prev, val]);
+  };
+
+  const toggleBath = (val: string) => {
+    setBaths(prev => prev.includes(val) ? prev.filter(b => b !== val) : [...prev, val]);
+  };
+
+  const handleReset = () => {
+    setBeds([]);
+    setBaths([]);
+    setAiQuery("");
   };
 
   return (
@@ -36,7 +47,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
         </h2>
 
         {/* Primary Filter Dashboard */}
-        <div className="grid grid-cols-1 xl:grid-cols-5 gap-8 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-8 items-end">
           
           {/* A. AI Search */}
           <div className="space-y-3">
@@ -86,7 +97,26 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
             </div>
           </div>
 
-          {/* D. Area Range */}
+          {/* D. Bathrooms (Multi-select) */}
+          <div className="space-y-3">
+            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Bathrooms</label>
+            <div className="flex gap-2">
+              {["1", "2", "3", "4", "5+"].map((num) => (
+                <button
+                  key={num}
+                  onClick={() => toggleBath(num)}
+                  className={cn(
+                    "w-10 h-11 flex items-center justify-center text-[12px] font-bold border transition-all",
+                    baths.includes(num) ? "border-[#B8860B] bg-[#B8860B]/10 text-[#B8860B]" : "border-white/10 text-white/60 hover:border-white/30"
+                  )}
+                >
+                  {num}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* E. Area Range */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Area</label>
@@ -112,7 +142,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
             </div>
           </div>
 
-          {/* E. Currency & Price */}
+          {/* F. Currency & Price */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
@@ -167,7 +197,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
             <div className="text-[#B8860B] text-[12px] font-bold uppercase tracking-[0.4em]">
               1,248 PROJECTS
             </div>
-            <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest" onClick={() => setAiQuery("")}>
+            <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest" onClick={handleReset}>
               <RefreshCcw className="w-4 h-4" />
               Reset all filters
             </button>
