@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -80,7 +79,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
   return (
     <div className="bg-black text-white py-12 px-6 md:px-12 border-b border-white/10">
       <div className="max-w-[1600px] mx-auto space-y-12">
-        <h2 className="text-center font-headline text-3xl md:text-5xl font-thin tracking-[0.5em] uppercase text-white">
+        <h2 className="text-center font-headline text-xl md:text-3xl font-thin tracking-[0.5em] uppercase text-white">
           {title}
         </h2>
 
@@ -89,7 +88,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           
           {/* A. AI Search */}
           <div className="space-y-4">
-            <label className="text-[16px] uppercase font-bold tracking-widest text-[#B8860B] flex items-center gap-2">
+            <label className="text-[14px] uppercase font-bold tracking-widest text-[#B8860B] flex items-center gap-2">
               <Sparkles className="w-4 h-4" /> AI Search
             </label>
             <Input 
@@ -102,7 +101,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
 
           {/* B. Property Type Select */}
           <div className="space-y-4">
-            <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
+            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
             <Select>
               <SelectTrigger className="bg-transparent border-white/10 text-white rounded-none h-11 uppercase text-[12px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
                 <SelectValue placeholder="ANY" />
@@ -118,7 +117,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
 
           {/* C. Bedrooms (Multi-select) */}
           <div className="space-y-4">
-            <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
+            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
             <div className="flex gap-2">
               {["1", "2", "3", "4", "5+"].map((num) => (
                 <button
@@ -137,7 +136,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
 
           {/* D. Bathrooms (Multi-select) */}
           <div className="space-y-4">
-            <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Bathrooms</label>
+            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Bathrooms</label>
             <div className="flex gap-2">
               {["1", "2", "3", "4", "5+"].map((num) => (
                 <button
@@ -157,7 +156,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           {/* E. Area Range */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Area</label>
+              <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Area</label>
               <div className="flex gap-3">
                 {["SQ.M", "SQ.FT"].map((u) => (
                   <button
@@ -183,7 +182,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           {/* F. Currency & Price */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
+              <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
               <div className="flex gap-3">
                 {["GBP", "CNY", "EUR", "AED", "USD"].map((curr) => (
                   <button
