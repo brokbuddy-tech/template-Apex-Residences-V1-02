@@ -89,7 +89,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. Timeline & Milestones: Zigzag Journey */}
+      {/*  timeline & Milestones: Zigzag Journey */}
       <section className="py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto space-y-40">
           {JOURNEY_STEPS.map((step, idx) => (
@@ -123,21 +123,21 @@ export default function AboutPage() {
       {/* 5. Impact Statistics & Media */}
       <section className="py-32 bg-white/[0.01] border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {STATS.map((stat, idx) => (
-              <div key={idx} className="space-y-4">
-                <p className="text-4xl md:text-6xl font-bold text-[#D1A08B] tracking-tighter">{stat.value}</p>
-                <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30">{stat.label}</p>
+              <div key={idx} className="space-y-2 text-center">
+                <p className="text-3xl md:text-5xl font-bold text-[#D1A08B] tracking-tighter leading-tight">{stat.value}</p>
+                <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 whitespace-nowrap">{stat.label}</p>
               </div>
             ))}
           </div>
 
           {/* Partner Logos */}
-          <div className="mt-32 pt-20 border-t border-white/5 flex flex-wrap justify-center items-center gap-16 md:gap-32 opacity-20 grayscale hover:opacity-50 transition-opacity">
-            <span className="font-headline text-xl font-bold tracking-widest">FORBES</span>
-            <span className="font-headline text-xl font-bold tracking-widest">BLOOMBERG</span>
-            <span className="font-headline text-xl font-bold tracking-widest">REUTERS</span>
-            <span className="font-headline text-xl font-bold tracking-widest">THE TIMES</span>
+          <div className="mt-24 pt-20 border-t border-white/5 flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-20 grayscale hover:opacity-60 transition-all duration-500">
+            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">FORBES</span>
+            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">BLOOMBERG</span>
+            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">REUTERS</span>
+            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">THE TIMES</span>
           </div>
         </div>
       </section>
