@@ -38,7 +38,7 @@ export const PROPERTIES: Property[] = [
     features: ["Private Elevator", "Smart Home System", "Infinity Pool", "Maid's Room", "Floor-to-ceiling Windows"],
     agent: {
       name: "Marcus Thorne",
-      image: PlaceHolderImages.find(img => img.id === "agent-1")?.imageUrl || ""
+      image: PlaceHolderImages.find(img => img.id === "agent-4")?.imageUrl || ""
     }
   },
   {
