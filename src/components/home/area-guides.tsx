@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
@@ -44,7 +45,11 @@ export function AreaGuides() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {AREAS.map((area) => (
-            <div key={area.id} className="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-lg">
+            <Link 
+              key={area.id} 
+              href={`/buy?location=${encodeURIComponent(area.title)}`}
+              className="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-lg block"
+            >
               <Image
                 src={area.image}
                 alt={area.title}
@@ -59,7 +64,7 @@ export function AreaGuides() {
                   Explore District
                 </Button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
