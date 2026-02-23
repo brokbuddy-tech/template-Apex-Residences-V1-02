@@ -19,19 +19,19 @@ export default function Home() {
       <Hero />
       
       {/* Category Icons */}
-      <section className="py-12 bg-card border-b overflow-x-auto">
-        <div className="max-w-7xl mx-auto px-6 flex justify-around items-center min-w-[800px]">
+      <section className="py-8 bg-card border-b">
+        <div className="max-w-5xl mx-auto px-4 flex justify-between items-center gap-2">
           {[
             { icon: Gem, label: "Luxury Villas" },
             { icon: Globe, label: "Penthouses" },
             { icon: Award, label: "Award Winning" },
             { icon: Shield, label: "Secured Units" },
           ].map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center gap-3 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                <item.icon className="w-7 h-7" />
+            <div key={idx} className="flex flex-col items-center gap-2 group cursor-pointer flex-1 text-center">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-muted/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <span className="text-xs uppercase font-bold tracking-widest text-muted-foreground group-hover:text-primary transition-colors">
+              <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-tighter sm:tracking-widest text-muted-foreground group-hover:text-primary transition-colors line-clamp-1">
                 {item.label}
               </span>
             </div>
