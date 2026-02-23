@@ -72,10 +72,10 @@ export function TeamSection() {
           {/* Left Column: Navigation & Content */}
           <div className="lg:col-span-5 space-y-8 animate-in fade-in slide-in-from-left-10 duration-1000">
             <div className="space-y-4">
-              <h2 className="font-headline text-2xl md:text-3xl font-thin tracking-[0.5em] text-white uppercase">
+              <h2 className="font-headline text-xl md:text-2xl font-thin tracking-[0.5em] text-white uppercase">
                 FIND YOUR <br /> <span className="font-bold">PARTNER</span>
               </h2>
-              <p className="text-white/40 text-xs md:text-sm font-light leading-relaxed tracking-wide max-w-sm">
+              <p className="text-white/40 text-[10px] md:text-xs font-light leading-relaxed tracking-wide max-w-sm">
                 Our team is highly experienced and knowledgeable across all aspects of the real estate industry. 
                 We are ready to answer your questions in over 30 languages.
               </p>
@@ -143,7 +143,7 @@ export function TeamSection() {
                   const agentImage = PlaceHolderImages.find(img => img.id === agent.imageId);
                   return (
                     <CarouselItem key={agent.id} className="pl-4 basis-full sm:basis-1/2 xl:basis-1/2 group">
-                      <div className="relative aspect-[4/5] overflow-hidden md:grayscale md:hover:grayscale-0 transition-all duration-700">
+                      <div className="relative aspect-[4/5] overflow-hidden transition-all duration-700">
                         <Image
                           src={agentImage?.imageUrl || ""}
                           alt={agent.name}
@@ -158,7 +158,7 @@ export function TeamSection() {
                             <p className="text-white text-[8px] font-bold uppercase tracking-[0.3em]">
                               {agent.title}
                             </p>
-                            <h3 className="text-white text-lg font-headline font-bold tracking-widest uppercase">
+                            <h3 className="text-white text-base font-headline font-bold tracking-widest uppercase">
                               {agent.name}
                             </h3>
                             <div className="pt-3 flex items-center justify-between border-t border-white/10 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-700">

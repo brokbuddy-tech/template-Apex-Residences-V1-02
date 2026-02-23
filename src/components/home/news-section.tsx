@@ -51,7 +51,7 @@ export function NewsSection() {
                   src={news2}
                   alt="LIV Maritime"
                   fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110 md:grayscale group-hover:grayscale-0"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
               </div>
               <div className="w-full sm:w-1/2 bg-white/[0.02] p-6 flex flex-col justify-between">
@@ -71,7 +71,7 @@ export function NewsSection() {
                   src={news3}
                   alt="Market 2024"
                   fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110 md:grayscale group-hover:grayscale-0"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
               </div>
               <div className="w-full sm:w-1/2 bg-white/[0.02] p-6 flex flex-col justify-between">

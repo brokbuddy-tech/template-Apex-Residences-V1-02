@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -63,7 +62,7 @@ function PropertyDetail({ property }: { property: Property }) {
         {/* 1. Hero Gallery */}
         <section className="px-6 md:px-12 py-12 space-y-12">
           <div className="space-y-4">
-            <h1 className="text-2xl md:text-4xl font-headline font-thin tracking-widest leading-tight uppercase text-white/90">
+            <h1 className="text-xl md:text-3xl font-headline font-thin tracking-widest leading-tight uppercase text-white/90">
               {property.title}
             </h1>
             <div className="flex items-center gap-2 text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -78,24 +77,24 @@ function PropertyDetail({ property }: { property: Property }) {
                 src={property.gallery[activeImage]} 
                 alt={property.title} 
                 fill 
-                className="object-cover transition-transform duration-1000 md:grayscale md:group-hover:grayscale-0 group-hover:scale-105" 
+                className="object-cover transition-transform duration-1000 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
             <div className="hidden md:flex flex-col gap-6">
               {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
                 <div key={idx} className="relative flex-1 group overflow-hidden cursor-pointer" onClick={() => setActiveImage(property.gallery.indexOf(img))}>
-                  <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 grayscale hover:grayscale-0 group-hover:scale-110" />
+                  <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-12 bg-white/[0.02] border border-white/5 p-6 md:px-10">
+          <div className="w-full flex items-center justify-between md:justify-end gap-12 bg-white/[0.02] border border-white/5 p-6 md:px-10 mt-8">
             <div className="space-y-1 text-right">
               <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
-              <p className="text-3xl md:text-5xl font-bold text-[#D1A08B]">{property.price}</p>
+              <p className="text-xl md:text-4xl font-bold text-[#D1A08B]">{property.price}</p>
             </div>
             <button className="w-12 h-12 border border-[#D1A08B]/20 flex items-center justify-center text-[#D1A08B] hover:bg-[#D1A08B] hover:text-white transition-all duration-500">
               <Share2 className="w-5 h-5" />
@@ -143,7 +142,7 @@ function PropertyDetail({ property }: { property: Property }) {
             <div className="space-y-10">
               <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B]">Location Intelligence</h2>
               <div className="relative aspect-video w-full bg-white/5 border border-white/10 overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=2070&auto=format&fit=crop" alt="Map" fill className="object-cover opacity-30 md:grayscale" />
+                <Image src="https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=2070&auto=format&fit=crop" alt="Map" fill className="object-cover opacity-50" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-black/80 backdrop-blur-md px-8 py-4 border border-[#D1A08B]/20 flex flex-col items-center">
                     <MapPin className="w-6 h-6 text-[#D1A08B] mb-2" />
@@ -173,17 +172,17 @@ function PropertyDetail({ property }: { property: Property }) {
               {/* Agent Profile Card First */}
               <div className="border border-[#D1A08B]/20 bg-[#0a0a0a] p-10 flex flex-col items-center text-center space-y-8">
                 <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
-                  <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full md:grayscale" />
+                  <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full" />
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-2xl font-headline font-bold uppercase tracking-wider text-white">{property.agent.name}</h4>
+                  <h4 className="text-xl font-headline font-bold uppercase tracking-wider text-white">{property.agent.name}</h4>
                   <p className="text-[11px] font-bold text-[#D1A08B] uppercase tracking-widest">{property.agent.role}</p>
                 </div>
                 <div className="w-full pt-4 space-y-4">
                   <ConsultationDialog>
-                    <Button className="w-full btn-copper h-14 gap-2 text-sm">Inquiry</Button>
+                    <Button className="w-full btn-copper h-12 gap-2 text-sm">Inquiry</Button>
                   </ConsultationDialog>
-                  <Button variant="outline" className="w-full btn-outline-white h-14 gap-2 text-sm"><Phone className="w-5 h-5" /> Call Specialist</Button>
+                  <Button variant="outline" className="w-full btn-outline-white h-12 gap-2 text-sm border-white/10"><Phone className="w-4 h-4" /> Call Specialist</Button>
                 </div>
               </div>
 
@@ -191,11 +190,11 @@ function PropertyDetail({ property }: { property: Property }) {
               <div className="glass-panel p-10 space-y-8">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[#D1A08B]"><TrendingUp className="w-4 h-4" /><p className="text-[11px] font-bold uppercase tracking-[0.3em]">Market Context</p></div>
-                  <h3 className="text-xl font-headline font-bold uppercase tracking-widest text-white">Area Intelligence</h3>
+                  <h3 className="text-lg font-headline font-bold uppercase tracking-widest text-white">Area Intelligence</h3>
                 </div>
                 <div className="space-y-6 pt-6 border-t border-white/10">
-                  <div className="flex justify-between items-end"><p className="text-white/40 text-[11px] uppercase font-bold tracking-widest">Avg. Area Price</p><p className="text-2xl font-bold text-white">{property.marketStats.avgAreaPrice}</p></div>
-                  <div className="flex justify-between items-end"><p className="text-white/40 text-[11px] uppercase font-bold tracking-widest">Price / sq.ft</p><p className="text-2xl font-bold text-white">{property.marketStats.pricePerSqFt}</p></div>
+                  <div className="flex justify-between items-end"><p className="text-white/40 text-[11px] uppercase font-bold tracking-widest">Avg. Area Price</p><p className="text-xl font-bold text-white">{property.marketStats.avgAreaPrice}</p></div>
+                  <div className="flex justify-between items-end"><p className="text-white/40 text-[11px] uppercase font-bold tracking-widest">Price / sq.ft</p><p className="text-xl font-bold text-white">{property.marketStats.pricePerSqFt}</p></div>
                   <p className="text-[11px] text-white/40 font-light leading-relaxed italic">
                     Market data is analyzed weekly to ensure precise valuation and ROI projections for Apex Residences clients.
                   </p>
@@ -228,7 +227,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
         {/* 1. Header & Breadcrumbs */}
         <section className="px-6 md:px-12 py-10 border-b border-white/5 mb-10">
           <div className="flex flex-col gap-5">
-            <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-[0.1em] leading-tight uppercase text-white">
+            <h1 className="text-3xl md:text-6xl font-headline font-bold tracking-[0.1em] leading-tight uppercase text-white">
               {project.title}
             </h1>
             <div className="flex items-center gap-4 text-white/40 text-[10px] font-bold uppercase tracking-[0.4em]">
@@ -321,11 +320,11 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                    src={project.gallery[1] || project.image} 
                    alt="Atmosphere" 
                    fill 
-                   className="object-cover md:grayscale group-hover:grayscale-0 transition-all duration-[2000ms] group-hover:scale-110" 
+                   className="object-cover transition-all duration-[2000ms] group-hover:scale-110" 
                  />
                </div>
                <div className="p-12 md:p-20 flex flex-col justify-center space-y-6">
-                 <h3 className="text-2xl font-headline font-bold uppercase tracking-[0.2em] text-[#B8860B]">ATMOSPHERE</h3>
+                 <h3 className="text-xl md:text-2xl font-headline font-bold uppercase tracking-[0.2em] text-[#B8860B]">ATMOSPHERE</h3>
                  <p className="text-white/40 font-light leading-loose tracking-wide text-base italic">
                    {project.description}
                  </p>
@@ -336,15 +335,27 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
             {/* Structured Payment Plan */}
             <section className="space-y-12">
               <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B]">
-                STRUCTURED PAYMENT PLAN
+                PAYMENT PLAN
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {project.paymentPlan.map((step, idx) => (
-                  <div key={idx} className="bg-[#0a0a0a] border border-white/5 p-12 space-y-4 text-center group hover:border-[#B8860B]/30 transition-all">
-                    <p className="text-5xl md:text-6xl font-bold text-[#B8860B] tracking-tighter">{step.percentage}</p>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/40">{step.label}</p>
-                  </div>
-                ))}
+              <div className="grid grid-cols-2 lg:grid-cols-2 gap-0 border border-white/10">
+                <div className="p-16 border-r border-b border-white/10 flex flex-col items-center text-center space-y-4">
+                  <p className="text-[10px] uppercase font-bold tracking-widest text-white/40">Installment: 1</p>
+                  <div className="w-8 h-[1px] bg-[#B8860B]/50" />
+                  <p className="text-5xl lg:text-7xl font-bold text-[#B8860B]">10%</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">DOWN PAYMENT</p>
+                </div>
+                <div className="p-16 border-b border-white/10 flex flex-col items-center text-center space-y-4">
+                  <p className="text-[10px] uppercase font-bold tracking-widest text-white/40">Installment: 2</p>
+                  <div className="w-8 h-[1px] bg-[#B8860B]/50" />
+                  <p className="text-5xl lg:text-7xl font-bold text-[#B8860B]">80%</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">DURING CONSTRUCTION</p>
+                </div>
+                <div className="col-span-full p-16 flex flex-col items-center text-center space-y-4">
+                  <p className="text-[10px] uppercase font-bold tracking-widest text-white/40">Installment: 3</p>
+                  <div className="w-8 h-[1px] bg-[#B8860B]/50" />
+                  <p className="text-5xl lg:text-7xl font-bold text-[#B8860B]">10%</p>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">ON HANDOVER</p>
+                </div>
               </div>
             </section>
           </div>
@@ -355,14 +366,14 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
               {/* Agent Profile Card Card */}
               <div className="bg-[#0a0a0a] border border-white/10 p-10 flex flex-col items-center text-center space-y-8">
                 <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#B8860B]/20 p-1">
-                  <Image src={project.agent.image} alt={project.agent.name} fill className="object-cover rounded-full md:grayscale" />
+                  <Image src={project.agent.image} alt={project.agent.name} fill className="object-cover rounded-full" />
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-2xl font-headline font-bold uppercase tracking-wider text-white">{project.agent.name}</h4>
+                  <h4 className="text-xl font-headline font-bold uppercase tracking-wider text-white">{project.agent.name}</h4>
                   <p className="text-[11px] font-bold text-[#B8860B] uppercase tracking-widest">{project.agent.role}</p>
                 </div>
                 <div className="w-full flex gap-3">
-                  <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-[#B8860B]/20">CALL US</Button>
+                  <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10">CALL US</Button>
                   <ConsultationDialog>
                     <Button className="flex-1 btn-copper h-12 text-[9px] font-bold">INQUIRY</Button>
                   </ConsultationDialog>
@@ -407,10 +418,10 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {similarProjects.map(p => (
               <Link key={p.id} href={`/listings/${p.id}`} className="group relative aspect-[3/4] overflow-hidden border border-white/10 bg-[#0a0a0a]">
-                <Image src={p.image} alt={p.title} fill className="object-cover brightness-[0.4] md:grayscale group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 group-hover:scale-110" />
+                <Image src={p.image} alt={p.title} fill className="object-cover brightness-[0.4] group-hover:brightness-100 transition-all duration-1000 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-0 left-0 right-0 p-10 space-y-3">
-                   <h3 className="text-white font-headline text-xl font-bold tracking-widest uppercase leading-tight">{p.title}</h3>
+                   <h3 className="text-white font-headline text-lg font-bold tracking-widest uppercase leading-tight">{p.title}</h3>
                    <div className="flex items-center gap-3">
                      <p className="text-[#B8860B] text-[9px] font-bold uppercase tracking-widest">{p.developer}</p>
                      <div className="w-6 h-[1px] bg-white/20 group-hover:w-12 group-hover:bg-[#B8860B] transition-all" />
@@ -431,7 +442,7 @@ function SpecIcon({ label, value, icon: Icon }: { label: string; value: string; 
       <div className="w-12 h-12 flex items-center justify-center text-[#D1A08B] bg-white/[0.02] border border-white/5"><Icon className="w-6 h-6" /></div>
       <div>
         <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{label}</p>
-        <p className="text-lg font-bold text-white uppercase tracking-wider">{value}</p>
+        <p className="text-base font-bold text-white uppercase tracking-wider">{value}</p>
       </div>
     </div>
   );
@@ -441,7 +452,7 @@ function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between items-end border-b border-white/5 pb-2">
       <span className="text-[10px] font-bold tracking-widest text-white/30 uppercase">{label}</span>
-      <span className="text-base font-light text-white text-right">{value}</span>
+      <span className="text-sm font-light text-white text-right">{value}</span>
     </div>
   );
 }
@@ -452,9 +463,9 @@ function NeighborhoodList({ title, items, icon: Icon }: { title: string; items: 
       <div className="flex items-center gap-3 text-[#D1A08B]"><Icon className="w-6 h-6" /><h4 className="text-[11px] font-bold tracking-[0.3em] uppercase">{title}</h4></div>
       <div className="space-y-6">
         {items.map((item, i) => (
-          <div key={i} className="flex justify-between items-center text-lg font-light border-b border-white/5 pb-3">
+          <div key={i} className="flex justify-between items-center text-base font-light border-b border-white/5 pb-3">
             <span className="text-white/60">{item.name}</span>
-            <span className="text-white/30 text-sm font-bold">{item.distance}</span>
+            <span className="text-white/30 text-xs font-bold">{item.distance}</span>
           </div>
         ))}
       </div>
