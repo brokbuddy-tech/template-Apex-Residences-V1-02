@@ -286,27 +286,6 @@ function PropertyDetail({ property }: { property: Property }) {
         </div>
       </main>
 
-      {/* Fixed Bottom Consultation Bar */}
-      <section className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-xl border-t border-white/10 z-[60] py-6 px-6 md:px-12">
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="hidden md:flex flex-col">
-            <p className="text-white/40 text-[9px] uppercase font-bold tracking-widest">Consult regarding</p>
-            <p className="text-sm font-bold uppercase tracking-wider text-white truncate max-w-[300px]">{property.title}</p>
-          </div>
-
-          <div className="flex flex-1 md:flex-none items-center gap-4 w-full md:w-auto">
-             <Button className="flex-1 md:flex-none btn-copper px-12 h-14 uppercase text-[11px] font-bold tracking-[0.4em]">Enquire Now</Button>
-             <div className="h-10 w-[1px] bg-white/10 hidden md:block" />
-             <div className="flex items-center gap-4">
-                <SocialIcon icon={MessageCircle} color="text-green-500" />
-                <SocialIcon icon={Facebook} color="text-blue-500" />
-                <SocialIcon icon={Linkedin} color="text-blue-700" />
-                <SocialIcon icon={Mail} color="text-[#D1A08B]" />
-             </div>
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
