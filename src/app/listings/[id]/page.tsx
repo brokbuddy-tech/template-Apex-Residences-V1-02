@@ -103,7 +103,7 @@ function PropertyDetail({ property }: { property: Property }) {
             </div>
           </div>
 
-          {/* Price Area - Now Below Gallery */}
+          {/* Price Area - Positioned below Gallery */}
           <div className="w-full flex items-center justify-between bg-white/[0.02] border border-white/5 p-6 md:px-10">
             <div className="space-y-1">
               <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
@@ -294,37 +294,6 @@ function PropertyDetail({ property }: { property: Property }) {
   );
 }
 
-function SpecIcon({ label, value, icon: Icon }: { label: string; value: string; icon: any }) {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="w-10 h-10 flex items-center justify-center text-[#D1A08B]">
-        <Icon className="w-5 h-5" />
-      </div>
-      <div>
-        <p className="text-[9px] font-bold text-white/40 uppercase tracking-widest">{label}</p>
-        <p className="text-sm font-bold text-white uppercase tracking-wider">{value}</p>
-      </div>
-    </div>
-  );
-}
-
-function DetailRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between items-end border-b border-white/5 pb-2">
-      <span className="text-[10px] font-bold tracking-widest text-white/30 uppercase">{label}</span>
-      <span className="text-sm font-light text-white">{value}</span>
-    </div>
-  );
-}
-
-function SocialIcon({ icon: Icon, color }: { icon: any, color: string }) {
-  return (
-    <button className={cn("w-10 h-10 border border-white/5 flex items-center justify-center transition-all hover:bg-white/5", color)}>
-      <Icon className="w-4 h-4" />
-    </button>
-  );
-}
-
 function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
   const [activeImage, setActiveImage] = useState(0);
 
@@ -384,9 +353,9 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
             
             <div className="lg:col-span-4 flex flex-col justify-center space-y-12">
               <div className="grid grid-cols-1 gap-10">
-                <UtilityIcon label="Property Type" value={project.type} icon={Bed} />
-                <UtilityIcon label="Pricing Starts" value={project.price} icon={Maximize} />
-                <UtilityIcon label="Prime Location" value={project.location} icon={MapPin} />
+                <SpecIcon label="Property Type" value={project.type} icon={Bed} />
+                <SpecIcon label="Pricing Starts" value={project.price} icon={Maximize} />
+                <SpecIcon label="Prime Location" value={project.location} icon={MapPin} />
               </div>
 
               <div className="pt-8 border-t border-white/5 space-y-8">
