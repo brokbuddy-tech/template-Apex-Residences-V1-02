@@ -3,133 +3,133 @@
     {
       "id": "hero-bg",
       "description": "Cinematic Dubai Marina skyline at blue hour with glowing skyscrapers",
-      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1920&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1559717201-fbb671ff56b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkdWJhaSUyMHNreWxpbmV8ZW58MHx8fHwxNzcxODU5NTMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dubai skyline"
     },
     {
       "id": "about-hero",
       "description": "Ultra-modern architectural lobby with dramatic lighting and scale",
-      "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1920&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1644264451243-1cef1eb167cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsdXh1cnklMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzcxNzY3MTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury architecture"
     },
     {
       "id": "journey-expertise",
       "description": "Close-up of a high-end luxury watch and business documents in a dim setting",
-      "imageUrl": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1724847664518-c62583f1bf69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsdXh1cnklMjBkZXRhaWx8ZW58MHx8fHwxNzcxODU5NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury detail"
     },
     {
       "id": "journey-strategy",
       "description": "Minimalist architectural blueprint on a dark wooden table",
-      "imageUrl": "https://images.unsplash.com/photo-1503387762-592dee58c460?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1721244653652-268631ec049a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwcGxhbnxlbnwwfHx8fDE3NzE4NTk1MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "architectural plan"
     },
     {
       "id": "journey-connection",
       "description": "Two professionals shaking hands in a high-floor glass boardroom",
-      "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1672380135241-c024f7fbfa13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMGhhbmRzaGFrZXxlbnwwfHx8fDE3NzE4NTk1MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "business handshake"
     },
     {
       "id": "prop-1",
       "description": "Sleek modern penthouse interior with floor-to-ceiling windows overlooking Dubai",
-      "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1760611656071-a8bef0578874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsdXh1cnklMjBwZW50aG91c2V8ZW58MHx8fHwxNzcxNzg0MDk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury penthouse"
     },
     {
       "id": "prop-2",
       "description": "Contemporary minimalist villa with white geometric architecture and a pool",
-      "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1670589953903-b4e2f17a70a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb2Rlcm4lMjB2aWxsYXxlbnwwfHx8fDE3NzE4NDk1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern villa"
     },
     {
       "id": "prop-3",
       "description": "Twilight shot of a high-end residence with warm interior lighting",
-      "imageUrl": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1760033009377-48bd1d2bb9e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx2aWxsYSUyMHR3aWxpZ2h0fGVufDB8fHx8MTc3MTg1OTUzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "villa twilight"
     },
     {
       "id": "prop-4",
       "description": "Luxury living room with designer furniture and a large glass wall",
-      "imageUrl": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsdXh1cnklMjBpbnRlcmlvcnxlbnwwfHx8fDE3NzE4NTA1NDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury interior"
     },
     {
       "id": "area-1",
       "description": "Aerial view of Palm Jumeirah with crystal blue waters",
-      "imageUrl": "https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1677508398175-4a2a1408048f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwYWxtJTIwanVtZWlyYWh8ZW58MHx8fHwxNzcxODU5NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "palm jumeirah"
     },
     {
       "id": "area-2",
       "description": "The majestic Burj Khalifa towering over Downtown Dubai",
-      "imageUrl": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1583759604327-f9dcd23499d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxidXJqJTIwa2hhbGlmYXxlbnwwfHx8fDE3NzE4NDkxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "burj khalifa"
     },
     {
       "id": "excl-1",
       "description": "Cinematic rendering of a modern skyscraper with a unique facade",
-      "imageUrl": "https://images.unsplash.com/photo-1510665724063-f77a01074aa2?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1528810289438-283f885c31ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxza3lzY3JhcGVyfGVufDB8fHx8MTc3MTg1OTUzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "skyscraper"
     },
     {
       "id": "agent-1",
       "description": "Ben Thomas - Professional Headshot",
-      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1556157382-97eda2d62296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwcm9mZXNzaW9uYWwlMjBtYW58ZW58MHx8fHwxNzcxODA5MTM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "professional man"
     },
     {
       "id": "agent-2",
       "description": "Alexander Tuguchev - Professional Headshot",
-      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1594759845217-e9c99af2b6a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxleGVjdXRpdmUlMjBtYW58ZW58MHx8fHwxNzcxODU5NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "executive man"
     },
     {
       "id": "agent-3",
       "description": "Elena Rodriguez - Professional Headshot",
-      "imageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbnxlbnwwfHx8fDE3NzE4MDAwODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "professional woman"
     },
     {
       "id": "agent-4",
       "description": "Marcus Thorne - Professional Headshot",
-      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1758685734423-593b9854a31c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzZW5pb3IlMjBleHBlcnR8ZW58MHx8fHwxNzcxODU5NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "senior expert"
     },
     {
       "id": "sell-hero",
       "description": "A high-end private negotiation in a glass-walled office",
-      "imageUrl": "https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1920&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMG1lZXRpbmd8ZW58MHx8fHwxNzcxODUzNDk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "business meeting"
     },
     {
       "id": "marketing-video",
       "description": "Behind-the-scenes shot of a professional camera filming a luxury property",
-      "imageUrl": "https://images.unsplash.com/photo-1548607634-9f8cfca5d944?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1543242594-c8bae8b9e708?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx2aWRlbyUyMHByb2R1Y3Rpb258ZW58MHx8fHwxNzcxNzc0OTI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "video production"
     },
     {
       "id": "marketing-photo",
       "description": "Architectural photographer capturing a building with a professional rig",
-      "imageUrl": "https://images.unsplash.com/photo-1677733720219-115e0196386c?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1718369721116-dbdc869bc64d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhcmNoaXRlY3R1cmFsJTIwcGhvdG98ZW58MHx8fHwxNzcxODU5NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "architectural photo"
     },
     {
       "id": "news-1",
       "description": "Modern urban development at sunset",
-      "imageUrl": "https://images.unsplash.com/photo-1543071293-d91175a68672?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1690269303967-0416aee22249?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx1cmJhbiUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc3MTg1OTUzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "urban development"
     },
     {
       "id": "news-2",
       "description": "Futuristic skyline lighting at night",
-      "imageUrl": "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1514439827219-9137a0b99245?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxuaWdodCUyMGNpdHl8ZW58MHx8fHwxNzcxNzY3MjY1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "night city"
     },
     {
       "id": "news-3",
       "description": "Detailed chart on a screen showing market growth",
-      "imageUrl": "https://images.unsplash.com/photo-1459787915554-b34915863013?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1762279389020-eeeb69c25813?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYXJrZXQlMjBncm93dGh8ZW58MHx8fHwxNzcxODU5NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "market growth"
     }
   ]
