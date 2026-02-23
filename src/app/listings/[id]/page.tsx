@@ -26,8 +26,17 @@ import {
   MessageCircle,
   Mail,
   Facebook,
-  Linkedin
+  Linkedin,
+  Images,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function ListingDetails() {
   const { id } = useParams();
@@ -54,6 +63,7 @@ export default function ListingDetails() {
 
 function PropertyDetail({ property }: { property: Property }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const similarProperties = PROPERTIES.filter(p => p.id !== property.id).slice(0, 4);
 
   return (
@@ -80,6 +90,17 @@ function PropertyDetail({ property }: { property: Property }) {
                 className="object-cover transition-transform duration-1000 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              
+              {/* Mobile View All Button */}
+              <div className="absolute bottom-4 right-4 md:hidden z-20">
+                <Button 
+                  onClick={() => setIsGalleryOpen(true)}
+                  className="bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-none h-10 px-4 gap-2 text-[10px] font-bold uppercase tracking-widest hover:bg-black/80 transition-all"
+                >
+                  <Images className="w-4 h-4" />
+                  View all {property.gallery.length} photos
+                </Button>
+              </div>
             </div>
             <div className="hidden md:flex flex-col gap-6">
               {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
@@ -211,6 +232,22 @@ function PropertyDetail({ property }: { property: Property }) {
           </div>
         </section>
       </main>
+
+      {/* Gallery Dialog for Mobile */}
+      <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
+        <DialogContent className="max-w-[95vw] h-[90vh] bg-black border-white/10 p-0 overflow-hidden flex flex-col rounded-none">
+          <DialogHeader className="p-6 border-b border-white/5 shrink-0">
+            <DialogTitle className="text-white font-headline text-lg uppercase tracking-widest">{property.title}</DialogTitle>
+          </DialogHeader>
+          <div className="flex-grow overflow-y-auto p-4 space-y-4">
+            {property.gallery.map((img, idx) => (
+              <div key={idx} className="relative aspect-video w-full border border-white/10">
+                <Image src={img} alt={`Gallery image ${idx + 1}`} fill className="object-cover" />
+              </div>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
@@ -418,7 +455,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {similarProjects.map(p => (
               <Link key={p.id} href={`/listings/${p.id}`} className="group relative aspect-[3/4] overflow-hidden border border-white/10 bg-[#0a0a0a]">
-                <Image src={p.image} alt={p.title} fill className="object-cover brightness-[0.4] group-hover:brightness-100 transition-all duration-1000 group-hover:scale-110" />
+                <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-110 transition-all duration-1000" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-0 left-0 right-0 p-10 space-y-3">
                    <h3 className="text-white font-headline text-lg font-bold tracking-widest uppercase leading-tight">{p.title}</h3>
