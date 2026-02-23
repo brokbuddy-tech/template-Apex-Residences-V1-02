@@ -2,8 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
@@ -16,9 +14,7 @@ export default function SellPage() {
   const photoImg = PlaceHolderImages.find(img => img.id === "marketing-photo")?.imageUrl || "";
 
   return (
-    <main className="min-h-screen bg-black text-white font-body">
-      <Header />
-
+    <div className="min-h-screen bg-black text-white font-body">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image
@@ -159,11 +155,11 @@ export default function SellPage() {
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">Phone</label>
-                <Input placeholder="Enter your phone" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#B8860B] transition-all" />
+                <Input placeholder="Enter your phone" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/20 focus-visible:ring-0 focus-visible:border-[#B8860B] transition-all" />
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">E-mail</label>
-                <Input placeholder="Enter your email" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#B8860B] transition-all" />
+                <Input placeholder="Enter your email" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/20 focus-visible:ring-0 focus-visible:border-[#B8860B] transition-all" />
               </div>
               <div className="md:col-span-3 pt-6 flex justify-end">
                 <Button className="border border-[#B8860B] bg-[#B8860B] text-black hover:bg-black hover:text-[#B8860B] transition-all duration-500 rounded-none h-14 px-16 uppercase text-xs font-bold tracking-[0.4em] w-full md:w-auto">
@@ -174,8 +170,6 @@ export default function SellPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </main>
+    </div>
   );
 }

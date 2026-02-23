@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { SearchDashboard } from "@/components/listings/search-dashboard";
 import { ListingCard } from "@/components/listings/listing-card";
 import { PROPERTIES } from "@/lib/properties";
@@ -12,8 +10,7 @@ export default function RentPage() {
   const rentProperties = PROPERTIES.filter(p => p.listingType === 'Rent');
 
   return (
-    <main className="min-h-screen bg-black">
-      <Header />
+    <div className="min-h-screen bg-black">
       <div className="pt-24">
         <SearchDashboard title="PROPERTIES FOR RENT IN DUBAI" />
         
@@ -29,7 +26,6 @@ export default function RentPage() {
                   <p className="text-white/40 uppercase tracking-[0.4em] font-light">No rentals currently listed in this category.</p>
                 </div>
               )}
-              {/* If empty, show some copies for visual filling if needed, or just let it be empty as per data */}
               {rentProperties.map((prop) => (
                 <ListingCard key={`${prop.id}-copy-1`} {...prop} />
               ))}
@@ -46,7 +42,6 @@ export default function RentPage() {
           </div>
         </section>
       </div>
-      <Footer />
-    </main>
+    </div>
   );
 }

@@ -2,14 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { TeamSection } from "@/components/home/team-section";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowRight } from "lucide-react";
 
 const STATS = [
   { label: "AGENCIES WORLDWIDE", value: "1,000+" },
@@ -43,9 +37,7 @@ export default function AboutPage() {
   const leadershipImg = PlaceHolderImages.find(img => img.id === "about-hero")?.imageUrl || "";
 
   return (
-    <main className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white">
-      <Header />
-
+    <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white">
       {/* 1. Hero: Leadership & Mission */}
       <section className="relative h-[80vh] flex flex-col items-center justify-center overflow-hidden border-b border-white/5">
         <Image
@@ -130,54 +122,8 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-
-          {/* Partner Logos */}
-          <div className="mt-24 pt-20 border-t border-white/5 flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-20 md:grayscale hover:opacity-60 transition-all duration-500">
-            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">FORBES</span>
-            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">BLOOMBERG</span>
-            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">REUTERS</span>
-            <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">THE TIMES</span>
-          </div>
         </div>
       </section>
-
-      {/* 6. Final Inquiry: Consultation Form */}
-      <section className="py-32 bg-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="glass-panel p-10 md:p-20 flex flex-col md:flex-row items-center justify-between gap-16">
-            <div className="space-y-6 max-w-md">
-              <h2 className="font-headline text-3xl md:text-4xl font-thin tracking-[0.2em] uppercase leading-tight">
-                PROFESSIONAL <br /> <span className="font-bold text-[#D1A08B]">CONSULTATION</span>
-              </h2>
-              <p className="text-white/40 text-sm font-light tracking-widest italic">
-                Connect with our senior partners for a confidential strategy session.
-              </p>
-            </div>
-
-            <form className="flex-1 w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">Name</label>
-                <Input placeholder="Full Name" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#D1A08B] transition-all" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">Phone</label>
-                <Input placeholder="+971 50 000 0000" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#D1A08B] transition-all" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">E-mail</label>
-                <Input placeholder="business@email.com" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#D1A08B] transition-all" />
-              </div>
-              <div className="md:col-span-3 pt-8 flex justify-end">
-                <Button className="bg-[#D1A08B] text-white hover:bg-[#D1A08B]/90 rounded-none h-14 px-20 uppercase text-[11px] font-bold tracking-[0.5em] transition-all w-full md:w-auto">
-                  SEND REQUEST
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
+    </div>
   );
 }

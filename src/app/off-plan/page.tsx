@@ -1,11 +1,8 @@
-
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { 
   Select, 
   SelectContent, 
@@ -17,9 +14,7 @@ import { OFF_PLAN_PROJECTS } from "@/lib/off-plan-projects";
 
 export default function OffPlanPage() {
   return (
-    <main className="min-h-screen bg-black text-white font-body">
-      <Header />
-
+    <div className="min-h-screen bg-black text-white font-body">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex flex-col items-center justify-center pt-24 overflow-hidden border-b border-white/5">
         <Image
@@ -79,9 +74,7 @@ export default function OffPlanPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </main>
+    </div>
   );
 }
 

@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { SearchDashboard } from "@/components/listings/search-dashboard";
 import { ListingCard } from "@/components/listings/listing-card";
 import { PROPERTIES } from "@/lib/properties";
@@ -12,8 +10,7 @@ export default function BuyPage() {
   const buyProperties = PROPERTIES.filter(p => p.listingType === 'Buy');
 
   return (
-    <main className="min-h-screen bg-black">
-      <Header />
+    <div className="min-h-screen bg-black">
       <div className="pt-24">
         <SearchDashboard title="PROPERTIES FOR SALE IN DUBAI" />
         
@@ -37,7 +34,6 @@ export default function BuyPage() {
           </div>
         </section>
       </div>
-      <Footer />
-    </main>
+    </div>
   );
 }

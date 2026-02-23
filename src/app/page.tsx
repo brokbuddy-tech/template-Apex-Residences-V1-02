@@ -1,4 +1,3 @@
-import { Header } from "@/components/layout/header";
 import { Hero } from "@/components/home/hero";
 import { ExclusivesSection } from "@/components/home/exclusives-section";
 import { ListingSection } from "@/components/home/listing-section";
@@ -8,14 +7,12 @@ import { ReviewsSection } from "@/components/home/reviews-section";
 import { FaqSection } from "@/components/home/faq-section";
 import { NewsSection } from "@/components/home/news-section";
 import { ContactSection } from "@/components/home/contact-section";
-import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Gem, Globe } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <Header />
+    <div className="min-h-screen bg-background">
       <Hero />
       
       {/* Category Icons */}
@@ -70,8 +67,6 @@ export default function Home() {
       <NewsSection />
       
       <ContactSection />
-      
-      <Footer />
-    </main>
+    </div>
   );
 }

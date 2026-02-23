@@ -1,6 +1,8 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: 'Apex Residences | Ultra-Luxury Real Estate Dubai',
@@ -19,8 +21,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased bg-black">
-        {children}
+      <body className="font-body antialiased bg-black min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
         <Toaster />
       </body>
     </html>
