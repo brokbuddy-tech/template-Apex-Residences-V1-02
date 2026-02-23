@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -9,6 +10,7 @@ import { OFF_PLAN_PROJECTS, OffPlanProject } from "@/lib/off-plan-projects";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
 import { ListingCard } from "@/components/listings/listing-card";
+import { cn } from "@/lib/utils";
 import { 
   MapPin, 
   Bed, 
@@ -23,6 +25,7 @@ import {
   School,
   Building2,
   MessageCircle,
+  Mail
 } from "lucide-react";
 
 export default function ListingDetails() {
@@ -87,7 +90,7 @@ function PropertyDetail({ property }: { property: Property }) {
             </div>
           </div>
 
-          <div className="w-full flex items-center justify-between bg-white/[0.02] border border-white/5 p-8 md:px-12">
+          <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-12 bg-white/[0.02] border border-white/5 p-6 md:px-10">
             <div className="space-y-1">
               <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
               <p className="text-4xl md:text-5xl font-bold text-[#D1A08B]">{property.price}</p>
@@ -167,7 +170,7 @@ function PropertyDetail({ property }: { property: Property }) {
             <div className="sticky top-32 space-y-8">
               <div className="border border-[#D1A08B]/20 bg-[#0a0a0a] p-12 flex flex-col items-center text-center space-y-8">
                 <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
-                  <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full md:grayscale group-hover:grayscale-0" />
+                  <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full md:grayscale" />
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-2xl font-headline font-bold uppercase tracking-wider text-white">{property.agent.name}</h4>
@@ -175,7 +178,7 @@ function PropertyDetail({ property }: { property: Property }) {
                 </div>
                 <div className="w-full pt-4 space-y-4">
                   <ConsultationDialog>
-                    <Button className="w-full btn-copper h-14 gap-2 text-sm"><MessageCircle className="w-5 h-5" /> Inquiry</Button>
+                    <Button className="w-full btn-copper h-14 gap-2 text-sm">Inquiry</Button>
                   </ConsultationDialog>
                   <Button variant="outline" className="w-full btn-outline-white h-14 gap-2 text-sm"><Phone className="w-5 h-5" /> Call Specialist</Button>
                 </div>
@@ -189,6 +192,9 @@ function PropertyDetail({ property }: { property: Property }) {
                 <div className="space-y-8 pt-8 border-t border-white/10">
                   <div className="flex justify-between items-end"><p className="text-white/40 text-[10px] uppercase font-bold tracking-widest">Avg. Area Price</p><p className="text-2xl font-bold text-white">{property.marketStats.avgAreaPrice}</p></div>
                   <div className="flex justify-between items-end"><p className="text-white/40 text-[10px] uppercase font-bold tracking-widest">Price / sq.ft</p><p className="text-2xl font-bold text-white">{property.marketStats.pricePerSqFt}</p></div>
+                  <p className="text-[10px] text-white/40 font-light leading-relaxed italic">
+                    Market data is analyzed weekly to ensure precise valuation and ROI projections for Apex Residences clients.
+                  </p>
                 </div>
               </div>
             </div>
@@ -207,85 +213,186 @@ function PropertyDetail({ property }: { property: Property }) {
 }
 
 function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
+  const [activeImage, setActiveImage] = useState(0);
+  const allImages = [project.image, ...(project.gallery || [])];
   const similarProjects = OFF_PLAN_PROJECTS.filter(p => p.id !== project.id).slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-black text-white font-body pb-32">
+    <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32">
       <main className="pt-24 w-full px-6 md:px-12">
-        <section className="py-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-headline font-thin tracking-widest leading-tight uppercase text-white/90">
-                {project.title}
-              </h1>
-              <div className="flex items-center gap-2 text-[#D1A08B] text-xs font-bold uppercase tracking-[0.3em]">
-                <MapPin className="w-4 h-4" /> {project.location}
-              </div>
+        {/* 1. Header & Breadcrumbs */}
+        <section className="py-8 border-b border-white/5 mb-12">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2 text-white/40 text-[10px] font-bold uppercase tracking-[0.3em]">
+              <Link href="/" className="hover:text-white transition-colors">HOME</Link>
+              <span>/</span>
+              <Link href="/off-plan" className="hover:text-white transition-colors">DUBAI</Link>
+              <span>/</span>
+              <span className="text-white">{project.title}</span>
             </div>
-            <p className="text-white/50 text-xl font-light leading-relaxed italic max-w-2xl">{project.longDescription}</p>
-            <div className="pt-8 flex flex-wrap gap-6">
-              <ConsultationDialog>
-                <Button className="btn-copper px-12 h-16 uppercase text-xs font-bold tracking-[0.4em]">Register Interest</Button>
-              </ConsultationDialog>
-              <Button variant="outline" className="btn-outline-white px-12 h-16 uppercase text-xs font-bold tracking-[0.4em]">Download Brochure</Button>
-            </div>
-          </div>
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image src={project.image} alt={project.title} fill className="object-cover md:grayscale hover:grayscale-0 transition-all duration-1000" />
+            <h1 className="text-4xl md:text-7xl font-headline font-bold tracking-widest leading-tight uppercase text-white">
+              {project.title}
+            </h1>
           </div>
         </section>
 
-        <section className="py-24 border-t border-white/5 grid grid-cols-1 lg:grid-cols-3 gap-16">
-          <div className="lg:col-span-2 space-y-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-6">
-                <h3 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Highlights</h3>
-                <ul className="space-y-4">
-                  {project.amenities.map((a, i) => (
-                    <li key={i} className="flex items-center gap-4 text-white/60 text-sm font-light uppercase tracking-widest">
-                      <CheckCircle2 className="w-4 h-4 text-[#D1A08B]" /> {a}
-                    </li>
-                  ))}
-                </ul>
+        <div className="flex flex-col lg:flex-row gap-20">
+          {/* Main Content (70%) */}
+          <div className="lg:w-[70%] space-y-24">
+            {/* Gallery Section */}
+            <section className="space-y-6">
+              <div className="relative aspect-[16/9] overflow-hidden group border border-white/5">
+                <Image 
+                  src={allImages[activeImage]} 
+                  alt={project.title} 
+                  fill 
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+                />
               </div>
-              <div className="space-y-6">
-                <h3 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Payment Plan</h3>
-                <div className="space-y-4">
-                  {project.paymentPlan.map((p, i) => (
-                    <div key={i} className="flex justify-between items-center border-b border-white/5 pb-3">
-                      <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">{p.label}</span>
-                      <span className="text-[#D1A08B] font-bold">{p.percentage}</span>
-                    </div>
-                  ))}
+              <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+                {allImages.map((img, idx) => (
+                  <button 
+                    key={idx} 
+                    onClick={() => setActiveImage(idx)}
+                    className={cn(
+                      "relative w-32 aspect-video flex-shrink-0 border transition-all duration-300",
+                      activeImage === idx ? "border-[#B8860B] opacity-100" : "border-white/10 opacity-40 hover:opacity-100"
+                    )}
+                  >
+                    <Image src={img} alt="Thumbnail" fill className="object-cover" />
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            {/* Lifestyle Narrative */}
+            <section className="space-y-12">
+              <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B]">
+                LIFESTYLE AT {project.title}
+              </h2>
+              <div className="max-w-4xl space-y-8">
+                <p className="text-white/50 text-xl font-light leading-relaxed italic">
+                  {project.longDescription}
+                </p>
+                <div className="pt-4">
+                  <button className="text-[#B8860B] text-[11px] font-bold uppercase tracking-[0.3em] border-b border-[#B8860B]/20 pb-1 hover:text-white transition-colors">
+                    READ MORE
+                  </button>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="space-y-8">
-            <div className="border border-[#D1A08B]/20 bg-[#0a0a0a] p-12 flex flex-col items-center text-center space-y-8">
-               <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
-                  <Image src={project.agent.image} alt={project.agent.name} fill className="object-cover rounded-full md:grayscale hover:grayscale-0" />
-               </div>
-               <div className="space-y-2">
-                 <h4 className="text-2xl font-headline font-bold uppercase tracking-wider text-white">{project.agent.name}</h4>
-                 <p className="text-[11px] font-bold text-[#D1A08B] uppercase tracking-widest">{project.agent.role}</p>
-               </div>
-               <ConsultationDialog>
-                 <Button className="w-full btn-copper h-14 uppercase text-[10px] font-bold tracking-widest">Inquiry</Button>
-               </ConsultationDialog>
-            </div>
-          </div>
-        </section>
+            </section>
 
+            {/* Amenities Grid */}
+            <section className="space-y-12">
+              <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B]">
+                PROJECT HIGHLIGHTS
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-white/10">
+                {project.amenities.map((amenity, idx) => (
+                  <div key={idx} className="p-10 border-r border-b border-white/10 group hover:bg-[#B8860B]/5 transition-colors">
+                    <CheckCircle2 className="w-5 h-5 text-[#B8860B] mb-4" />
+                    <span className="text-[12px] font-bold uppercase tracking-widest text-white/80">{amenity}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Atmosphere Block */}
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center bg-white/[0.02] p-12 md:p-20 border border-white/5">
+               <div className="relative aspect-[4/3] overflow-hidden border border-white/5">
+                 <Image 
+                   src={project.gallery[1] || project.image} 
+                   alt="Atmosphere" 
+                   fill 
+                   className="object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000" 
+                 />
+               </div>
+               <div className="space-y-6">
+                 <h3 className="text-2xl font-headline font-bold uppercase tracking-widest text-[#B8860B]">ATMOSPHERE</h3>
+                 <p className="text-white/40 font-light leading-loose tracking-wide text-sm italic">
+                   {project.description}
+                 </p>
+               </div>
+            </section>
+
+            {/* Payment Plan */}
+            <section className="space-y-12">
+              <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B]">
+                STRUCTURED PAYMENT PLAN
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {project.paymentPlan.map((step, idx) => (
+                  <div key={idx} className="bg-white/[0.02] border border-white/5 p-12 space-y-4 text-center group hover:border-[#B8860B]/30 transition-all">
+                    <p className="text-4xl md:text-5xl font-bold text-[#B8860B] tracking-tighter">{step.percentage}</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/40">{step.label}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Sidebar (30%) */}
+          <div className="lg:w-[30%]">
+            <div className="sticky top-32 space-y-10">
+              {/* Agent Card */}
+              <div className="bg-[#0a0a0a] border border-white/5 p-12 flex flex-col items-center text-center space-y-8">
+                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#B8860B]/20 p-1">
+                  <Image src={project.agent.image} alt={project.agent.name} fill className="object-cover rounded-full md:grayscale" />
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-2xl font-headline font-bold uppercase tracking-wider text-white">{project.agent.name}</h4>
+                  <p className="text-[11px] font-bold text-[#B8860B] uppercase tracking-widest">{project.agent.role}</p>
+                </div>
+                <div className="w-full flex gap-3">
+                  <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[10px] font-bold">CALL US</Button>
+                  <ConsultationDialog>
+                    <Button className="flex-1 btn-copper h-12 text-[10px] font-bold">INQUIRY</Button>
+                  </ConsultationDialog>
+                </div>
+                <a href="#" className="flex items-center gap-2 text-[#25D366] text-[10px] font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  WhatsApp Consultation
+                </a>
+              </div>
+
+              {/* Quick Facts Card */}
+              <div className="bg-[#0a0a0a] border border-white/5 p-12 space-y-10">
+                <h3 className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#B8860B]">QUICK FACTS</h3>
+                <div className="space-y-6">
+                  <DetailRow label="Project Name" value={project.title} />
+                  <DetailRow label="Developer" value={project.developer} />
+                  <DetailRow label="Property Type" value={project.type} />
+                  <DetailRow label="Handover Date" value={project.handoverDate} />
+                  <DetailRow label="DLD Permit" value="238290231" />
+                </div>
+                <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-6">
+                  <div className="bg-white p-3"><QrCode className="w-20 h-20 text-black" /></div>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-white/30">Scan for brochure</p>
+                </div>
+              </div>
+
+              {/* Social Share */}
+              <div className="flex justify-center gap-8 py-4 border-y border-white/5">
+                {[Share2, Phone, MessageCircle, Mail].map((Icon, idx) => (
+                  <button key={idx} className="text-white/20 hover:text-[#B8860B] transition-colors">
+                    <Icon className="w-5 h-5" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Similar Projects */}
         <section className="mt-40 pt-24 border-t border-white/5">
-          <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B] mb-16">Similar Projects</h2>
+          <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B] mb-16">SIMILAR PROJECTS</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {similarProjects.map(p => (
               <Link key={p.id} href={`/listings/${p.id}`} className="group relative aspect-[4/5] overflow-hidden border border-white/5 bg-[#0a0a0a]">
                 <Image src={p.image} alt={p.title} fill className="object-cover brightness-50 md:grayscale group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                   <h3 className="text-white font-headline text-lg font-bold tracking-widest uppercase">{p.title}</h3>
-                   <p className="text-[#D1A08B] text-[9px] font-bold uppercase tracking-widest mt-2">{p.developer}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-10">
+                   <h3 className="text-white font-headline text-2xl font-bold tracking-widest uppercase leading-tight">{p.title}</h3>
+                   <p className="text-[#B8860B] text-[10px] font-bold uppercase tracking-widest mt-3">{p.developer}</p>
                 </div>
               </Link>
             ))}
@@ -312,7 +419,7 @@ function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between items-end border-b border-white/5 pb-2">
       <span className="text-[10px] font-bold tracking-widest text-white/30 uppercase">{label}</span>
-      <span className="text-base font-light text-white">{value}</span>
+      <span className="text-base font-light text-white text-right">{value}</span>
     </div>
   );
 }
