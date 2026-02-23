@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -273,9 +272,11 @@ function PropertyDetail({ property }: { property: Property }) {
                   <p className="text-[10px] font-bold text-[#D1A08B] uppercase tracking-widest mt-1">{property.agent.role}</p>
                 </div>
                 <div className="w-full pt-4 space-y-3">
-                  <Button className="w-full btn-copper h-12 gap-2">
-                    <MessageCircle className="w-4 h-4" /> Inquiry
-                  </Button>
+                  <ConsultationDialog>
+                    <Button className="w-full btn-copper h-12 gap-2">
+                      <MessageCircle className="w-4 h-4" /> Inquiry
+                    </Button>
+                  </ConsultationDialog>
                   <Button variant="outline" className="w-full btn-outline-white h-12 gap-2">
                     <Phone className="w-4 h-4" /> Call Specialist
                   </Button>
@@ -502,9 +503,11 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                   <Button variant="outline" className="flex-1 rounded-none border-white/10 h-12 uppercase text-[10px] font-bold tracking-widest gap-2 bg-transparent text-white">
                     <Phone className="w-3.5 h-3.5" /> Call
                   </Button>
-                  <Button variant="outline" className="flex-1 rounded-none border-white/10 h-12 uppercase text-[10px] font-bold tracking-widest gap-2 bg-transparent text-white">
-                    <Mail className="w-3.5 h-3.5" /> Inquiry
-                  </Button>
+                  <ConsultationDialog>
+                    <Button variant="outline" className="flex-1 rounded-none border-white/10 h-12 uppercase text-[10px] font-bold tracking-widest gap-2 bg-transparent text-white">
+                      <Mail className="w-3.5 h-3.5" /> Inquiry
+                    </Button>
+                  </ConsultationDialog>
                 </div>
               </div>
 
