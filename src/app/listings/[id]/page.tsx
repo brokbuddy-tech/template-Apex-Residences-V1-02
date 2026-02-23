@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -68,7 +69,7 @@ function PropertyDetail({ property }: { property: Property }) {
       <main className="pt-24 max-w-[1200px] mx-auto px-6">
         {/* 1. Hero Gallery & Primary Specs */}
         <section className="py-12 space-y-12">
-          {/* Headline & Price Area */}
+          {/* Headline Area */}
           <div className="flex flex-col md:flex-row justify-between items-start gap-8">
             <div className="space-y-4 max-w-3xl">
               <h1 className="text-3xl md:text-4xl font-headline font-thin tracking-widest leading-tight uppercase text-white/90">
@@ -78,16 +79,6 @@ function PropertyDetail({ property }: { property: Property }) {
                 <MapPin className="w-3.5 h-3.5 text-[#D1A08B]" />
                 {property.location}
               </div>
-            </div>
-            
-            <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-12 bg-white/[0.02] border border-white/5 p-6 md:px-10">
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
-                <p className="text-3xl font-bold text-[#D1A08B]">{property.price}</p>
-              </div>
-              <button className="w-12 h-12 border border-[#D1A08B]/20 flex items-center justify-center text-[#D1A08B] hover:bg-[#D1A08B] hover:text-white transition-all duration-500">
-                <Share2 className="w-5 h-5" />
-              </button>
             </div>
           </div>
 
@@ -110,6 +101,17 @@ function PropertyDetail({ property }: { property: Property }) {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Price Area - Now Below Gallery */}
+          <div className="w-full flex items-center justify-between bg-white/[0.02] border border-white/5 p-6 md:px-10">
+            <div className="space-y-1">
+              <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
+              <p className="text-3xl font-bold text-[#D1A08B]">{property.price}</p>
+            </div>
+            <button className="w-12 h-12 border border-[#D1A08B]/20 flex items-center justify-center text-[#D1A08B] hover:bg-[#D1A08B] hover:text-white transition-all duration-500">
+              <Share2 className="w-5 h-5" />
+            </button>
           </div>
         </section>
 
@@ -552,16 +554,25 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
   );
 }
 
-function UtilityIcon({ label, value, icon: Icon }: { label: string; value: string; icon: any }) {
+function SpecIcon({ label, value, icon: Icon }: { label: string; value: string; icon: any }) {
   return (
-    <div className="flex items-center gap-6 group">
-      <div className="w-14 h-14 border border-white/10 flex items-center justify-center text-[#D1A08B] group-hover:bg-[#D1A08B] group-hover:text-white transition-all duration-500">
-        <Icon className="w-6 h-6" />
+    <div className="flex items-center gap-4">
+      <div className="w-10 h-10 flex items-center justify-center text-[#D1A08B]">
+        <Icon className="w-5 h-5" />
       </div>
-      <div className="space-y-1">
-        <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{label}</p>
-        <p className="text-lg font-bold uppercase tracking-wider text-white">{value}</p>
+      <div>
+        <p className="text-[9px] font-bold text-white/40 uppercase tracking-widest">{label}</p>
+        <p className="text-sm font-bold text-white uppercase tracking-wider">{value}</p>
       </div>
+    </div>
+  );
+}
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between items-end border-b border-white/5 pb-2">
+      <span className="text-[10px] font-bold tracking-widest text-white/30 uppercase">{label}</span>
+      <span className="text-sm font-light text-white">{value}</span>
     </div>
   );
 }
