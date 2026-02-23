@@ -59,18 +59,15 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
         
         <div className="relative z-10 text-center space-y-8 px-6 max-w-5xl">
-          <div className="text-[10px] font-bold tracking-[0.5em] text-[#D1A08B] uppercase mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            ESTABLISHED 2024
-          </div>
-          <h1 className="font-headline text-4xl md:text-6xl xl:text-7xl font-thin tracking-[0.2em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+          <h1 className="font-headline text-3xl md:text-5xl xl:text-6xl font-thin tracking-[0.2em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000">
             ABOUT <span className="font-bold">APEX RESIDENCES</span>
           </h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left pt-16 max-w-4xl mx-auto border-t border-white/10 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
-            <p className="text-xl font-light italic text-white/90 leading-relaxed">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left pt-16 max-w-4xl mx-auto border-t border-white/10 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300">
+            <p className="text-lg font-light italic text-white/90 leading-relaxed">
               "We provide discrete real estate services for the world's most discerning individuals, guided by precision and performance."
             </p>
-            <p className="text-white/50 text-sm font-light leading-loose tracking-wide">
+            <p className="text-white/50 text-[13px] font-light leading-loose tracking-wide">
               Apex Residences is a global authority in luxury real estate. Our methodology combines deep market intelligence with an unwavering commitment to confidentiality and bespoke service. We don't just find houses; we secure signature assets.
             </p>
           </div>
@@ -129,7 +126,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {STATS.map((stat, idx) => (
               <div key={idx} className="space-y-2 text-center">
-                <p className="text-3xl md:text-5xl font-bold text-[#D1A08B] tracking-tighter leading-tight">{stat.value}</p>
+                <p className="text-2xl md:text-4xl font-bold text-[#D1A08B] tracking-tighter leading-tight">{stat.value}</p>
                 <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 whitespace-nowrap">{stat.label}</p>
               </div>
             ))}
