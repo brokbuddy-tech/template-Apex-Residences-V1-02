@@ -1,16 +1,38 @@
+
 "use client";
 
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { PROPERTIES } from "@/lib/properties";
+import { PROPERTIES, Property } from "@/lib/properties";
 import { OFF_PLAN_PROJECTS, OffPlanProject } from "@/lib/off-plan-projects";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
-import { MapPin, Bed, Bath, Maximize, CheckCircle2, QrCode, Phone, Mail, ArrowRight, Share2 } from "lucide-react";
+import { 
+  MapPin, 
+  Bed, 
+  Bath, 
+  Maximize, 
+  CheckCircle2, 
+  QrCode, 
+  Phone, 
+  Mail, 
+  ArrowRight, 
+  Share2, 
+  Download,
+  Info,
+  TrendingUp,
+  School,
+  Building2,
+  ChevronRight,
+  MessageCircle,
+  Facebook,
+  Linkedin,
+  Twitter
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -30,106 +52,294 @@ export default function ListingDetails() {
     );
   }
 
-  // If it's an off-plan project, render the high-fidelity Off-Plan Detail Page
   if (offPlanProject) {
     return <OffPlanProjectDetail project={offPlanProject} />;
   }
 
-  // Fallback to standard property detail
+  return <PropertyDetail property={property!} />;
+}
+
+function PropertyDetail({ property }: { property: Property }) {
+  const [activeImage, setActiveImage] = useState(0);
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32">
       <Header />
-      
-      <main className="pt-24 pb-24">
-        {/* Hero Section */}
-        <section className="relative h-[70vh] w-full overflow-hidden">
-          <Image
-            src={property!.image}
-            alt={property!.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-          <div className="absolute bottom-12 left-0 right-0 px-6 md:px-12">
-            <div className="max-w-7xl auto space-y-4">
-              <div className="inline-block bg-[#B8860B] px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
-                {property!.type}
-              </div>
-              <h1 className="text-4xl md:text-6xl font-headline font-bold uppercase tracking-tight text-white">
-                {property!.title}
+
+      <main className="pt-24 max-w-[1200px] mx-auto px-6">
+        {/* 1. Hero Gallery & Primary Specs */}
+        <section className="py-12 space-y-12">
+          {/* Headline & Price Area */}
+          <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+            <div className="space-y-4 max-w-3xl">
+              <h1 className="text-3xl md:text-4xl font-headline font-thin tracking-widest leading-tight uppercase text-white/90">
+                {property.title}
               </h1>
-              <div className="flex items-center gap-2 text-white/60">
-                <MapPin className="w-4 h-4 text-[#B8860B]" />
-                <span className="text-sm uppercase tracking-widest font-bold">{property!.location}</span>
+              <div className="flex items-center gap-2 text-white/40 text-xs font-bold uppercase tracking-[0.2em]">
+                <MapPin className="w-3.5 h-3.5 text-[#D1A08B]" />
+                {property.location}
               </div>
+            </div>
+            
+            <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-12 bg-white/[0.02] border border-white/5 p-6 md:px-10">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
+                <p className="text-3xl font-bold text-[#D1A08B]">{property.price}</p>
+              </div>
+              <button className="w-12 h-12 border border-[#D1A08B]/20 flex items-center justify-center text-[#D1A08B] hover:bg-[#D1A08B] hover:text-white transition-all duration-500">
+                <Share2 className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Asymmetrical Image Gallery */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 aspect-[16/10] md:aspect-[16/7]">
+            <div className="md:col-span-3 relative group overflow-hidden">
+              <Image 
+                src={property.gallery[activeImage]} 
+                alt={property.title} 
+                fill 
+                className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
+            <div className="hidden md:flex flex-col gap-6">
+              {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
+                <div key={idx} className="relative flex-1 group overflow-hidden cursor-pointer" onClick={() => setActiveImage(PROPERTIES.find(p => p.id === property.id)?.gallery.indexOf(img) || 0)}>
+                  <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="max-w-7xl mx-auto px-6 md:px-12 mt-20">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            <div className="lg:col-span-2 space-y-12">
-              <div className="grid grid-cols-3 gap-8 py-8 border-y border-white/10">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-white/40 uppercase text-[10px] font-bold tracking-widest">
-                    <Bed className="w-4 h-4" /> Bedrooms
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          {/* Main Content (Left) */}
+          <div className="lg:col-span-8 space-y-20">
+            
+            {/* 2. Features & Specs Icons */}
+            <div className="flex flex-wrap items-center gap-12 py-10 border-y border-white/5">
+              <SpecIcon label="Bedrooms" value={property.beds.toString()} icon={Bed} />
+              <SpecIcon label="Bathrooms" value={property.baths.toString()} icon={Bath} />
+              <SpecIcon label="Total Area" value={`${property.sqft.toLocaleString()} sq.ft`} icon={Maximize} />
+              <SpecIcon label="Furnishing" value={property.furnishing} icon={Building2} />
+            </div>
+
+            {/* 3. Description & Property Details */}
+            <div className="space-y-10">
+              <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Description</h2>
+              <div className="text-white/50 font-light leading-relaxed text-lg italic space-y-6">
+                <p>{property.description}</p>
+              </div>
+
+              {/* Technical Details Table */}
+              <div className="pt-12">
+                <h3 className="text-[10px] font-bold tracking-[0.5em] uppercase text-white/40 mb-8">Technical Specifications</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-4">
+                  <DetailRow label="Location" value={property.location} />
+                  <DetailRow label="Property Type" value={property.type} />
+                  <DetailRow label="Listing ID" value={property.id} />
+                  <DetailRow label="Status" value="Available" />
+                  <div className="md:col-span-2 pt-8 flex items-center justify-between border-t border-white/5 mt-4">
+                    <div className="space-y-2">
+                      <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em]">RERA Permit Number</p>
+                      <p className="text-sm font-bold tracking-widest text-white">{property.reraNumber}</p>
+                    </div>
+                    <div className="p-2 bg-white flex items-center justify-center">
+                      <QrCode className="w-12 h-12 text-black" />
+                    </div>
                   </div>
-                  <p className="text-2xl font-light text-white">{property!.beds}</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-white/40 uppercase text-[10px] font-bold tracking-widest">
-                    <Bath className="w-4 h-4" /> Bathrooms
-                  </div>
-                  <p className="text-2xl font-light text-white">{property!.baths}</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-white/40 uppercase text-[10px] font-bold tracking-widest">
-                    <Maximize className="w-4 h-4" /> Area (Sq Ft)
-                  </div>
-                  <p className="text-2xl font-light text-white">{property!.sqft.toLocaleString()}</p>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <h2 className="text-2xl font-headline font-bold uppercase tracking-widest text-[#B8860B]">Overview</h2>
-                <p className="text-white/60 leading-relaxed text-lg font-light italic">
-                  {property!.description}
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <h2 className="text-2xl font-headline font-bold uppercase tracking-widest text-[#B8860B]">Amenities & Features</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {property!.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3 text-white/80 font-light">
-                      <CheckCircle2 className="w-4 h-4 text-[#B8860B]" />
-                      <span>{feature}</span>
+              {/* Amenities Matrix */}
+              <div className="pt-12">
+                <h3 className="text-[10px] font-bold tracking-[0.5em] uppercase text-white/40 mb-8">Amenities & Features</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 border-l border-t border-white/10">
+                  {property.features.map((feature, idx) => (
+                    <div key={idx} className="p-6 border-r border-b border-white/10 flex items-center gap-4 group hover:bg-[#D1A08B]/5 transition-colors">
+                      <CheckCircle2 className="w-4 h-4 text-[#D1A08B]" />
+                      <span className="text-[11px] font-bold uppercase tracking-widest text-white/70">{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="space-y-8">
-              <div className="bg-white/5 border border-white/10 p-10 space-y-8 sticky top-32">
-                <div className="space-y-2">
-                  <p className="text-[10px] uppercase font-bold tracking-[0.3em] text-white/40">Listing Price</p>
-                  <p className="text-4xl font-bold text-[#B8860B]">{property!.price}</p>
+            {/* 4. Location & Nearby Intelligence */}
+            <div className="space-y-12">
+              <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Location Intelligence</h2>
+              <div className="relative aspect-video w-full bg-white/5 border border-white/10 group overflow-hidden">
+                <Image 
+                  src="https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=2070&auto=format&fit=crop" 
+                  alt="Map Location" 
+                  fill 
+                  className="object-cover opacity-30 grayscale group-hover:scale-105 transition-transform duration-1000" 
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-black/80 backdrop-blur-md px-6 py-3 border border-[#D1A08B]/20">
+                    <MapPin className="w-5 h-5 text-[#D1A08B] mx-auto mb-2" />
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-white">Interactive Property Pin</span>
+                  </div>
                 </div>
-                <div className="space-y-4 pt-8 border-t border-white/10">
-                  <ConsultationDialog>
-                    <Button className="w-full btn-copper h-14">Enquire Now</Button>
-                  </ConsultationDialog>
-                  <Button variant="outline" className="w-full btn-outline-white h-14">Download Brochure</Button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 text-[#D1A08B]">
+                    <School className="w-4 h-4" />
+                    <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase">Schools Nearby</h4>
+                  </div>
+                  <div className="space-y-4">
+                    {property.nearbySchools.map((school, i) => (
+                      <div key={i} className="flex justify-between items-center text-sm font-light border-b border-white/5 pb-2">
+                        <span className="text-white/60">{school.name}</span>
+                        <span className="text-white/30 text-xs font-bold">{school.distance}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 text-[#D1A08B]">
+                    <MapPin className="w-4 h-4" />
+                    <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase">Points of Interest</h4>
+                  </div>
+                  <div className="space-y-4">
+                    {property.pointsOfInterest.map((poi, i) => (
+                      <div key={i} className="flex justify-between items-center text-sm font-light border-b border-white/5 pb-2">
+                        <span className="text-white/60">{poi.name}</span>
+                        <span className="text-white/30 text-xs font-bold">{poi.distance}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Floor Plan */}
+            <div className="space-y-8">
+              <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Architectural Floor Plan</h2>
+              <div className="relative aspect-[4/3] bg-white/[0.02] border border-white/5 flex items-center justify-center group overflow-hidden">
+                <Image src={property.floorPlan} alt="Floor plan" fill className="object-contain p-12 opacity-80" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                   <Button className="btn-copper px-10 h-14 gap-2">
+                      <Download className="w-4 h-4" />
+                      Download High-Res PDF
+                   </Button>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+
+          {/* Sidebar (Right) */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="sticky top-32 space-y-8">
+              {/* Market Comparison Card */}
+              <div className="glass-panel p-10 space-y-8">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[#D1A08B]">
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    <p className="text-[10px] font-bold uppercase tracking-[0.3em]">Market Context</p>
+                  </div>
+                  <h3 className="text-lg font-headline font-bold uppercase tracking-widest text-white">Area Intelligence</h3>
+                </div>
+
+                <div className="space-y-6 pt-6 border-t border-white/10">
+                  <div className="flex justify-between items-end">
+                    <p className="text-white/40 text-[9px] uppercase font-bold tracking-widest">Avg. Area Price</p>
+                    <p className="text-xl font-bold text-white">{property.marketStats.avgAreaPrice}</p>
+                  </div>
+                  <div className="flex justify-between items-end">
+                    <p className="text-white/40 text-[9px] uppercase font-bold tracking-widest">Price / sq.ft</p>
+                    <p className="text-xl font-bold text-white">{property.marketStats.pricePerSqFt}</p>
+                  </div>
+                </div>
+
+                <div className="pt-8 border-t border-white/10">
+                   <p className="text-white/30 text-[9px] font-light leading-relaxed italic">
+                    Market data is analyzed weekly to ensure precise valuation and ROI projections for Apex Residences clients.
+                   </p>
+                </div>
+              </div>
+
+              {/* Agent Floating Card */}
+              <div className="border border-[#D1A08B]/20 bg-[#0a0a0a] p-10 flex flex-col items-center text-center space-y-6">
+                <div className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
+                   <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-headline font-bold uppercase tracking-wider text-white">{property.agent.name}</h4>
+                  <p className="text-[10px] font-bold text-[#D1A08B] uppercase tracking-widest mt-1">{property.agent.role}</p>
+                </div>
+                <div className="w-full pt-4 space-y-3">
+                  <Button className="w-full btn-copper h-12 gap-2">
+                    <MessageCircle className="w-4 h-4" /> Inquiry
+                  </Button>
+                  <Button variant="outline" className="w-full btn-outline-white h-12 gap-2">
+                    <Phone className="w-4 h-4" /> Call Specialist
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
+
+      {/* Fixed Bottom Consultation Bar */}
+      <section className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-xl border-t border-white/10 z-[60] py-6 px-6 md:px-12">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="hidden md:flex flex-col">
+            <p className="text-white/40 text-[9px] uppercase font-bold tracking-widest">Consult regarding</p>
+            <p className="text-sm font-bold uppercase tracking-wider text-white truncate max-w-[300px]">{property.title}</p>
+          </div>
+
+          <div className="flex flex-1 md:flex-none items-center gap-4 w-full md:w-auto">
+             <Button className="flex-1 md:flex-none btn-copper px-12 h-14 uppercase text-[11px] font-bold tracking-[0.4em]">Enquire Now</Button>
+             <div className="h-10 w-[1px] bg-white/10 hidden md:block" />
+             <div className="flex items-center gap-4">
+                <SocialIcon icon={MessageCircle} color="text-green-500" />
+                <SocialIcon icon={Facebook} color="text-blue-500" />
+                <SocialIcon icon={Linkedin} color="text-blue-700" />
+                <SocialIcon icon={Mail} color="text-[#D1A08B]" />
+             </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
+  );
+}
+
+function SpecIcon({ label, value, icon: Icon }: { label: string; value: string; icon: any }) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="w-10 h-10 flex items-center justify-center text-[#D1A08B]">
+        <Icon className="w-5 h-5" />
+      </div>
+      <div>
+        <p className="text-[9px] font-bold text-white/40 uppercase tracking-widest">{label}</p>
+        <p className="text-sm font-bold text-white uppercase tracking-wider">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between items-end border-b border-white/5 pb-2">
+      <span className="text-[10px] font-bold tracking-widest text-white/30 uppercase">{label}</span>
+      <span className="text-sm font-light text-white">{value}</span>
+    </div>
+  );
+}
+
+function SocialIcon({ icon: Icon, color }: { icon: any, color: string }) {
+  return (
+    <button className={cn("w-10 h-10 border border-white/5 flex items-center justify-center transition-all hover:bg-white/5", color)}>
+      <Icon className="w-4 h-4" />
+    </button>
   );
 }
 
