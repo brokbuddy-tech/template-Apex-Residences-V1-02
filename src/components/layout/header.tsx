@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -13,7 +12,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ConsultationDialog } from "@/components/home/consultation-dialog";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -64,11 +62,9 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-6">
-          <ConsultationDialog>
-            <Button className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
-              Contact Us
-            </Button>
-          </ConsultationDialog>
+          <Button asChild className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest px-6 h-10 rounded-none border-none">
+            <Link href="/#contact">Contact Us</Link>
+          </Button>
 
           <Sheet>
             <SheetTrigger asChild>
@@ -92,11 +88,9 @@ export function Header() {
                     {link.label}
                   </Link>
                 ))}
-                <ConsultationDialog>
-                  <Button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest h-12 rounded-none border-none w-full">
-                    Contact Us
-                  </Button>
-                </ConsultationDialog>
+                <Button asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold uppercase tracking-widest h-12 rounded-none border-none w-full">
+                  <Link href="/#contact">Contact Us</Link>
+                </Button>
               </nav>
             </SheetContent>
           </Sheet>
