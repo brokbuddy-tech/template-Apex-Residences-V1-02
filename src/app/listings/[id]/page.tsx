@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -24,8 +23,8 @@ export default function ListingDetails() {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-headline font-bold">Listing Not Found</h1>
-          <Button variant="outline" onClick={() => window.history.back()}>Go Back</Button>
+          <h1 className="text-4xl font-headline text-white font-bold">Listing Not Found</h1>
+          <Button variant="outline" className="border-white text-white" onClick={() => window.history.back()}>Go Back</Button>
         </div>
       </div>
     );
@@ -36,7 +35,7 @@ export default function ListingDetails() {
     return <OffPlanProjectDetail project={offPlanProject} />;
   }
 
-  // Fallback to standard property detail (already exists)
+  // Fallback to standard property detail
   return (
     <div className="min-h-screen bg-black text-white">
       <Header />
@@ -54,10 +53,10 @@ export default function ListingDetails() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
           <div className="absolute bottom-12 left-0 right-0 px-6 md:px-12">
             <div className="max-w-7xl mx-auto space-y-4">
-              <div className="inline-block bg-[#B8860B] px-4 py-1 text-[10px] font-bold uppercase tracking-widest">
+              <div className="inline-block bg-[#B8860B] px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                 {property!.type}
               </div>
-              <h1 className="text-4xl md:text-6xl font-headline font-bold uppercase tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-headline font-bold uppercase tracking-tight text-white">
                 {property!.title}
               </h1>
               <div className="flex items-center gap-2 text-white/60">
@@ -76,19 +75,19 @@ export default function ListingDetails() {
                   <div className="flex items-center gap-2 text-white/40 uppercase text-[10px] font-bold tracking-widest">
                     <Bed className="w-4 h-4" /> Bedrooms
                   </div>
-                  <p className="text-2xl font-light">{property!.beds}</p>
+                  <p className="text-2xl font-light text-white">{property!.beds}</p>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-white/40 uppercase text-[10px] font-bold tracking-widest">
                     <Bath className="w-4 h-4" /> Bathrooms
                   </div>
-                  <p className="text-2xl font-light">{property!.baths}</p>
+                  <p className="text-2xl font-light text-white">{property!.baths}</p>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-white/40 uppercase text-[10px] font-bold tracking-widest">
                     <Maximize className="w-4 h-4" /> Area (Sq Ft)
                   </div>
-                  <p className="text-2xl font-light">{property!.sqft.toLocaleString()}</p>
+                  <p className="text-2xl font-light text-white">{property!.sqft.toLocaleString()}</p>
                 </div>
               </div>
 
@@ -154,42 +153,12 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
           
           <div className="relative z-10 text-center space-y-4 px-6">
-            <h1 className="font-headline text-5xl md:text-7xl xl:text-8xl font-bold tracking-[0.1em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-10 duration-1000">
+            <h1 className="font-headline text-5xl md:text-7xl xl:text-8xl font-bold tracking-[0.1em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-10 duration-1000 text-white">
               {project.title}
             </h1>
             <p className="text-[#D1A08B] text-lg md:text-xl font-light tracking-[0.4em] uppercase animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-200">
               {project.location}
             </p>
-          </div>
-
-          {/* Right-Aligned Sidebar Card (Sticky behavior handled in container) */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-12 hidden xl:block z-30">
-            <div className="w-[380px] bg-black/40 backdrop-blur-2xl border border-white/10 p-10 space-y-8">
-              <div className="space-y-6">
-                <div>
-                  <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">Developer</p>
-                  <p className="text-xl font-headline font-bold uppercase tracking-wider">{project.developer}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">Price</p>
-                  <p className="text-2xl font-bold text-[#D1A08B]">{project.price}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">Handover</p>
-                  <p className="text-xl font-bold">{project.handoverDate}</p>
-                </div>
-              </div>
-              
-              <div className="pt-8 border-t border-white/5 flex items-center justify-between">
-                <div className="space-y-2">
-                  <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.2em]">Scan for</p>
-                  <p className="text-[10px] font-bold text-white uppercase tracking-widest">Digital Brochure</p>
-                </div>
-                <div className="w-16 h-16 bg-white p-1 rounded-sm">
-                   <QrCode className="w-full h-full text-black" />
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -236,7 +205,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
           <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
               <div className="space-y-8">
-                <h2 className="text-3xl md:text-5xl font-headline font-bold uppercase tracking-tighter leading-tight">
+                <h2 className="text-3xl md:text-5xl font-headline font-bold uppercase tracking-tighter leading-tight text-white">
                   {project.description}
                 </h2>
                 <div className="w-20 h-[1px] bg-[#D1A08B]" />
@@ -280,7 +249,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
               <div className="pt-12 border-t border-white/5">
                 <h3 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B] mb-8">Developer</h3>
                 <div className="flex items-center justify-between">
-                  <span className="text-4xl font-headline font-bold uppercase tracking-[0.2em]">{project.developer}</span>
+                  <span className="text-4xl font-headline font-bold uppercase tracking-[0.2em] text-white">{project.developer}</span>
                   <Link href="#" className="text-[10px] font-bold uppercase tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-2">
                     VIEW DETAILS <ArrowRight className="w-3 h-3" />
                   </Link>
@@ -291,7 +260,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
             <div className="relative aspect-square md:aspect-video lg:aspect-square bg-white/5 border border-white/10 group overflow-hidden">
                <Image 
                 src="https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=2070&auto=format&fit=crop" 
-                alt="Map Placeholder" 
+                alt="Map Location" 
                 fill 
                 className="object-cover opacity-30 grayscale group-hover:scale-105 transition-transform duration-1000" 
               />
@@ -315,14 +284,14 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                    <Image src={project.agent.image} alt={project.agent.name} fill className="object-cover rounded-full" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-headline font-bold uppercase tracking-wider">{project.agent.name}</h4>
+                  <h4 className="text-xl font-headline font-bold uppercase tracking-wider text-white">{project.agent.name}</h4>
                   <p className="text-[10px] font-bold text-[#D1A08B] uppercase tracking-widest mt-1">{project.agent.role}</p>
                 </div>
                 <div className="flex gap-4 w-full">
-                  <Button variant="outline" className="flex-1 rounded-none border-white/10 h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                  <Button variant="outline" className="flex-1 rounded-none border-white/10 h-12 uppercase text-[10px] font-bold tracking-widest gap-2 bg-transparent text-white">
                     <Phone className="w-3.5 h-3.5" /> Call
                   </Button>
-                  <Button variant="outline" className="flex-1 rounded-none border-white/10 h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                  <Button variant="outline" className="flex-1 rounded-none border-white/10 h-12 uppercase text-[10px] font-bold tracking-widest gap-2 bg-transparent text-white">
                     <Mail className="w-3.5 h-3.5" /> Inquiry
                   </Button>
                 </div>
@@ -331,7 +300,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
               {/* Inquiry Form */}
               <div className="lg:col-span-2 space-y-10">
                 <div className="space-y-4">
-                  <h2 className="text-3xl font-headline font-bold uppercase tracking-widest leading-tight">
+                  <h2 className="text-3xl font-headline font-bold uppercase tracking-widest leading-tight text-white">
                     Professional <span className="text-[#D1A08B]">Consultation</span>
                   </h2>
                   <p className="text-white/40 text-sm font-light italic tracking-widest">
@@ -377,7 +346,7 @@ function UtilityIcon({ label, value, icon: Icon }: { label: string; value: strin
       </div>
       <div className="space-y-1">
         <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{label}</p>
-        <p className="text-lg font-bold uppercase tracking-wider">{value}</p>
+        <p className="text-lg font-bold uppercase tracking-wider text-white">{value}</p>
       </div>
     </div>
   );
