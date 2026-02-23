@@ -1,0 +1,184 @@
+
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { TeamSection } from "@/components/home/team-section";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ArrowRight } from "lucide-react";
+
+const STATS = [
+  { label: "AGENCIES WORLDWIDE", value: "1,000+" },
+  { label: "TRANSACTIONS VOLUME", value: "AED 120B+" },
+  { label: "ELITE CONSULTANTS", value: "500+" },
+  { label: "SIGNATURE PROJECTS", value: "250+" },
+];
+
+const JOURNEY_STEPS = [
+  {
+    id: "01",
+    title: "EXPERTISE",
+    desc: "Our journey began with a singular focus on industry mastery. We analyze market cycles with scientific precision to protect and grow our clients' wealth.",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop",
+  },
+  {
+    id: "02",
+    title: "STRATEGY",
+    desc: "Beyond simple brokerage, we act as strategic advisors. Every signature address in our portfolio is vetted through a rigorous due-diligence framework.",
+    image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?q=80&w=2070&auto=format&fit=crop",
+  },
+  {
+    id: "03",
+    title: "CONNECTION",
+    desc: "Luxury is personal. We've built a global network that connects high-net-worth individuals with off-market opportunities not found elsewhere.",
+    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop",
+  },
+];
+
+export default function AboutPage() {
+  const leadershipImg = PlaceHolderImages.find(img => img.id === "sell-hero")?.imageUrl || "";
+
+  return (
+    <main className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white">
+      <Header />
+
+      {/* 1. Hero: Leadership & Mission */}
+      <section className="relative h-[80vh] flex flex-col items-center justify-center overflow-hidden border-b border-white/5">
+        <Image
+          src={leadershipImg}
+          alt="Apex Residences Leadership"
+          fill
+          className="object-cover brightness-[0.3]"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
+        
+        <div className="relative z-10 text-center space-y-8 px-6 max-w-5xl">
+          <div className="text-[10px] font-bold tracking-[0.5em] text-[#D1A08B] uppercase mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            ESTABLISHED 2024
+          </div>
+          <h1 className="font-headline text-4xl md:text-6xl xl:text-7xl font-thin tracking-[0.2em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+            ABOUT <span className="font-bold">APEX RESIDENCES</span>
+          </h1>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left pt-16 max-w-4xl mx-auto border-t border-white/10 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+            <p className="text-xl font-light italic text-white/90 leading-relaxed">
+              "We provide discrete real estate services for the world's most discerning individuals, guided by precision and performance."
+            </p>
+            <p className="text-white/50 text-sm font-light leading-loose tracking-wide">
+              Apex Residences is a global authority in luxury real estate. Our methodology combines deep market intelligence with an unwavering commitment to confidentiality and bespoke service. We don't just find houses; we secure signature assets.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Global Hubs Strip */}
+      <section className="py-12 bg-white/[0.02] border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-12 md:gap-24">
+          {["DUBAI", "RIYADH", "LONDON", "SHENZHEN", "ZURICH"].map((city, idx) => (
+            <div key={idx} className="flex items-center gap-4">
+              <span className="text-[10px] font-bold tracking-[0.4em] text-white/40">{city}</span>
+              {idx < 4 && <div className="w-8 h-[1px] bg-[#D1A08B]/30" />}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Timeline & Milestones: Zigzag Journey */}
+      <section className="py-32 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto space-y-40">
+          {JOURNEY_STEPS.map((step, idx) => (
+            <div key={idx} className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+              <div className={`relative aspect-[4/3] overflow-hidden group ${idx % 2 !== 0 ? 'lg:order-last' : ''}`}>
+                <Image 
+                  src={step.image} 
+                  alt={step.title} 
+                  fill 
+                  className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 border border-white/10 m-4 pointer-events-none" />
+              </div>
+              <div className="space-y-8">
+                <span className="text-6xl md:text-8xl font-bold text-[#D1A08B]/10 italic leading-none">{step.id}</span>
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-headline font-bold tracking-[0.3em] uppercase text-[#D1A08B]">{step.title}</h3>
+                  <p className="text-white/50 font-light text-lg leading-relaxed italic max-w-lg">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Team Discovery Section */}
+      <TeamSection />
+
+      {/* 5. Impact Statistics & Media */}
+      <section className="py-32 bg-white/[0.01] border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            {STATS.map((stat, idx) => (
+              <div key={idx} className="space-y-4">
+                <p className="text-4xl md:text-6xl font-bold text-[#D1A08B] tracking-tighter">{stat.value}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Partner Logos */}
+          <div className="mt-32 pt-20 border-t border-white/5 flex flex-wrap justify-center items-center gap-16 md:gap-32 opacity-20 grayscale hover:opacity-50 transition-opacity">
+            <span className="font-headline text-xl font-bold tracking-widest">FORBES</span>
+            <span className="font-headline text-xl font-bold tracking-widest">BLOOMBERG</span>
+            <span className="font-headline text-xl font-bold tracking-widest">REUTERS</span>
+            <span className="font-headline text-xl font-bold tracking-widest">THE TIMES</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Final Inquiry: Consultation Form */}
+      <section className="py-32 bg-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="glass-panel p-10 md:p-20 flex flex-col md:flex-row items-center justify-between gap-16">
+            <div className="space-y-6 max-w-md">
+              <h2 className="font-headline text-3xl md:text-4xl font-thin tracking-[0.2em] uppercase leading-tight">
+                PROFESSIONAL <br /> <span className="font-bold text-[#D1A08B]">CONSULTATION</span>
+              </h2>
+              <p className="text-white/40 text-sm font-light tracking-widest italic">
+                Connect with our senior partners for a confidential strategy session.
+              </p>
+            </div>
+
+            <form className="flex-1 w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">Name</label>
+                <Input placeholder="Full Name" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#D1A08B] transition-all" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">Phone</label>
+                <Input placeholder="+971 50 000 0000" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#D1A08B] transition-all" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase font-bold tracking-widest text-white/30">E-mail</label>
+                <Input placeholder="business@email.com" className="bg-transparent border-0 border-b border-white/20 rounded-none px-0 h-12 text-white placeholder:text-white/10 focus-visible:ring-0 focus-visible:border-[#D1A08B] transition-all" />
+              </div>
+              <div className="md:col-span-3 pt-8 flex justify-end">
+                <Button className="bg-[#D1A08B] text-white hover:bg-[#D1A08B]/90 rounded-none h-14 px-20 uppercase text-[11px] font-bold tracking-[0.5em] transition-all w-full md:w-auto">
+                  SEND REQUEST
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+}
