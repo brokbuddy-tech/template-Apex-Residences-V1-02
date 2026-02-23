@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -22,14 +23,15 @@ export function NewsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Pillar: Large Featured Story */}
-          <div className="lg:col-span-2 relative group cursor-pointer overflow-hidden min-h-[400px] lg:min-h-auto">
+          <div className="lg:col-span-2 relative group cursor-pointer overflow-hidden min-h-[400px] border border-white/5">
             <Image
               src={news1}
               alt="Hillsedge Sales"
               fill
-              className="object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.7] group-hover:brightness-[0.9]"
+              className="object-cover transition-transform duration-1000 group-hover:scale-105"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
             <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-md p-8 flex items-center justify-between border-t border-white/5">
@@ -45,40 +47,40 @@ export function NewsSection() {
           {/* Right Pillar: Stacked Stories */}
           <div className="flex flex-col gap-6">
             {/* Top Story */}
-            <div className="flex-1 flex flex-col sm:flex-row group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500">
-              <div className="relative w-full sm:w-1/2 aspect-[4/3] sm:aspect-auto">
+            <div className="flex-1 flex flex-col group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500 bg-white/[0.02]">
+              <div className="relative w-full aspect-[16/9]">
                 <Image
                   src={news2}
                   alt="LIV Maritime"
                   fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               </div>
-              <div className="w-full sm:w-1/2 bg-white/[0.02] p-6 flex flex-col justify-between">
+              <div className="p-6 flex flex-col justify-between flex-1">
                 <h3 className="text-white text-[11px] font-bold tracking-[0.2em] uppercase leading-relaxed">
                   PRELAUNCH: LIV MARITIME
                 </h3>
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-4">
                   <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-white transition-all duration-500" />
                 </div>
               </div>
             </div>
 
             {/* Bottom Story */}
-            <div className="flex-1 flex flex-col sm:flex-row group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500">
-              <div className="relative w-full sm:w-1/2 aspect-[4/3] sm:aspect-auto">
+            <div className="flex-1 flex flex-col group cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-colors duration-500 bg-white/[0.02]">
+              <div className="relative w-full aspect-[16/9]">
                 <Image
                   src={news3}
                   alt="Market 2024"
                   fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               </div>
-              <div className="w-full sm:w-1/2 bg-white/[0.02] p-6 flex flex-col justify-between">
+              <div className="p-6 flex flex-col justify-between flex-1">
                 <h3 className="text-white text-[11px] font-bold tracking-[0.2em] uppercase leading-relaxed">
                   DUBAI REAL ESTATE PROPERTY MARKET IN 2024
                 </h3>
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-4">
                   <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-white transition-all duration-500" />
                 </div>
               </div>
