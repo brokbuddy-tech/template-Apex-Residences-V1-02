@@ -10,7 +10,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
-import { MapPin, Bed, Bath, Maximize, CheckCircle2, QrCode, Phone, Mail, ArrowRight } from "lucide-react";
+import { MapPin, Bed, Bath, Maximize, CheckCircle2, QrCode, Phone, Mail, ArrowRight, Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -52,7 +52,7 @@ export default function ListingDetails() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
           <div className="absolute bottom-12 left-0 right-0 px-6 md:px-12">
-            <div className="max-w-7xl mx-auto space-y-4">
+            <div className="max-w-7xl auto space-y-4">
               <div className="inline-block bg-[#B8860B] px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                 {property!.type}
               </div>
@@ -195,6 +195,28 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                 <UtilityIcon label="Property Type" value={project.type} icon={Bed} />
                 <UtilityIcon label="Pricing Starts" value={project.price} icon={Maximize} />
                 <UtilityIcon label="Prime Location" value={project.location} icon={MapPin} />
+              </div>
+
+              <div className="pt-8 border-t border-white/5 space-y-8">
+                <div className="flex items-center gap-6 group">
+                  <div className="w-14 h-14 border border-white/10 flex items-center justify-center text-[#D1A08B] group-hover:bg-[#D1A08B] group-hover:text-white transition-all duration-500">
+                    <QrCode className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">DLD PERMIT</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-white">QR-76221-A9</p>
+                  </div>
+                </div>
+
+                <button className="flex items-center gap-6 group w-full text-left">
+                  <div className="w-14 h-14 border border-white/10 flex items-center justify-center text-[#D1A08B] group-hover:bg-[#D1A08B] group-hover:text-white transition-all duration-500">
+                    <Share2 className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">SHARE PROPERTY</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-white">Send to contact</p>
+                  </div>
+                </button>
               </div>
             </div>
           </div>
