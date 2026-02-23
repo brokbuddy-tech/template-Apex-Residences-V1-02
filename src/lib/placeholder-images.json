@@ -9,25 +9,25 @@
     {
       "id": "prop-1",
       "description": "Ultra-luxury penthouse interior",
-      "imageUrl": "https://images.unsplash.com/photo-1677553512940-f79af72efd1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBwZW50aG91c2V8ZW58MHx8fHwxNzcxNzg0MDk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1565623833408-d77e39b88af6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBwZW50aG91c2V8ZW58MHx8fHwxNzcxNzg0MDk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury penthouse"
     },
     {
       "id": "prop-2",
       "description": "Bespoke beachfront mansion",
-      "imageUrl": "https://images.unsplash.com/photo-1628012209120-d9db7abf7eab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBtYW5zaW9ufGVufDB8fHx8MTc3MTg0OTExMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1740479948561-666c567d2e09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2Rlcm4lMjBtYW5zaW9ufGVufDB8fHx8MTc3MTg0OTExMHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern mansion"
     },
     {
       "id": "prop-3",
       "description": "Sleek architectural villa",
-      "imageUrl": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsdXh1cnklMjBob21lfGVufDB8fHx8MTc3MTgwNDQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1696986681606-b156ccd761c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBob21lfGVufDB8fHx8MTc3MTgwNDQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury home"
     },
     {
       "id": "prop-4",
       "description": "Modern Marina Penthouse",
-      "imageUrl": "https://images.unsplash.com/photo-1524234599372-a5bd0194758d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtYXJpbmElMjBhcGFydG1lbnR8ZW58MHx8fHwxNzcxODQ5NjY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1756955549090-588cbc30d9e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYXJpbmElMjBhcGFydG1lbnR8ZW58MHx8fHwxNzcxODQ5NjY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "marina apartment"
     },
     {
@@ -69,26 +69,44 @@
     {
       "id": "agent-1",
       "description": "Professional male agent",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1553642618-de0381320ff3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwcm9mZXNzaW9uYWwlMjBtYW58ZW58MHx8fHwxNzcxODA5MTM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1589386417686-0d34b5903d23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9mZXNzaW9uYWwlMjBtYW58ZW58MHx8fHwxNzcxODA5MTM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "professional man"
     },
     {
       "id": "agent-2",
       "description": "Professional male agent",
-      "imageUrl": "https://images.unsplash.com/photo-1541535881962-3bb380b08458?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxidXNpbmVzcyUyMG1hbnxlbnwwfHx8fDE3NzE3NzYyNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1573603867003-89f5fd7a7576?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxidXNpbmVzcyUyMG1hbnxlbnwwfHx8fDE3NzE3NzYyNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "business man"
     },
     {
       "id": "agent-3",
       "description": "Professional female agent",
-      "imageUrl": "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxidXNpbmVzcyUyMHdvbWFufGVufDB8fHx8MTc3MTg0OTY2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxidXNpbmVzcyUyMHdvbWFufGVufDB8fHx8MTc3MTg0OTY2NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "business woman"
     },
     {
       "id": "agent-4",
       "description": "Professional male agent",
-      "imageUrl": "https://images.unsplash.com/photo-1622052416973-09a78b8ed3e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cHJvZmVzc2lvbmFsJTIwbWFsZXxlbnwwfHx8fDE3NzE3NzYyNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1660156049794-7f386c3013f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwcm9mZXNzaW9uYWwlMjBtYWxlfGVufDB8fHx8MTc3MTc3NjI1OXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "professional male"
+    },
+    {
+      "id": "sell-hero",
+      "description": "Luxury boardroom consultation",
+      "imageUrl": "https://images.unsplash.com/photo-1769771744699-7b73a101b318?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBib2FyZHJvb218ZW58MHx8fHwxNzcxODUwMDE2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury boardroom"
+    },
+    {
+      "id": "marketing-video",
+      "description": "Cinema camera filming interior",
+      "imageUrl": "https://images.unsplash.com/photo-1548607634-9f8cfca5d944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2luZW1hJTIwY2FtZXJhfGVufDB8fHx8MTc3MTc2OTk5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cinema camera"
+    },
+    {
+      "id": "marketing-photo",
+      "description": "Professional architectural photographer",
+      "imageUrl": "https://images.unsplash.com/photo-1677733720219-115e0196386c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzcxODUwMDE2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "architectural photography"
     }
   ]
 }
