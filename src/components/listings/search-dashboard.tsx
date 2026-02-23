@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
 import {
   Select,
   SelectContent,
@@ -11,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ChevronDown, SlidersHorizontal, RefreshCcw } from "lucide-react";
+import { SlidersHorizontal, RefreshCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SearchDashboardProps {
@@ -92,7 +91,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
             </div>
           </div>
 
-          {/* D. Area Range Slider */}
+          {/* D. Area Range */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <label className="text-[10px] uppercase font-bold tracking-widest text-white/40">Area</label>
@@ -111,16 +110,14 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
                 ))}
               </div>
             </div>
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-2 items-center">
               <Input placeholder="Min" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
-              <div className="flex-1 px-4">
-                <Slider defaultValue={[0, 100]} max={100} step={1} className="[&_[role=slider]]:bg-[#B8860B] [&_[role=slider]]:border-[#B8860B]" />
-              </div>
+              <span className="text-white/20">—</span>
               <Input placeholder="Max" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
             </div>
           </div>
 
-          {/* E. Currency & Price Slider */}
+          {/* E. Currency & Price */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <label className="text-[10px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
@@ -139,11 +136,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
                 ))}
               </div>
             </div>
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-2 items-center">
               <Input placeholder="Min" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
-              <div className="flex-1 px-4">
-                <Slider defaultValue={[0, 100]} max={100} step={1} className="[&_[role=slider]]:bg-[#B8860B] [&_[role=slider]]:border-[#B8860B]" />
-              </div>
+              <span className="text-white/20">—</span>
               <Input placeholder="Max" className="h-11 bg-transparent border-white/10 rounded-none text-xs text-center" />
             </div>
           </div>
