@@ -11,6 +11,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
+import { ListingCard } from "@/components/listings/listing-card";
 import { 
   MapPin, 
   Bed, 
@@ -62,6 +63,8 @@ export default function ListingDetails() {
 function PropertyDetail({ property }: { property: Property }) {
   const [activeImage, setActiveImage] = useState(0);
 
+  const similarProperties = PROPERTIES.filter(p => p.id !== property.id).slice(0, 4);
+
   return (
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32">
       <Header />
@@ -95,7 +98,7 @@ function PropertyDetail({ property }: { property: Property }) {
             </div>
             <div className="hidden md:flex flex-col gap-6">
               {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
-                <div key={idx} className="relative flex-1 group overflow-hidden cursor-pointer" onClick={() => setActiveImage(PROPERTIES.find(p => p.id === property.id)?.gallery.indexOf(img) || 0)}>
+                <div key={idx} className="relative flex-1 group overflow-hidden cursor-pointer" onClick={() => setActiveImage(property.gallery.indexOf(img))}>
                   <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
                 </div>
@@ -287,6 +290,18 @@ function PropertyDetail({ property }: { property: Property }) {
             </div>
           </div>
         </div>
+
+        {/* 6. Similar Listings */}
+        <section className="mt-32 pt-24 border-t border-white/5">
+          <div className="space-y-12">
+            <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Similar Listings</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {similarProperties.map((prop) => (
+                <ListingCard key={prop.id} {...prop} />
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
@@ -296,6 +311,8 @@ function PropertyDetail({ property }: { property: Property }) {
 
 function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
   const [activeImage, setActiveImage] = useState(0);
+
+  const similarProjects = OFF_PLAN_PROJECTS.filter(p => p.id !== project.id).slice(0, 4);
 
   return (
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white">
@@ -513,6 +530,30 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                   </div>
                 </form>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Similar Projects */}
+        <section className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-t border-white/5 mt-32">
+          <div className="space-y-12">
+            <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Similar Projects</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {similarProjects.map((proj) => (
+                <div key={proj.id} className="group relative aspect-[4/5] overflow-hidden cursor-pointer border border-white/5 bg-[#0a0a0a]">
+                  <Image
+                    src={proj.image}
+                    alt={proj.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105 brightness-[0.7] group-hover:brightness-[0.9]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8 space-y-4">
+                    <h3 className="text-white font-headline text-xl font-bold tracking-widest uppercase leading-tight">{proj.title}</h3>
+                    <Link href={`/listings/${proj.id}`} className="text-[#D1A08B] text-[10px] font-bold tracking-[0.3em] uppercase">Explore</Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
