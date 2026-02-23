@@ -25,12 +25,12 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: "/buy", label: "Buy" },
-    { href: "/sell", label: "Sell" },
-    { href: "/invest", label: "Invest" },
-    { href: "/off-plan", label: "Off-Plan" },
-    { href: "/rent", label: "Rent" },
-    { href: "/guides", label: "Guides" },
+    { href: "/buy", label: "BUY" },
+    { href: "/rent", label: "RENT" },
+    { href: "/sell", label: "SELL" },
+    { href: "/off-plan", label: "OFF-PLAN" },
+    { href: "/about", label: "ABOUT US" },
+    { href: "/services", label: "SERVICES" },
   ];
 
   return (
