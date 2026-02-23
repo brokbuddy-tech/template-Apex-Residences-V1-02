@@ -2,133 +2,133 @@
   "placeholderImages": [
     {
       "id": "hero-bg",
-      "description": "Dubai skyline at night with cinematic skyscraper silhouettes",
-      "imageUrl": "https://images.unsplash.com/photo-1600356598642-cf75c584b66d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "dubai night"
+      "description": "Dubai skyline at golden hour with cinematic skyscraper silhouettes",
+      "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920",
+      "imageHint": "dubai skyline"
     },
     {
       "id": "about-hero",
-      "description": "Luxury skyscraper office lobby with leadership vibes",
-      "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "description": "Luxury skyscraper office lobby with high-end leadership atmosphere",
+      "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920",
       "imageHint": "luxury office"
     },
     {
       "id": "journey-expertise",
-      "description": "Expert team analyzing real estate market data",
+      "description": "Professional team in a high-stakes strategy session",
       "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "business team"
+      "imageHint": "business strategy"
     },
     {
       "id": "journey-strategy",
-      "description": "Strategic planning session with architectural drawings",
-      "imageUrl": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "strategy meeting"
+      "description": "Strategic planning with architectural models and drawings",
+      "imageUrl": "https://images.unsplash.com/photo-1503387762-592dee58c460?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "architecture model"
     },
     {
       "id": "journey-connection",
-      "description": "Luxury client consultation in a private lounge",
-      "imageUrl": "https://images.unsplash.com/photo-1557426272-fc759fbb7a8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "luxury consultation"
+      "description": "Bespoke client consultation in a private luxury lounge",
+      "imageUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "luxury interior"
     },
     {
       "id": "prop-1",
-      "description": "Ultra-luxury penthouse interior with floor-to-ceiling windows",
-      "imageUrl": "https://images.unsplash.com/photo-1565623833408-d77e39b88af6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "description": "Ultra-luxury penthouse with panoramic floor-to-ceiling city views",
+      "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       "imageHint": "luxury penthouse"
     },
     {
       "id": "prop-2",
-      "description": "Modern beachfront mansion with infinity pool",
+      "description": "Modern minimalist mansion with infinity pool and palm trees",
       "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       "imageHint": "modern villa"
     },
     {
       "id": "prop-3",
-      "description": "Sleek architectural villa at dusk",
+      "description": "Sleek architectural villa glowing at twilight",
       "imageUrl": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "architectural villa"
+      "imageHint": "villa night"
     },
     {
       "id": "prop-4",
-      "description": "Modern Marina Penthouse overlooking the water",
-      "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "marina apartment"
+      "description": "Premium waterfront residence with high-end furnishings",
+      "imageUrl": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "luxury living"
     },
     {
       "id": "area-1",
-      "description": "Palm Jumeirah aerial at twilight",
-      "imageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "description": "The Palm Jumeirah aerial view at sunset",
+      "imageUrl": "https://images.unsplash.com/photo-1518684079-3c830dcef090?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       "imageHint": "palm jumeirah"
     },
     {
       "id": "area-2",
-      "description": "Dubai Marina skyline glowing at night",
-      "imageUrl": "https://images.unsplash.com/photo-1442850355782-eb200ba4c44f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "marina night"
+      "description": "Downtown Dubai Burj Khalifa district at night",
+      "imageUrl": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "downtown dubai"
     },
     {
       "id": "excl-1",
-      "description": "Business Bay architectural masterpiece",
+      "description": "Cinematic architectural visualization of a flagship project",
       "imageUrl": "https://images.unsplash.com/photo-1510665724063-f77a01074aa2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "dubai architecture"
+      "imageHint": "highrise architecture"
     },
     {
       "id": "agent-1",
-      "description": "Ben Thomas - Senior Executive",
-      "imageUrl": "https://images.unsplash.com/photo-1589386417686-0d34b5903d23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "professional male"
+      "description": "Ben Thomas - Head of Secondary Sales",
+      "imageUrl": "https://images.unsplash.com/photo-1589386417686-0d34b5903d23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+      "imageHint": "professional man"
     },
     {
       "id": "agent-2",
       "description": "Alexander Tuguchev - Portfolio Manager",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1573603867003-89f5fd7a7576?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "executive male"
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1573603867003-89f5fd7a7576?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+      "imageHint": "executive man"
     },
     {
       "id": "agent-3",
       "description": "Elena Rodriguez - Luxury Specialist",
-      "imageUrl": "https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "professional female"
+      "imageUrl": "https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+      "imageHint": "professional woman"
     },
     {
       "id": "agent-4",
       "description": "Marcus Thorne - Investment Expert",
-      "imageUrl": "https://images.unsplash.com/photo-1660156049794-7f386c3013f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "expert male"
+      "imageUrl": "https://images.unsplash.com/photo-1660156049794-7f386c3013f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+      "imageHint": "expert consultant"
     },
     {
       "id": "sell-hero",
-      "description": "High-end boardroom client consultation",
-      "imageUrl": "https://images.unsplash.com/photo-1577412647305-991150c7d163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "boardroom consultation"
+      "description": "Professional boardroom consultation in a luxury skyscraper",
+      "imageUrl": "https://images.unsplash.com/photo-1577412647305-991150c7d163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920",
+      "imageHint": "boardroom meeting"
     },
     {
       "id": "marketing-video",
-      "description": "Cinema camera filming luxury interior",
+      "description": "Cinematic filming of a luxury property interior",
       "imageUrl": "https://images.unsplash.com/photo-1548607634-9f8cfca5d944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       "imageHint": "cinema camera"
     },
     {
       "id": "marketing-photo",
-      "description": "Architectural photography of a signature mansion",
+      "description": "Expert architectural photography session",
       "imageUrl": "https://images.unsplash.com/photo-1677733720219-115e0196386c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "architectural photo"
+      "imageHint": "architecture photo"
     },
     {
       "id": "news-1",
-      "description": "New development launch event",
+      "description": "Flagship development launch event in Dubai",
       "imageUrl": "https://images.unsplash.com/photo-1543071293-d91175a68672?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      "imageHint": "project launch"
+      "imageHint": "launch event"
     },
     {
       "id": "news-2",
-      "description": "Waterfront skyscraper aerial",
-      "imageUrl": "https://images.unsplash.com/photo-1740484409661-75d41ff41a9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "description": "Waterfront skyscraper glow at twilight",
+      "imageUrl": "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       "imageHint": "waterfront tower"
     },
     {
       "id": "news-3",
-      "description": "Dubai real estate market trends 2026",
+      "description": "Market trends data and performance analysis",
       "imageUrl": "https://images.unsplash.com/photo-1459787915554-b34915863013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       "imageHint": "market data"
     }
