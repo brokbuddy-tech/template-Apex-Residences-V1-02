@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -59,7 +58,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
         
         <div className="relative z-10 text-center space-y-8 px-6 max-w-5xl">
-          <h1 className="font-headline text-3xl md:text-5xl xl:text-6xl font-thin tracking-[0.2em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000">
+          <h1 className="font-headline text-3xl md:text-4xl xl:text-5xl font-thin tracking-[0.2em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000">
             ABOUT <span className="font-bold">APEX RESIDENCES</span>
           </h1>
           
@@ -98,7 +97,7 @@ export default function AboutPage() {
                     src={stepImage} 
                     alt={step.title} 
                     fill 
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
+                    className="object-cover md:grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
                   />
                   <div className="absolute inset-0 border border-white/10 m-4 pointer-events-none" />
                 </div>
@@ -133,7 +132,7 @@ export default function AboutPage() {
           </div>
 
           {/* Partner Logos */}
-          <div className="mt-24 pt-20 border-t border-white/5 flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-20 grayscale hover:opacity-60 transition-all duration-500">
+          <div className="mt-24 pt-20 border-t border-white/5 flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-20 md:grayscale hover:opacity-60 transition-all duration-500">
             <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">FORBES</span>
             <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">BLOOMBERG</span>
             <span className="font-headline text-lg md:text-xl font-bold tracking-[0.2em] uppercase">REUTERS</span>
