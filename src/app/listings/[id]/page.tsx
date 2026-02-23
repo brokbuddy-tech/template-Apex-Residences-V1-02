@@ -64,9 +64,9 @@ function PropertyDetail({ property }: { property: Property }) {
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32">
       <Header />
 
-      <main className="pt-24 w-full px-6 md:px-12">
+      <main className="pt-24 w-full">
         {/* 1. Hero Gallery & Primary Specs */}
-        <section className="py-12 space-y-12">
+        <section className="py-12 space-y-12 px-6 md:px-12">
           {/* Headline Area */}
           <div className="flex flex-col md:flex-row justify-between items-start gap-8">
             <div className="space-y-4 max-w-3xl">
@@ -113,7 +113,7 @@ function PropertyDetail({ property }: { property: Property }) {
           </div>
         </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 px-6 md:px-12">
           {/* Main Content (Left) */}
           <div className="lg:col-span-8 space-y-20">
             
@@ -234,6 +234,27 @@ function PropertyDetail({ property }: { property: Property }) {
           {/* Sidebar (Right) */}
           <div className="lg:col-span-4 space-y-8">
             <div className="sticky top-32 space-y-8">
+              {/* Agent Floating Card - Now at Top */}
+              <div className="border border-[#D1A08B]/20 bg-[#0a0a0a] p-12 flex flex-col items-center text-center space-y-8">
+                <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
+                   <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full" />
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-2xl font-headline font-bold uppercase tracking-wider text-white">{property.agent.name}</h4>
+                  <p className="text-[11px] font-bold text-[#D1A08B] uppercase tracking-widest">{property.agent.role}</p>
+                </div>
+                <div className="w-full pt-4 space-y-4">
+                  <ConsultationDialog>
+                    <Button className="w-full btn-copper h-14 gap-2 text-sm">
+                      <MessageCircle className="w-5 h-5" /> Inquiry
+                    </Button>
+                  </ConsultationDialog>
+                  <Button variant="outline" className="w-full btn-outline-white h-14 gap-2 text-sm">
+                    <Phone className="w-5 h-5" /> Call Specialist
+                  </Button>
+                </div>
+              </div>
+
               {/* Market Comparison Card */}
               <div className="glass-panel p-12 space-y-10">
                 <div className="space-y-2">
@@ -261,33 +282,12 @@ function PropertyDetail({ property }: { property: Property }) {
                    </p>
                 </div>
               </div>
-
-              {/* Agent Floating Card */}
-              <div className="border border-[#D1A08B]/20 bg-[#0a0a0a] p-12 flex flex-col items-center text-center space-y-8">
-                <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
-                   <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full" />
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-2xl font-headline font-bold uppercase tracking-wider text-white">{property.agent.name}</h4>
-                  <p className="text-[11px] font-bold text-[#D1A08B] uppercase tracking-widest">{property.agent.role}</p>
-                </div>
-                <div className="w-full pt-4 space-y-4">
-                  <ConsultationDialog>
-                    <Button className="w-full btn-copper h-14 gap-2 text-sm">
-                      <MessageCircle className="w-5 h-5" /> Inquiry
-                    </Button>
-                  </ConsultationDialog>
-                  <Button variant="outline" className="w-full btn-outline-white h-14 gap-2 text-sm">
-                    <Phone className="w-5 h-5" /> Call Specialist
-                  </Button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
         {/* 6. Similar Listings */}
-        <section className="mt-40 pt-24 border-t border-white/5">
+        <section className="mt-40 pt-24 border-t border-white/5 px-6 md:px-12">
           <div className="space-y-16">
             <h2 className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#D1A08B]">Similar Listings</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -310,7 +310,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
   const similarProjects = OFF_PLAN_PROJECTS.filter(p => p.id !== project.id).slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white">
+    <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32">
       <Header />
 
       <main className="w-full">
