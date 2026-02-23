@@ -80,7 +80,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
   return (
     <div className="bg-black text-white py-12 px-6 md:px-12 border-b border-white/10">
       <div className="max-w-[1600px] mx-auto space-y-12">
-        <h2 className="text-center font-headline text-2xl md:text-3xl font-thin tracking-[0.5em] uppercase text-white">
+        <h2 className="text-center font-headline text-3xl md:text-5xl font-thin tracking-[0.5em] uppercase text-white">
           {title}
         </h2>
 
@@ -88,9 +88,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-8 items-end">
           
           {/* A. AI Search */}
-          <div className="space-y-3">
-            <label className="text-[14px] uppercase font-bold tracking-widest text-[#B8860B] flex items-center gap-2">
-              <Sparkles className="w-3 h-3" /> AI Search
+          <div className="space-y-4">
+            <label className="text-[16px] uppercase font-bold tracking-widest text-[#B8860B] flex items-center gap-2">
+              <Sparkles className="w-4 h-4" /> AI Search
             </label>
             <Input 
               value={aiQuery}
@@ -101,8 +101,8 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           </div>
 
           {/* B. Property Type Select */}
-          <div className="space-y-3">
-            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
+          <div className="space-y-4">
+            <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
             <Select>
               <SelectTrigger className="bg-transparent border-white/10 text-white rounded-none h-11 uppercase text-[12px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
                 <SelectValue placeholder="ANY" />
@@ -117,8 +117,8 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           </div>
 
           {/* C. Bedrooms (Multi-select) */}
-          <div className="space-y-3">
-            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
+          <div className="space-y-4">
+            <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Bedrooms</label>
             <div className="flex gap-2">
               {["1", "2", "3", "4", "5+"].map((num) => (
                 <button
@@ -136,8 +136,8 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           </div>
 
           {/* D. Bathrooms (Multi-select) */}
-          <div className="space-y-3">
-            <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Bathrooms</label>
+          <div className="space-y-4">
+            <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Bathrooms</label>
             <div className="flex gap-2">
               {["1", "2", "3", "4", "5+"].map((num) => (
                 <button
@@ -155,9 +155,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           </div>
 
           {/* E. Area Range */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Area</label>
+              <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Area</label>
               <div className="flex gap-3">
                 {["SQ.M", "SQ.FT"].map((u) => (
                   <button
@@ -181,9 +181,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           </div>
 
           {/* F. Currency & Price */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
+              <label className="text-[16px] uppercase font-bold tracking-widest text-white/40">Price Range</label>
               <div className="flex gap-3">
                 {["GBP", "CNY", "EUR", "AED", "USD"].map((curr) => (
                   <button
@@ -257,9 +257,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
             </Dialog>
 
             <div className="flex items-center gap-3">
-              <span className="text-[11px] text-white/40 font-bold uppercase tracking-widest">Sort By:</span>
+              <span className="text-[14px] text-white/40 font-bold uppercase tracking-widest">Sort By:</span>
               <Select defaultValue="popularity">
-                <SelectTrigger className="w-[180px] bg-transparent border-none text-white rounded-none h-auto p-0 uppercase text-[11px] tracking-widest focus:ring-0 focus:ring-offset-0">
+                <SelectTrigger className="w-[200px] bg-transparent border border-white/10 text-white rounded-none h-11 px-4 uppercase text-[11px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-black border-white/10 text-white rounded-none">
@@ -273,7 +273,7 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
           </div>
 
           <div className="flex items-center gap-8">
-            <div className="text-[#B8860B] text-[12px] font-bold uppercase tracking-[0.4em]">
+            <div className="text-[#B8860B] text-[16px] font-bold uppercase tracking-[0.4em]">
               1,248 PROJECTS
             </div>
             <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest" onClick={handleReset}>
