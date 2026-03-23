@@ -17,7 +17,8 @@ import {
   MapPin, 
   QrCode,
   Printer,
-  ChevronRight
+  ChevronRight,
+  CheckCircle2
 } from "lucide-react";
 import { Property } from "@/lib/properties";
 import { OffPlanProject } from "@/lib/off-plan-projects";
@@ -35,6 +36,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
   const gallery = property.gallery ? property.gallery.slice(0, 6) : [];
   const description = property.description;
   const dldPermit = 'reraNumber' in property ? property.reraNumber : "238290231";
+  const features = 'features' in property ? property.features : property.amenities;
 
   const handlePrint = () => {
     window.print();
@@ -63,8 +65,8 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
           {/* A4 Container */}
           <div className="w-full max-w-[800px] mx-auto bg-white shadow-[0_40px_100px_rgba(0,0,0,0.1)] aspect-[1/1.414] flex flex-col print:shadow-none print:w-full print:max-w-none">
             
-            {/* Tier 1: Identity & Hero (60%) */}
-            <div className="relative h-[60%] w-full flex flex-col shrink-0">
+            {/* Tier 1: Identity & Hero (50%) */}
+            <div className="relative h-[50%] w-full flex flex-col shrink-0">
               {/* Top Banner */}
               <div className="flex h-[15%] w-full shrink-0">
                 <div className="bg-[#F2F2F2] flex-1 flex flex-col justify-center px-10">
@@ -96,12 +98,12 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               </div>
             </div>
 
-            {/* Tier 2: The Detail Strip (40%) */}
+            {/* Tier 2: The Detail Strip (50%) */}
             <div className="flex-grow w-full flex">
               {/* Left Data Column (Technical & Narrative) */}
-              <div className="flex-grow p-10 flex flex-col gap-10">
+              <div className="flex-grow p-10 flex flex-col gap-8 overflow-hidden">
                 {/* 2x3 Grid of Detail Shots */}
-                <div className="grid grid-cols-3 gap-3 aspect-[3/1.8] shrink-0">
+                <div className="grid grid-cols-3 gap-3 aspect-[3/1.4] shrink-0">
                   {gallery.map((img, i) => (
                     <div key={i} className="relative w-full h-full bg-muted overflow-hidden">
                       <Image src={img} alt={`Detail ${i+1}`} fill className="object-cover" />
@@ -112,15 +114,31 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                     <div key={`fill-${i}`} className="relative w-full h-full bg-[#f8f8f8] border border-black/5" />
                   ))}
                 </div>
-                
-                {/* Editorial Narrative */}
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <h3 className="font-headline text-lg font-bold tracking-[0.3em] uppercase text-black">PROPERTY OVERVIEW</h3>
+
+                {/* Features & Amenities Block */}
+                <div className="space-y-4 shrink-0">
+                   <div className="flex items-center gap-4">
+                    <h3 className="font-headline text-[10px] font-bold tracking-[0.3em] uppercase text-black">FEATURES & AMENITIES</h3>
                     <div className="h-[1px] flex-grow bg-black/10" />
                   </div>
-                  <div className="text-[11px] leading-loose text-black/60 font-serif italic text-justify">
-                    <p className="mb-4">{description}</p>
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                    {features.slice(0, 8).map((feat, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-3 h-3 text-[#B8860B]" />
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-black/70">{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Editorial Narrative */}
+                <div className="space-y-4 flex-grow overflow-hidden">
+                  <div className="flex items-center gap-4">
+                    <h3 className="font-headline text-[10px] font-bold tracking-[0.3em] uppercase text-black">PROPERTY OVERVIEW</h3>
+                    <div className="h-[1px] flex-grow bg-black/10" />
+                  </div>
+                  <div className="text-[10px] leading-relaxed text-black/60 font-serif italic text-justify line-clamp-[12]">
+                    <p className="mb-2">{description}</p>
                     <p>Designed for the world's most discerning individuals, this residence combines architectural mastery with unrivaled performance. Every signature address in our portfolio is vetted through a rigorous due-diligence framework to protect and grow our clients' wealth.</p>
                   </div>
                 </div>
