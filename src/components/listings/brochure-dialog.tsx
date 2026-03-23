@@ -32,6 +32,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
   // Common data mapping
   const title = property.title;
   const location = property.location;
+  const price = property.price;
   const heroImage = 'image' in property ? property.image : property.gallery?.[0] || property.image;
   const gallery = property.gallery ? property.gallery.slice(0, 6) : [];
   const description = property.description;
@@ -95,6 +96,11 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                
+                {/* Price Tag Overlay */}
+                <div className="absolute bottom-6 left-10 bg-black/80 backdrop-blur-md px-6 py-3 border-l-4 border-[#B8860B]">
+                  <span className="text-white font-headline text-lg font-bold tracking-widest uppercase">{price}</span>
+                </div>
               </div>
             </div>
 
