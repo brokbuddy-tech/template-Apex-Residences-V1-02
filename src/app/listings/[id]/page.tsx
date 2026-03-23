@@ -8,6 +8,7 @@ import { PROPERTIES, Property } from "@/lib/properties";
 import { OFF_PLAN_PROJECTS, OffPlanProject } from "@/lib/off-plan-projects";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
+import { BrochureDialog } from "@/components/listings/brochure-dialog";
 import { ListingCard } from "@/components/listings/listing-card";
 import { cn } from "@/lib/utils";
 import { 
@@ -29,7 +30,8 @@ import {
   Linkedin,
   Images,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  FileText
 } from "lucide-react";
 import {
   Dialog,
@@ -207,7 +209,7 @@ function PropertyDetail({ property }: { property: Property }) {
           <div className="lg:col-span-4">
             <div className="sticky top-32 space-y-8">
               {/* Agent Profile Card First */}
-              <div className="border border-[#D1A08B]/20 bg-[#0a0a0a] p-10 flex flex-col items-center text-center space-y-8">
+              <div className="border border-white/10 bg-[#0a0a0a] p-10 flex flex-col items-center text-center space-y-8">
                 <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
                   <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full" />
                 </div>
@@ -216,6 +218,12 @@ function PropertyDetail({ property }: { property: Property }) {
                   <p className="text-[11px] font-bold text-[#D1A08B] uppercase tracking-widest">{property.agent.role}</p>
                 </div>
                 <div className="w-full pt-4 space-y-4">
+                  <BrochureDialog property={property}>
+                    <Button variant="outline" className="w-full border-[#002B49] text-[#002B49] hover:bg-[#002B49]/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                      <FileText className="w-4 h-4" />
+                      DOWNLOAD BROCHURE (PDF)
+                    </Button>
+                  </BrochureDialog>
                   <ConsultationDialog>
                     <Button className="w-full btn-copper h-12 gap-2 text-sm">Inquiry</Button>
                   </ConsultationDialog>
@@ -441,11 +449,19 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                   <h4 className="text-xl font-headline font-bold uppercase tracking-wider text-white">{project.agent.name}</h4>
                   <p className="text-[11px] font-bold text-[#B8860B] uppercase tracking-widest">{project.agent.role}</p>
                 </div>
-                <div className="w-full flex gap-3">
-                  <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10">CALL US</Button>
-                  <ConsultationDialog>
-                    <Button className="flex-1 btn-copper h-12 text-[9px] font-bold">INQUIRY</Button>
-                  </ConsultationDialog>
+                <div className="w-full space-y-4">
+                  <BrochureDialog property={project}>
+                    <Button variant="outline" className="w-full border-[#002B49] text-[#002B49] hover:bg-[#002B49]/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                      <FileText className="w-4 h-4" />
+                      DOWNLOAD BROCHURE (PDF)
+                    </Button>
+                  </BrochureDialog>
+                  <div className="flex gap-3">
+                    <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10">CALL US</Button>
+                    <ConsultationDialog>
+                      <Button className="flex-1 btn-copper h-12 text-[9px] font-bold">INQUIRY</Button>
+                    </ConsultationDialog>
+                  </div>
                 </div>
                 <a href="#" className="flex items-center gap-2 text-[#25D366] text-[10px] font-bold uppercase tracking-[0.2em] hover:opacity-80 transition-opacity">
                   <MessageCircle className="w-4 h-4 fill-current" />
