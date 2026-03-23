@@ -73,7 +73,7 @@ function PropertyDetail({ property }: { property: Property }) {
       <main className="pt-24 w-full">
         {/* 1. Hero Gallery */}
         <section className="px-6 md:px-12 py-12 space-y-12">
-          <div className="space-y-4">
+          <div className="space-y-4 text-left">
             <h1 className="text-xl md:text-3xl font-headline font-thin tracking-widest leading-tight uppercase text-white/90">
               {property.title}
             </h1>
@@ -219,7 +219,7 @@ function PropertyDetail({ property }: { property: Property }) {
                 </div>
                 <div className="w-full pt-4 space-y-4">
                   <BrochureDialog property={property}>
-                    <Button variant="outline" className="w-full border-[#002B49] text-[#002B49] hover:bg-[#002B49]/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)
                     </Button>
@@ -451,7 +451,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                 </div>
                 <div className="w-full space-y-4">
                   <BrochureDialog property={project}>
-                    <Button variant="outline" className="w-full border-[#002B49] text-[#002B49] hover:bg-[#002B49]/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)
                     </Button>
@@ -525,7 +525,7 @@ function SpecIcon({ label, value, icon: Icon }: { label: string; value: string; 
   return (
     <div className="flex items-center gap-6">
       <div className="w-12 h-12 flex items-center justify-center text-[#D1A08B] bg-white/[0.02] border border-white/5"><Icon className="w-6 h-6" /></div>
-      <div>
+      <div className="text-left">
         <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{label}</p>
         <p className="text-base font-bold text-white uppercase tracking-wider">{value}</p>
       </div>
