@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import { 
   Dialog, 
@@ -27,8 +27,6 @@ interface BrochureDialogProps {
 }
 
 export function BrochureDialog({ property, children }: BrochureDialogProps) {
-  const brochureRef = useRef<HTMLDivElement>(null);
-
   // Data mapping for consistency
   const title = property.title;
   const location = property.location;
@@ -37,14 +35,21 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
   const gallery = property.gallery ? property.gallery.slice(0, 6) : [];
   const description = 'longDescription' in property ? property.longDescription : property.description;
   const dldPermit = 'reraNumber' in property ? property.reraNumber : "238290231";
-  const features = 'features' in property ? property.features : property.amenities;
+  const features = 'features' in property ? property.features : (property as any).amenities || [];
 
   return (
-    <Dialog onOpenChange={(open) => { if(open) setTimeout(() => window.print(), 1000); }}>
+    <Dialog onOpenChange={(open) => { 
+      if(open) {
+        // Delay ensures the DOM is fully painted and images are requested before print
+        setTimeout(() => {
+          window.print();
+        }, 800);
+      }
+    }}>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-[95vw] md:max-w-5xl p-0 bg-white border-none overflow-hidden rounded-none h-[90vh] flex flex-col z-[100] print:fixed print:inset-0 print:m-0 print:p-0 print:h-screen print:w-screen print:z-[999999] print:bg-white print:block">
+      <DialogContent className="max-w-[95vw] md:max-w-5xl p-0 bg-white border-none overflow-hidden rounded-none h-[90vh] flex flex-col z-[100] print:fixed print:inset-0 print:m-0 print:p-0 print:h-screen print:w-screen print:z-[999999] print:bg-white print:block shadow-2xl">
         <style dangerouslySetInnerHTML={{ __html: `
           @media print {
             @page { 
@@ -61,29 +66,39 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               -webkit-print-color-adjust: exact !important;
               print-color-adjust: exact !important;
             }
-            /* Robust isolation: Hide everything but the portal content */
-            body > *:not([data-radix-portal]) {
+            /* Robust Isolation: Hide everything except the brochure */
+            body > * {
               display: none !important;
             }
-            [data-radix-portal] > *:not(:last-child) {
+            body > [data-radix-portal] {
+              display: block !important;
+            }
+            [data-radix-portal] > * {
               display: none !important;
+            }
+            [data-radix-portal] > :last-child {
+              display: block !important;
+              position: fixed !important;
+              top: 0 !important;
+              left: 0 !important;
+              width: 210mm !important;
+              height: 297mm !important;
             }
             .no-print {
               display: none !important;
             }
-            #printable-brochure-root {
-              visibility: visible !important;
+            #printable-brochure-container {
               display: block !important;
-              position: absolute !important;
-              left: 0 !important;
+              visibility: visible !important;
+              position: fixed !important;
               top: 0 !important;
+              left: 0 !important;
               width: 210mm !important;
               height: 297mm !important;
               margin: 0 !important;
               padding: 0 !important;
               background: white !important;
               z-index: 999999 !important;
-              opacity: 1 !important;
             }
             #printable-brochure {
               width: 210mm !important;
@@ -92,8 +107,8 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               flex-direction: column !important;
               background: white !important;
               page-break-after: avoid !important;
+              overflow: hidden !important;
             }
-            /* Force images to show */
             img {
               -webkit-print-color-adjust: exact !important;
               print-color-adjust: exact !important;
@@ -104,18 +119,16 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
         
         <DialogHeader className="p-6 bg-white flex-row justify-between items-center border-b shrink-0 space-y-0 no-print">
           <div className="flex items-center gap-4">
-            <DialogTitle className="text-[10px] font-bold tracking-[0.3em] uppercase text-black/40">Brochure Preview</DialogTitle>
-            <div className="h-4 w-[1px] bg-black/10" />
-            <span className="text-[10px] font-bold tracking-widest uppercase text-black">{title}</span>
+            <DialogTitle className="text-[10px] font-bold tracking-[0.3em] uppercase text-black/40">Preparing Brochure...</DialogTitle>
           </div>
           <Button onClick={() => window.print()} size="sm" variant="outline" className="gap-2 h-10 px-6 text-[10px] font-bold uppercase tracking-widest border-black/10 hover:bg-black hover:text-white">
             <FileText className="w-3.5 h-3.5" /> Save as PDF
           </Button>
         </DialogHeader>
         
-        <div id="printable-brochure-root" className="flex-grow overflow-y-auto p-12 bg-muted/30 print:p-0 print:bg-white print:overflow-hidden">
+        <div id="printable-brochure-container" className="flex-grow overflow-y-auto p-12 bg-muted/30 print:p-0 print:bg-white print:overflow-hidden">
           {/* A4 Container */}
-          <div id="printable-brochure" ref={brochureRef} className="w-full max-w-[800px] mx-auto bg-white shadow-2xl aspect-[1/1.414] flex flex-col print:shadow-none print:w-[210mm] print:h-[297mm] overflow-hidden">
+          <div id="printable-brochure" className="w-full max-w-[800px] mx-auto bg-white aspect-[1/1.414] flex flex-col print:w-[210mm] print:h-[297mm] overflow-hidden">
             
             {/* Tier 1: Identity & Hero (55%) */}
             <div className="relative h-[55%] w-full flex flex-col shrink-0">
@@ -176,7 +189,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                     <div className="h-[1px] flex-grow bg-black/5" />
                   </div>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    {features.slice(0, 8).map((feat, i) => (
+                    {features.slice(0, 8).map((feat: string, i: number) => (
                       <div key={i} className="flex items-center gap-2">
                         <CheckCircle2 className="w-3 h-3 text-[#B8860B]" />
                         <span className="text-[8.5px] font-bold uppercase tracking-widest text-black/60 truncate">{feat}</span>
