@@ -33,18 +33,18 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
   const title = property.title;
   const location = property.location;
   const price = property.price;
-  const heroImage = 'image' in property ? property.image : (property.gallery?.[0] || property.image);
+  const heroImage = property.image;
   const gallery = property.gallery ? property.gallery.slice(0, 6) : [];
   const description = 'longDescription' in property ? property.longDescription : property.description;
   const dldPermit = 'reraNumber' in property ? property.reraNumber : "238290231";
   const features = 'features' in property ? property.features : property.amenities;
 
   return (
-    <Dialog onOpenChange={(open) => { if(open) setTimeout(() => window.print(), 800); }}>
+    <Dialog onOpenChange={(open) => { if(open) setTimeout(() => window.print(), 1000); }}>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-[95vw] md:max-w-5xl p-0 bg-white border-none overflow-hidden rounded-none h-[90vh] flex flex-col z-[100] print:fixed print:inset-0 print:m-0 print:p-0 print:h-screen print:w-screen print:z-[999999] print:bg-white">
+      <DialogContent className="max-w-[95vw] md:max-w-5xl p-0 bg-white border-none overflow-hidden rounded-none h-[90vh] flex flex-col z-[100] print:fixed print:inset-0 print:m-0 print:p-0 print:h-screen print:w-screen print:z-[999999] print:bg-white print:block">
         <style dangerouslySetInnerHTML={{ __html: `
           @media print {
             @page { 
@@ -61,7 +61,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               -webkit-print-color-adjust: exact !important;
               print-color-adjust: exact !important;
             }
-            /* Hide absolutely everything except the isolated brochure */
+            /* Robust isolation: Hide everything but the portal content */
             body > *:not([data-radix-portal]) {
               display: none !important;
             }
@@ -74,15 +74,16 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
             #printable-brochure-root {
               visibility: visible !important;
               display: block !important;
-              position: fixed !important;
+              position: absolute !important;
               left: 0 !important;
               top: 0 !important;
               width: 210mm !important;
               height: 297mm !important;
               margin: 0 !important;
               padding: 0 !important;
-              page-break-after: avoid !important;
               background: white !important;
+              z-index: 999999 !important;
+              opacity: 1 !important;
             }
             #printable-brochure {
               width: 210mm !important;
@@ -90,6 +91,13 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               display: flex !important;
               flex-direction: column !important;
               background: white !important;
+              page-break-after: avoid !important;
+            }
+            /* Force images to show */
+            img {
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+              display: block !important;
             }
           }
         `}} />
@@ -105,7 +113,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
           </Button>
         </DialogHeader>
         
-        <div id="printable-brochure-root" className="flex-grow overflow-y-auto p-12 bg-muted/30 print:p-0 print:bg-white">
+        <div id="printable-brochure-root" className="flex-grow overflow-y-auto p-12 bg-muted/30 print:p-0 print:bg-white print:overflow-hidden">
           {/* A4 Container */}
           <div id="printable-brochure" ref={brochureRef} className="w-full max-w-[800px] mx-auto bg-white shadow-2xl aspect-[1/1.414] flex flex-col print:shadow-none print:w-[210mm] print:h-[297mm] overflow-hidden">
             
@@ -137,6 +145,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                   fill 
                   className="object-cover"
                   priority
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 
@@ -155,11 +164,8 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                 <div className="grid grid-cols-3 gap-2 aspect-[3/1.2] shrink-0">
                   {gallery.map((img, i) => (
                     <div key={i} className="relative w-full h-full bg-muted overflow-hidden">
-                      <Image src={img} alt={`View ${i+1}`} fill className="object-cover" />
+                      <Image src={img} alt={`View ${i+1}`} fill className="object-cover" unoptimized />
                     </div>
-                  ))}
-                  {Array.from({ length: Math.max(0, 6 - gallery.length) }).map((_, i) => (
-                    <div key={i} className="bg-[#f8f8f8]" />
                   ))}
                 </div>
 
