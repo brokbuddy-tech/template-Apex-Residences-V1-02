@@ -40,10 +40,10 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
   return (
     <Dialog onOpenChange={(open) => { 
       if(open) {
-        // Delay ensures the DOM is fully painted and images are requested before print
+        // Short delay to ensure images are requested and DOM is stable before triggering print
         setTimeout(() => {
           window.print();
-        }, 800);
+        }, 500);
       }
     }}>
       <DialogTrigger asChild>
@@ -66,27 +66,14 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               -webkit-print-color-adjust: exact !important;
               print-color-adjust: exact !important;
             }
-            /* Robust Isolation: Hide everything except the brochure */
-            body > * {
+            /* Hide everything but the brochure */
+            body > *:not([data-radix-portal]) {
               display: none !important;
             }
-            body > [data-radix-portal] {
-              display: block !important;
-            }
-            [data-radix-portal] > * {
+            [data-radix-portal] > div:not(:last-child) {
               display: none !important;
             }
-            [data-radix-portal] > :last-child {
-              display: block !important;
-              position: fixed !important;
-              top: 0 !important;
-              left: 0 !important;
-              width: 210mm !important;
-              height: 297mm !important;
-            }
-            .no-print {
-              display: none !important;
-            }
+            /* Ensure the content fills exactly one A4 page */
             #printable-brochure-container {
               display: block !important;
               visibility: visible !important;
@@ -99,6 +86,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               padding: 0 !important;
               background: white !important;
               z-index: 999999 !important;
+              overflow: hidden !important;
             }
             #printable-brochure {
               width: 210mm !important;
@@ -107,12 +95,9 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
               flex-direction: column !important;
               background: white !important;
               page-break-after: avoid !important;
-              overflow: hidden !important;
             }
-            img {
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
-              display: block !important;
+            .no-print {
+              display: none !important;
             }
           }
         `}} />
@@ -127,12 +112,10 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
         </DialogHeader>
         
         <div id="printable-brochure-container" className="flex-grow overflow-y-auto p-12 bg-muted/30 print:p-0 print:bg-white print:overflow-hidden">
-          {/* A4 Container */}
-          <div id="printable-brochure" className="w-full max-w-[800px] mx-auto bg-white aspect-[1/1.414] flex flex-col print:w-[210mm] print:h-[297mm] overflow-hidden">
+          <div id="printable-brochure" className="w-full max-w-[800px] mx-auto bg-white aspect-[1/1.414] flex flex-col print:w-[210mm] print:h-[297mm] overflow-hidden shadow-sm">
             
             {/* Tier 1: Identity & Hero (55%) */}
             <div className="relative h-[55%] w-full flex flex-col shrink-0">
-              {/* Top Branding Banner */}
               <div className="flex h-[12%] w-full shrink-0">
                 <div className="bg-[#F2F2F2] flex-1 flex flex-col justify-center px-10">
                   <span className="text-[8px] font-bold tracking-[0.5em] text-black/30 uppercase mb-1 leading-none">SIGNATURE RESIDENCE</span>
@@ -150,7 +133,6 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                 </div>
               </div>
               
-              {/* Hero Visual Section */}
               <div className="relative flex-grow">
                 <Image 
                   src={heroImage} 
@@ -161,9 +143,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                   unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                
-                {/* Price Tag Overlay - Bottom Left */}
-                <div className="absolute bottom-8 left-10 bg-black/90 backdrop-blur-md px-8 py-4 border-l-4 border-[#B8860B] shadow-2xl">
+                <div className="absolute bottom-8 left-10 bg-black/90 px-8 py-4 border-l-4 border-[#B8860B]">
                   <span className="text-white font-headline text-2xl font-bold tracking-[0.1em] uppercase">{price}</span>
                 </div>
               </div>
@@ -171,9 +151,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
 
             {/* Tier 2: Details & Contact (45%) */}
             <div className="flex-grow w-full flex overflow-hidden">
-              {/* Left Column: Narrative & Technical Specs */}
               <div className="flex-grow p-10 flex flex-col gap-8 overflow-hidden">
-                {/* Detail Shots Grid */}
                 <div className="grid grid-cols-3 gap-2 aspect-[3/1.2] shrink-0">
                   {gallery.map((img, i) => (
                     <div key={i} className="relative w-full h-full bg-muted overflow-hidden">
@@ -182,7 +160,6 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                   ))}
                 </div>
 
-                {/* Features & Amenities */}
                 <div className="space-y-4 shrink-0">
                    <div className="flex items-center gap-4">
                     <h3 className="font-headline text-[9px] font-bold tracking-[0.4em] uppercase text-black">SPECIFICATIONS</h3>
@@ -198,7 +175,6 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                   </div>
                 </div>
                 
-                {/* Narrative Description */}
                 <div className="space-y-4 flex-grow overflow-hidden">
                   <div className="flex items-center gap-4">
                     <h3 className="font-headline text-[9px] font-bold tracking-[0.4em] uppercase text-black">PROPERTY OVERVIEW</h3>
@@ -210,7 +186,6 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                 </div>
               </div>
 
-              {/* Right Column: High-Contrast Expert Contact */}
               <div className="w-[35%] bg-black p-10 flex flex-col justify-between text-white shrink-0">
                 <div className="space-y-12">
                   <div className="space-y-4">
@@ -226,14 +201,14 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
                 </div>
 
                 <div className="space-y-8 flex flex-col items-center border-t border-white/10 pt-10">
-                  <div className="bg-white p-2 shadow-2xl">
+                  <div className="bg-white p-2">
                     <QrCode className="w-16 h-16 text-black" />
                   </div>
                   <div className="text-center space-y-1">
                     <p className="text-[7px] font-bold tracking-[0.5em] uppercase text-white/30">DLD PERMIT NO</p>
                     <p className="text-xs font-bold tracking-[0.2em] text-white uppercase font-headline">{dldPermit}</p>
                   </div>
-                  <p className="text-[8px] font-bold tracking-[0.4em] uppercase text-[#B8860B] border-b border-[#B8860B]/20 pb-1">
+                  <p className="text-[8px] font-bold tracking-[0.4em] uppercase text-[#B8860B]">
                     APEXRESIDENCES.COM
                   </p>
                 </div>
@@ -248,7 +223,7 @@ export function BrochureDialog({ property, children }: BrochureDialogProps) {
 
 function ContactDetail({ icon: Icon, text }: { icon: any, text: string }) {
   return (
-    <div className="flex items-center gap-4 group">
+    <div className="flex items-center gap-4">
       <div className="w-8 h-8 border border-[#B8860B]/30 flex items-center justify-center text-[#B8860B] shrink-0">
         <Icon className="w-4 h-4" />
       </div>
