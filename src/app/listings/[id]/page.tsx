@@ -207,7 +207,7 @@ function PropertyDetail({ property }: { property: Property }) {
           </div>
 
           <div className="lg:col-span-4">
-            <div className="sticky top-32 space-y-8">
+            <div className="sticky top-32 space-y-8 no-print">
               {/* Agent Profile Card First */}
               <div className="border border-white/10 bg-[#0a0a0a] p-10 flex flex-col items-center text-center space-y-8">
                 <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
@@ -249,7 +249,7 @@ function PropertyDetail({ property }: { property: Property }) {
           </div>
         </div>
 
-        <section className="mt-40 pt-24 border-t border-white/5 px-6 md:px-12">
+        <section className="mt-40 pt-24 border-t border-white/5 px-6 md:px-12 no-print">
           <h2 className="text-[12px] font-bold tracking-[0.4em] uppercase text-[#D1A08B] mb-12">Similar Listings</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {similarProperties.map(p => <ListingCard key={p.id} {...p} />)}
@@ -438,7 +438,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
           </div>
 
           {/* Sidebar (25%) */}
-          <div className="lg:w-[25%]">
+          <div className="lg:w-[25%] no-print">
             <div className="sticky top-32 space-y-10">
               {/* Agent Profile Card Card */}
               <div className="bg-[#0a0a0a] border border-white/10 p-10 flex flex-col items-center text-center space-y-8">
@@ -498,7 +498,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
         </div>
 
         {/* Similar Projects Exploration */}
-        <section className="mt-40 pt-24 border-t border-white/5 px-6 md:px-12">
+        <section className="mt-40 pt-24 border-t border-white/5 px-6 md:px-12 no-print">
           <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B] mb-16">SIMILAR PROJECTS</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {similarProjects.map(p => (
