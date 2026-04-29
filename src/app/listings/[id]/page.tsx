@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -155,7 +154,7 @@ function PropertyDetail({ property }: { property: Property }) {
             </div>
           </div>
 
-          <div className="w-full flex items-center justify-between gap-12 bg-white/[0.02] border border-white/5 p-6 md:px-10 mt-8">
+          <div className="w-full flex items-center justify-start gap-12 bg-white/[0.02] border border-white/5 p-6 md:px-10 mt-8">
             <div className="space-y-1 text-left">
               <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
               <p className="text-xl md:text-4xl font-bold text-[#D1A08B]">{property.price}</p>
@@ -167,7 +166,7 @@ function PropertyDetail({ property }: { property: Property }) {
                   <Share2 className="w-5 h-5" />
                 </button>
               </PopoverTrigger>
-              <PopoverContent className="w-80 bg-black border-white/10 text-white rounded-none p-4" align="end">
+              <PopoverContent className="w-80 bg-black border-white/10 text-white rounded-none p-4" align="start">
                 <div className="space-y-4">
                   <h4 className="font-headline text-[10px] font-bold uppercase tracking-widest text-[#D1A08B]">Share Listing</h4>
                   <div className="flex gap-2">

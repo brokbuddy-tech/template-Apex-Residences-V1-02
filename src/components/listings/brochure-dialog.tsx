@@ -34,13 +34,16 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
   const dldPermit = 'reraNumber' in property ? property.reraNumber : "238290231";
   const features = 'features' in property ? property.features : (property as any).amenities || [];
 
-  const handleDownload = () => {
+  const handleDownload = (e: React.MouseEvent) => {
+    e.preventDefault();
     setIsPreparing(true);
+    
     // Brief delay to ensure the UI updates and the print engine captures the prepared state
+    // We use a slightly longer delay to ensure all images are "decoded" by the browser
     setTimeout(() => {
       window.print();
       setIsPreparing(false);
-    }, 600);
+    }, 800);
   };
 
   return (
@@ -51,7 +54,7 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
           children: isPreparing ? (
             <div className="flex items-center justify-center gap-2">
               <Loader2 className="w-4 h-4 animate-spin" />
-              PREPARING BROCHURE...
+              PREPARING...
             </div>
           ) : (
             (children as React.ReactElement).props.children
@@ -101,7 +104,7 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
           }
         `}} />
         
-        <div className="w-[210mm] h-[297mm] bg-white flex flex-col overflow-hidden">
+        <div className="w-[210mm] h-[297mm] bg-white flex flex-col overflow-hidden shadow-none">
           
           {/* Tier 1: Identity & Hero (55%) */}
           <div className="relative h-[55%] w-full flex flex-col shrink-0">
@@ -128,8 +131,11 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
                 src={heroImage} 
                 alt={title} 
                 className="absolute inset-0 w-full h-full object-cover" 
+                crossOrigin="anonymous"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              
+              {/* Price Tag Overlay */}
               <div className="absolute bottom-8 left-10 bg-black/90 px-8 py-4 border-l-4 border-[#B8860B]">
                 <span className="text-white font-headline text-2xl font-bold tracking-[0.1em] uppercase">{price}</span>
               </div>
@@ -141,15 +147,16 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
             <div className="flex-grow p-10 flex flex-col gap-8 overflow-hidden">
               <div className="grid grid-cols-3 gap-2 aspect-[3/1.2] shrink-0">
                 {gallery.map((img, i) => (
-                  <div key={i} className="relative w-full h-full bg-muted overflow-hidden">
-                    <img src={img} alt={`View ${i+1}`} className="absolute inset-0 w-full h-full object-cover" />
+                  <div key={i} className="relative w-full h-full bg-[#F5F5F5] overflow-hidden">
+                    <img src={img} alt={`View ${i+1}`} className="absolute inset-0 w-full h-full object-cover" crossOrigin="anonymous" />
                   </div>
                 ))}
               </div>
 
+              {/* Features & Amenities Section */}
               <div className="space-y-4 shrink-0">
                  <div className="flex items-center gap-4">
-                  <h3 className="font-headline text-[9px] font-bold tracking-[0.4em] uppercase text-black">SPECIFICATIONS</h3>
+                  <h3 className="font-headline text-[9px] font-bold tracking-[0.4em] uppercase text-black">FEATURES & AMENITIES</h3>
                   <div className="h-[1px] flex-grow bg-black/5" />
                 </div>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-2">
@@ -167,7 +174,7 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
                   <h3 className="font-headline text-[9px] font-bold tracking-[0.4em] uppercase text-black">PROPERTY OVERVIEW</h3>
                   <div className="h-[1px] flex-grow bg-black/5" />
                 </div>
-                <p className="text-[10px] leading-relaxed text-black/50 font-serif italic text-justify line-clamp-[11]">
+                <p className="text-[10px] leading-relaxed text-black/50 font-body text-justify line-clamp-[10]">
                   {description}
                 </p>
               </div>
