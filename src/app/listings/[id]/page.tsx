@@ -1,6 +1,7 @@
+
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +12,13 @@ import { ConsultationDialog } from "@/components/home/consultation-dialog";
 import { BrochureDialog } from "@/components/listings/brochure-dialog";
 import { ListingCard } from "@/components/listings/listing-card";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { 
   MapPin, 
   Bed, 
@@ -31,7 +39,8 @@ import {
   Images,
   ChevronLeft,
   ChevronRight,
-  FileText
+  FileText,
+  Copy
 } from "lucide-react";
 import {
   Dialog,
@@ -66,7 +75,23 @@ export default function ListingDetails() {
 function PropertyDetail({ property }: { property: Property }) {
   const [activeImage, setActiveImage] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
+  const { toast } = useToast();
   const similarProperties = PROPERTIES.filter(p => p.id !== property.id).slice(0, 4);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(currentUrl);
+    toast({
+      title: "Link Copied",
+      description: "The listing URL has been copied to your clipboard.",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32 w-full">
@@ -135,9 +160,34 @@ function PropertyDetail({ property }: { property: Property }) {
               <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
               <p className="text-xl md:text-4xl font-bold text-[#D1A08B]">{property.price}</p>
             </div>
-            <button className="w-12 h-12 border border-[#D1A08B]/20 flex items-center justify-center text-[#D1A08B] hover:bg-[#D1A08B] hover:text-white transition-all duration-500">
-              <Share2 className="w-5 h-5" />
-            </button>
+            
+            <Popover>
+              <PopoverTrigger asChild>
+                <button className="w-12 h-12 border border-[#D1A08B]/20 flex items-center justify-center text-[#D1A08B] hover:bg-[#D1A08B] hover:text-white transition-all duration-500">
+                  <Share2 className="w-5 h-5" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80 bg-black border-white/10 text-white rounded-none p-4" align="end">
+                <div className="space-y-4">
+                  <h4 className="font-headline text-[10px] font-bold uppercase tracking-widest text-[#D1A08B]">Share Listing</h4>
+                  <div className="flex gap-2">
+                    <Input 
+                      readOnly 
+                      value={currentUrl} 
+                      className="h-10 bg-white/5 border-white/10 rounded-none text-xs focus:ring-0"
+                    />
+                    <Button 
+                      size="sm" 
+                      className="btn-copper h-10 px-4 gap-2"
+                      onClick={handleCopyLink}
+                    >
+                      <Copy className="w-3 h-3" />
+                      Copy
+                    </Button>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         </section>
 
@@ -279,8 +329,24 @@ function PropertyDetail({ property }: { property: Property }) {
 function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
   const [activeImage, setActiveImage] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
+  const { toast } = useToast();
   const allImages = [project.image, ...(project.gallery || [])];
   const similarProjects = OFF_PLAN_PROJECTS.filter(p => p.id !== project.id).slice(0, 4);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(currentUrl);
+    toast({
+      title: "Link Copied",
+      description: "The listing URL has been copied to your clipboard.",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#B8860B] selection:text-white pb-32 w-full">
@@ -487,7 +553,34 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
 
               {/* Social Share Block */}
               <div className="flex justify-between items-center px-6 py-6 border border-white/10 bg-[#0a0a0a]">
-                {[Mail, Facebook, Linkedin, MessageCircle, Share2].map((Icon, idx) => (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button className="text-white/30 hover:text-[#B8860B] transition-colors">
+                      <Share2 className="w-5 h-5" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 bg-black border-white/10 text-white rounded-none p-4" align="center">
+                    <div className="space-y-4">
+                      <h4 className="font-headline text-[10px] font-bold uppercase tracking-widest text-[#B8860B]">Share Listing</h4>
+                      <div className="flex gap-2">
+                        <Input 
+                          readOnly 
+                          value={currentUrl} 
+                          className="h-10 bg-white/5 border-white/10 rounded-none text-xs focus:ring-0"
+                        />
+                        <Button 
+                          size="sm" 
+                          className="btn-copper h-10 px-4 gap-2"
+                          onClick={handleCopyLink}
+                        >
+                          <Copy className="w-3 h-3" />
+                          Copy
+                        </Button>
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+                {[Mail, Facebook, Linkedin, MessageCircle].map((Icon, idx) => (
                   <button key={idx} className="text-white/30 hover:text-[#B8860B] transition-colors">
                     <Icon className="w-5 h-5" />
                   </button>
