@@ -11,6 +11,8 @@ export interface OffPlanProject {
   permitNumber?: string;
   image: string;
   location: string;
+  latitude?: number | null;
+  longitude?: number | null;
   price: string;
   handoverDate: string;
   exclusive?: boolean;

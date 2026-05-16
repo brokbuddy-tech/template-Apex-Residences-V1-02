@@ -9,6 +9,9 @@ export interface Property {
   price: string;
   priceValue: number;
   location: string;
+  mapAddress?: string;
+  latitude?: number | null;
+  longitude?: number | null;
   beds: number;
   baths: number;
   sqft: number;

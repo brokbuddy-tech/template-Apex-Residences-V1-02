@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
 import { BrochureDialog } from "@/components/listings/brochure-dialog";
 import { ListingCard } from "@/components/listings/listing-card";
+import { LocationMap } from "@/components/shared/location-map";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
@@ -318,15 +319,12 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
 
             <div className="space-y-10">
               <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B]">Location Intelligence</h2>
-              <div className="relative aspect-video w-full bg-white/5 border border-white/10 overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=2070&auto=format&fit=crop" alt="Map" fill className="object-cover opacity-50" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-black/80 backdrop-blur-md px-8 py-4 border border-[#D1A08B]/20 flex flex-col items-center">
-                    <MapPin className="w-6 h-6 text-[#D1A08B] mb-2" />
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-white">Interactive Pin</span>
-                  </div>
-                </div>
-              </div>
+              <LocationMap
+                latitude={property.latitude}
+                longitude={property.longitude}
+                addressLabel={property.mapAddress || property.location}
+                locationLabel={property.location}
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <NeighborhoodList title="Schools Nearby" items={property.nearbySchools} icon={School} />
                 <NeighborhoodList title="Points of Interest" items={property.pointsOfInterest} icon={MapPin} />
