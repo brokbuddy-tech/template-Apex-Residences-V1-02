@@ -177,7 +177,7 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
                   <h3 className="font-headline text-[9px] font-bold tracking-[0.4em] uppercase text-black">PROPERTY OVERVIEW</h3>
                   <div className="h-[1px] flex-grow bg-black/5" />
                 </div>
-                <p className="text-[10px] leading-relaxed text-black/50 font-body text-justify line-clamp-[10]">
+                <p className="text-[10px] leading-relaxed text-black/50 font-body text-justify whitespace-pre-line line-clamp-[10]">
                   {description}
                 </p>
               </div>

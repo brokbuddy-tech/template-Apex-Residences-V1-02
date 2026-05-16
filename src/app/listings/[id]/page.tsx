@@ -332,7 +332,7 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
 
             <div className="space-y-10">
               <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B]">Description</h2>
-              <p className="text-white/50 font-light leading-relaxed text-lg italic">{property.description}</p>
+              <p className="text-white/50 font-light leading-relaxed text-lg italic whitespace-pre-line">{property.description}</p>
               
               <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
                 <DetailRow label="Location" value={property.location} />
@@ -572,7 +572,7 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
                   "relative transition-all duration-700 overflow-hidden",
                   !isExpanded ? "max-h-[250px]" : "max-h-[2000px]"
                 )}>
-                  <p className="text-white/50 text-lg font-light leading-relaxed italic">
+                  <p className="text-white/50 text-lg font-light leading-relaxed italic whitespace-pre-line">
                     {project.longDescription}
                   </p>
                   {!isExpanded && (
@@ -617,7 +617,7 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
                </div>
                <div className="p-12 md:p-20 flex flex-col justify-center space-y-6">
                  <h3 className="text-xl md:text-2xl font-headline font-bold uppercase tracking-[0.2em] text-[#B8860B]">ATMOSPHERE</h3>
-                 <p className="text-white/40 font-light leading-loose tracking-wide text-base italic">
+                 <p className="text-white/40 font-light leading-loose tracking-wide text-base italic whitespace-pre-line">
                    {project.description}
                  </p>
                  <div className="w-10 h-[1px] bg-[#B8860B]/40" />
