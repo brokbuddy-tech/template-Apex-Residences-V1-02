@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { PROPERTIES, Property } from "@/lib/properties";
-import { OFF_PLAN_PROJECTS, OffPlanProject } from "@/lib/off-plan-projects";
+import type { Property } from "@/lib/properties";
+import type { OffPlanProject } from "@/lib/off-plan-projects";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
 import { BrochureDialog } from "@/components/listings/brochure-dialog";
@@ -47,13 +47,95 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { getProperties, getPropertyById as getLivePropertyById } from "@/lib/api";
+import { toApexOffPlanProject, toApexProperty } from "@/lib/live-mappers";
+
+function getLocationSegment(location: string) {
+  return location.split(",")[0]?.trim().toLowerCase() || null;
+}
 
 export default function ListingDetails() {
   const { id } = useParams();
-  const property = PROPERTIES.find(p => p.id === id);
-  const offPlanProject = OFF_PLAN_PROJECTS.find(p => p.id === id);
+  const listingId = Array.isArray(id) ? id[0] : id;
+  const [property, setProperty] = useState<Property | null>(null);
+  const [offPlanProject, setOffPlanProject] = useState<OffPlanProject | null>(null);
+  const [similarProperties, setSimilarProperties] = useState<Property[]>([]);
+  const [similarProjects, setSimilarProjects] = useState<OffPlanProject[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  if (!property && !offPlanProject) {
+  useEffect(() => {
+    let active = true;
+
+    async function loadListing() {
+      try {
+        const liveProperty = await getLivePropertyById(listingId);
+        if (!active) return;
+
+        if (liveProperty) {
+          if (liveProperty.status === 'Off-plan') {
+            const mappedProject = toApexOffPlanProject(liveProperty);
+            setOffPlanProject(mappedProject);
+            setProperty(null);
+            const relatedResponse = await getProperties({ readiness: 'OFFPLAN', limit: 48 });
+            if (!active) return;
+
+            const nextProjects = relatedResponse.properties
+              .map(toApexOffPlanProject)
+              .filter((candidate) => candidate.id !== mappedProject.id)
+              .slice(0, 4);
+
+            setSimilarProjects(nextProjects);
+            setSimilarProperties([]);
+          } else {
+            const mappedProperty = toApexProperty(liveProperty);
+            setProperty(mappedProperty);
+            setOffPlanProject(null);
+            const relatedResponse = await getProperties({
+              transactionType: liveProperty.transactionType === 'Rent' ? 'RENT' : 'SALE',
+              limit: 48,
+            });
+            if (!active) return;
+
+            const mappedRelatedProperties = relatedResponse.properties
+              .map(toApexProperty)
+              .filter((candidate) => candidate.id !== mappedProperty.id);
+            const currentLocation = getLocationSegment(mappedProperty.location);
+            const matchingLocation = currentLocation
+              ? mappedRelatedProperties.filter((candidate) => getLocationSegment(candidate.location) === currentLocation)
+              : mappedRelatedProperties;
+
+            setSimilarProperties((matchingLocation.length > 0 ? matchingLocation : mappedRelatedProperties).slice(0, 4));
+            setSimilarProjects([]);
+          }
+        } else {
+          setProperty(null);
+          setOffPlanProject(null);
+          setSimilarProperties([]);
+          setSimilarProjects([]);
+        }
+      } catch {
+        if (!active) return;
+        setProperty(null);
+        setOffPlanProject(null);
+        setSimilarProperties([]);
+        setSimilarProjects([]);
+      } finally {
+        if (active) {
+          setIsLoaded(true);
+        }
+      }
+    }
+
+    if (listingId) {
+      void loadListing();
+    }
+
+    return () => {
+      active = false;
+    };
+  }, [listingId]);
+
+  if (!property && !offPlanProject && isLoaded) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center space-y-4">
@@ -64,19 +146,26 @@ export default function ListingDetails() {
     );
   }
 
-  if (offPlanProject) {
-    return <OffPlanProjectDetail project={offPlanProject} />;
+  if (!property && !offPlanProject) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <p className="tracking-[0.4em] uppercase text-xs text-white/40">Loading listing...</p>
+      </div>
+    );
   }
 
-  return <PropertyDetail property={property!} />;
+  if (offPlanProject) {
+    return <OffPlanProjectDetail project={offPlanProject} similarProjects={similarProjects} />;
+  }
+
+  return <PropertyDetail property={property!} similarProperties={similarProperties} />;
 }
 
-function PropertyDetail({ property }: { property: Property }) {
+function PropertyDetail({ property, similarProperties }: { property: Property; similarProperties: Property[] }) {
   const [activeImage, setActiveImage] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
-  const similarProperties = PROPERTIES.filter(p => p.id !== property.id).slice(0, 4);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -276,7 +365,13 @@ function PropertyDetail({ property }: { property: Property }) {
                   <ConsultationDialog>
                     <Button className="w-full btn-copper h-12 gap-2 text-sm">Inquiry</Button>
                   </ConsultationDialog>
-                  <Button variant="outline" className="w-full btn-outline-white h-12 gap-2 text-sm border-white/10"><Phone className="w-4 h-4" /> Call Specialist</Button>
+                  {property.agent.phone ? (
+                    <Button asChild variant="outline" className="w-full btn-outline-white h-12 gap-2 text-sm border-white/10">
+                      <a href={`tel:${property.agent.phone}`}><Phone className="w-4 h-4" /> Call Specialist</a>
+                    </Button>
+                  ) : (
+                    <Button variant="outline" className="w-full btn-outline-white h-12 gap-2 text-sm border-white/10" disabled><Phone className="w-4 h-4" /> Call Specialist</Button>
+                  )}
                 </div>
               </div>
 
@@ -325,13 +420,12 @@ function PropertyDetail({ property }: { property: Property }) {
   );
 }
 
-function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
+function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanProject; similarProjects: OffPlanProject[] }) {
   const [activeImage, setActiveImage] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
   const allImages = [project.image, ...(project.gallery || [])];
-  const similarProjects = OFF_PLAN_PROJECTS.filter(p => p.id !== project.id).slice(0, 4);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -479,26 +573,22 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
               <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B]">
                 PAYMENT PLAN
               </h2>
-              <div className="grid grid-cols-2 lg:grid-cols-2 gap-0 border border-white/10">
-                <div className="p-16 border-r border-b border-white/10 flex flex-col items-center text-center space-y-4">
-                  <p className="text-[10px] uppercase font-bold tracking-widest text-white/40">Installment: 1</p>
-                  <div className="w-8 h-[1px] bg-[#B8860B]/50" />
-                  <p className="text-5xl lg:text-7xl font-bold text-[#B8860B]">10%</p>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">DOWN PAYMENT</p>
+              {project.paymentPlan.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-white/10">
+                  {project.paymentPlan.map((step, idx) => (
+                    <div key={`${step.label}-${idx}`} className="p-16 border-b border-white/10 md:border-r last:border-b-0 md:last:border-r-0 flex flex-col items-center text-center space-y-4">
+                      <p className="text-[10px] uppercase font-bold tracking-widest text-white/40">Installment: {idx + 1}</p>
+                      <div className="w-8 h-[1px] bg-[#B8860B]/50" />
+                      <p className="text-5xl lg:text-7xl font-bold text-[#B8860B]">{step.percentage}</p>
+                      <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">{step.label}</p>
+                    </div>
+                  ))}
                 </div>
-                <div className="p-16 border-b border-white/10 flex flex-col items-center text-center space-y-4">
-                  <p className="text-[10px] uppercase font-bold tracking-widest text-white/40">Installment: 2</p>
-                  <div className="w-8 h-[1px] bg-[#B8860B]/50" />
-                  <p className="text-5xl lg:text-7xl font-bold text-[#B8860B]">80%</p>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">DURING CONSTRUCTION</p>
+              ) : (
+                <div className="border border-white/10 bg-white/[0.02] p-16 text-center text-white/40 uppercase tracking-[0.3em]">
+                  Detailed payment milestones will be shared on request.
                 </div>
-                <div className="col-span-full p-16 flex flex-col items-center text-center space-y-4">
-                  <p className="text-[10px] uppercase font-bold tracking-widest text-white/40">Installment: 3</p>
-                  <div className="w-8 h-[1px] bg-[#B8860B]/50" />
-                  <p className="text-5xl lg:text-7xl font-bold text-[#B8860B]">10%</p>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white">ON HANDOVER</p>
-                </div>
-              </div>
+              )}
             </section>
           </div>
 
@@ -522,16 +612,24 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                     </Button>
                   </BrochureDialog>
                   <div className="flex gap-3">
-                    <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10">CALL US</Button>
+                    {project.agent.phone ? (
+                      <Button asChild variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10">
+                        <a href={`tel:${project.agent.phone}`}>CALL US</a>
+                      </Button>
+                    ) : (
+                      <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10" disabled>CALL US</Button>
+                    )}
                     <ConsultationDialog>
                       <Button className="flex-1 btn-copper h-12 text-[9px] font-bold">INQUIRY</Button>
                     </ConsultationDialog>
                   </div>
                 </div>
-                <a href="#" className="flex items-center gap-2 text-[#25D366] text-[10px] font-bold uppercase tracking-[0.2em] hover:opacity-80 transition-opacity">
-                  <MessageCircle className="w-4 h-4 fill-current" />
-                  WhatsApp
-                </a>
+                {project.agent.whatsapp && (
+                  <a href={`https://wa.me/${project.agent.whatsapp.replace(/\D/g, "")}`} className="flex items-center gap-2 text-[#25D366] text-[10px] font-bold uppercase tracking-[0.2em] hover:opacity-80 transition-opacity">
+                    <MessageCircle className="w-4 h-4 fill-current" />
+                    WhatsApp
+                  </a>
+                )}
               </div>
 
               {/* Quick Facts Technical Card */}
@@ -542,7 +640,7 @@ function OffPlanProjectDetail({ project }: { project: OffPlanProject }) {
                   <DetailRow label="Developer" value={project.developer} />
                   <DetailRow label="Type" value={project.type} />
                   <DetailRow label="Handover" value={project.handoverDate} />
-                  <DetailRow label="DLD Permit" value="238290231" />
+                  <DetailRow label="DLD Permit" value={project.permitNumber || "Available on request"} />
                 </div>
                 <div className="pt-8 border-t border-white/10 flex flex-col items-center gap-4">
                   <div className="bg-white p-3"><QrCode className="w-20 h-20 text-black" /></div>

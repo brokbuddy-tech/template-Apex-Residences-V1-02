@@ -1,12 +1,41 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { PropertyCard } from "./property-card";
-import { PROPERTIES } from "@/lib/properties";
+import type { Property } from "@/lib/properties";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getProperties } from "@/lib/api";
+import { toApexProperty } from "@/lib/live-mappers";
 
 export function ListingSection() {
+  const [properties, setProperties] = useState<Property[]>([]);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadProperties() {
+      try {
+        const liveResponse = await getProperties({ limit: 3 });
+        if (!active) return;
+
+        const liveProperties = liveResponse.properties.map(toApexProperty);
+        setProperties(liveProperties.slice(0, 3));
+      } catch {
+        if (active) {
+          setProperties([]);
+        }
+      }
+    }
+
+    void loadProperties();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <section className="py-24 px-6 md:px-12 bg-black">
       <div className="max-w-[1600px] mx-auto">
@@ -15,17 +44,25 @@ export function ListingSection() {
             <span className="text-[#B8860B] font-bold uppercase tracking-[0.4em] text-[10px] block">New Arrivals</span>
             <h2 className="font-headline text-3xl md:text-5xl font-light text-white tracking-wider">LATEST <span className="font-bold">LISTINGS</span></h2>
           </div>
-          <Button variant="link" className="group text-[#B8860B] font-bold text-[10px] uppercase tracking-[0.2em] p-0 hover:no-underline">
-            View all properties
-            <ChevronRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <Button asChild variant="link" className="group text-[#B8860B] font-bold text-[10px] uppercase tracking-[0.2em] p-0 hover:no-underline">
+            <Link href="/buy">
+              View all properties
+              <ChevronRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROPERTIES.map((prop) => (
-            <PropertyCard key={prop.id} {...prop} />
-          ))}
-        </div>
+        {properties.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {properties.map((property) => (
+              <PropertyCard key={property.id} {...property} />
+            ))}
+          </div>
+        ) : (
+          <div className="border border-white/10 bg-white/5 px-8 py-16 text-center text-sm uppercase tracking-[0.3em] text-white/40">
+            Live listings will appear here once they are available.
+          </div>
+        )}
       </div>
     </section>
   );

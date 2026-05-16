@@ -6,6 +6,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/logo";
+import { getSiteConfig } from "@/lib/api";
+import { getAgencyDisplayName } from "@/lib/live-mappers";
+import type { SiteConfig } from "@/lib/live-types";
 import {
   Sheet,
   SheetContent,
@@ -16,6 +20,7 @@ import {
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,14 +30,40 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    let active = true;
+
+    async function loadSiteConfig() {
+      try {
+        const nextSiteConfig = await getSiteConfig();
+        if (active) {
+          setSiteConfig(nextSiteConfig);
+        }
+      } catch {
+        if (active) {
+          setSiteConfig(null);
+        }
+      }
+    }
+
+    void loadSiteConfig();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const navLinks = [
     { href: "/buy", label: "BUY" },
     { href: "/rent", label: "RENT" },
     { href: "/sell", label: "SELL" },
     { href: "/off-plan", label: "OFF-PLAN" },
+    { href: "/agents", label: "AGENTS" },
     { href: "/services", label: "SERVICES" },
     { href: "/about", label: "ABOUT US" },
   ];
+  const displayName = getAgencyDisplayName(siteConfig);
+  const logoUrl = siteConfig?.profile?.logo || null;
 
   return (
     <header
@@ -42,16 +73,8 @@ export function Header() {
       )}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 md:gap-3">
-          <div className="w-5 h-5 md:w-8 md:h-8 flex items-center justify-center">
-            <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 10L10 90H30L50 50L70 90H90L50 10Z" fill="#B8860B" />
-              <path d="M50 30L35 60H65L50 30Z" fill="white" />
-            </svg>
-          </div>
-          <span className="font-headline text-[11px] md:text-xl font-bold tracking-[0.2em] text-white whitespace-nowrap">
-            APEX <span className="font-light">RESIDENCES</span>
-          </span>
+        <Link href="/" aria-label={displayName}>
+          <Logo logoUrl={logoUrl} name={displayName} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-10 text-[12px] font-bold uppercase tracking-[0.2em] text-white/80">
@@ -80,6 +103,9 @@ export function Header() {
                 </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-8 text-[14px] font-bold uppercase tracking-[0.2em]">
+                <Link href="/" className="text-white/70 hover:text-[#B8860B] transition-colors border-b border-white/5 pb-2">
+                  {displayName}
+                </Link>
                 {navLinks.map((link) => (
                   <Link 
                     key={link.href} 

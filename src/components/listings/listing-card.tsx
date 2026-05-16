@@ -8,6 +8,7 @@ import { Maximize, Bed, Bath, MapPin, Phone, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Property } from "@/lib/properties";
+import { toSocialUrl } from "@/lib/api";
 
 export function ListingCard({
   id,
@@ -22,6 +23,8 @@ export function ListingCard({
   listingType,
   agent
 }: Property) {
+  const whatsappHref = toSocialUrl('whatsapp', agent.whatsapp || agent.phone || null);
+
   return (
     <div className="group relative bg-[#0a0a0a] overflow-hidden border border-white/5 transition-all duration-700 hover:border-[#B8860B]/30 shadow-2xl flex flex-col h-full">
       {/* Media Header */}
@@ -105,16 +108,38 @@ export function ListingCard({
             </div>
             <div className="flex flex-col">
               <span className="text-[8px] text-white/30 uppercase font-bold tracking-widest">Expert Consultant</span>
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">{agent.name}</span>
+              {agent.slug ? (
+                <Link href={`/agents/${agent.slug}`} className="text-[10px] font-bold text-white uppercase tracking-widest hover:text-[#B8860B] transition-colors">
+                  {agent.name}
+                </Link>
+              ) : (
+                <span className="text-[10px] font-bold text-white uppercase tracking-widest">{agent.name}</span>
+              )}
             </div>
           </div>
           
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="icon" className="w-9 h-9 rounded-none border-white/10 text-white hover:bg-[#B8860B] hover:border-[#B8860B] hover:text-white transition-all bg-transparent">
-              <Phone className="w-4 h-4" />
+            <Button asChild={Boolean(agent.phone)} variant="outline" size="icon" className="w-9 h-9 rounded-none border-white/10 text-white hover:bg-[#B8860B] hover:border-[#B8860B] hover:text-white transition-all bg-transparent">
+              {agent.phone ? (
+                <a href={`tel:${agent.phone}`} aria-label={`Call ${agent.name}`}>
+                  <Phone className="w-4 h-4" />
+                </a>
+              ) : (
+                <span>
+                  <Phone className="w-4 h-4" />
+                </span>
+              )}
             </Button>
-            <Button variant="outline" size="icon" className="w-9 h-9 rounded-none border-white/10 text-white hover:bg-green-600/20 hover:border-green-600 hover:text-green-500 transition-all bg-transparent">
-              <MessageCircle className="w-4 h-4" />
+            <Button asChild={Boolean(whatsappHref)} variant="outline" size="icon" className="w-9 h-9 rounded-none border-white/10 text-white hover:bg-green-600/20 hover:border-green-600 hover:text-green-500 transition-all bg-transparent">
+              {whatsappHref ? (
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp ${agent.name}`}>
+                  <MessageCircle className="w-4 h-4" />
+                </a>
+              ) : (
+                <span>
+                  <MessageCircle className="w-4 h-4" />
+                </span>
+              )}
             </Button>
           </div>
         </div>

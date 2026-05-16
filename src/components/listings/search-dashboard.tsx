@@ -23,6 +23,8 @@ import { cn } from "@/lib/utils";
 
 interface SearchDashboardProps {
   title: string;
+  resultCount?: number;
+  resultLabel?: string;
 }
 
 const AMENITIES = [
@@ -55,7 +57,11 @@ const PLACES = [
   "City Walk"
 ];
 
-export function SearchDashboard({ title }: SearchDashboardProps) {
+export function SearchDashboard({
+  title,
+  resultCount,
+  resultLabel = "LISTINGS",
+}: SearchDashboardProps) {
   const [beds, setBeds] = useState<string[]>([]);
   const [baths, setBaths] = useState<string[]>([]);
   const [unit, setUnit] = useState<"SQ.M" | "SQ.FT">("SQ.FT");
@@ -273,7 +279,9 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
 
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 w-full lg:w-auto">
             <div className="text-[#B8860B] text-[14px] font-bold uppercase tracking-[0.4em] order-2 sm:order-1">
-              1,248 PROJECTS
+              {typeof resultCount === "number"
+                ? `${resultCount.toLocaleString("en-US")} ${resultLabel}`
+                : `LIVE ${resultLabel}`}
             </div>
             <button 
               className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest order-3 sm:order-2" 

@@ -1,172 +1,215 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { cn } from "@/lib/utils";
 import { ConsultationDialog } from "./consultation-dialog";
+import { getProperties } from "@/lib/api";
+import { toApexOffPlanProject } from "@/lib/live-mappers";
+import type { OffPlanProject } from "@/lib/off-plan-projects";
 
-const EXCLUSIVES_DATA = [
-  {
-    id: 1,
-    title: "THE TERRACES MARASI DRIVE",
-    location: "Business Bay",
-    image: PlaceHolderImages.find(img => img.id === "excl-1")?.imageUrl || "",
+type ExclusiveItem = {
+  id: string;
+  title: string;
+  location: string;
+  image: string;
+  features: Array<{ label: string; value: string }>;
+  summary: string;
+  handover: string;
+  href: string;
+};
+
+function toExclusiveItem(project: OffPlanProject): ExclusiveItem {
+  return {
+    id: project.id,
+    title: project.title,
+    location: project.location,
+    image: project.image,
     features: [
-      { label: "BUSINESS SPOT", value: "Perfect residence for businessmen and executives" },
-      { label: "COMFORTABILITY", value: "Resort style living priorities and premium services" },
-      { label: "PROPERTY RANGE", value: "Range of apartments, duplexes and penthouses" },
-      { label: "VIEW", value: "Breathtaking views of Burj Khalifa" },
+      { label: "DEVELOPER", value: project.developer },
+      { label: "PROPERTY TYPE", value: project.type },
+      { label: "STARTING PRICE", value: project.price },
+      { label: "HANDOVER", value: project.handoverDate },
     ],
-    summary: "Ideally located in the heart of Business Bay, this landmark development offers seamless connectivity to Downtown Dubai. Burj Khalifa and Dubai Mall are within walking distance, and the International Airport is just 15 minutes away.",
-    handover: "June 30, 2024",
-  },
-  {
-    id: 2,
-    title: "SKYLINE VISTA RESIDENCES",
-    location: "Downtown Dubai",
-    image: PlaceHolderImages.find(img => img.id === "prop-1")?.imageUrl || "",
-    features: [
-      { label: "LUXURY FINISH", value: "Italian marble and premium hardwood flooring" },
-      { label: "SMART HOME", value: "Fully integrated automation for lights and climate" },
-      { label: "POOL DECK", value: "Private infinity pool overlooking the city skyline" },
-      { label: "CONCIERGE", value: "24/7 dedicated lifestyle management services" },
-    ],
-    summary: "A masterpiece of modern architecture in Downtown Dubai, offering residents an unparalleled urban experience. Surrounded by the city's finest dining and entertainment venues.",
-    handover: "December 15, 2024",
-  }
-];
+    summary: project.description,
+    handover: project.handoverDate,
+    href: `/listings/${project.id}`,
+  };
+}
 
 export function ExclusivesSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const activeItem = EXCLUSIVES_DATA[currentIndex];
-  const nextItem = EXCLUSIVES_DATA[(currentIndex + 1) % EXCLUSIVES_DATA.length];
+  const [items, setItems] = useState<ExclusiveItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadExclusives() {
+      try {
+        const liveResponse = await getProperties({ readiness: "OFFPLAN", limit: 8 });
+        if (!active) return;
+
+        const nextItems = liveResponse.properties
+          .map(toApexOffPlanProject)
+          .slice(0, 4)
+          .map(toExclusiveItem);
+
+        setItems(nextItems);
+      } catch {
+        if (active) {
+          setItems([]);
+        }
+      } finally {
+        if (active) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    void loadExclusives();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (currentIndex >= items.length && items.length > 0) {
+      setCurrentIndex(0);
+    }
+  }, [currentIndex, items.length]);
+
+  const activeItem = items[currentIndex];
+  const nextItem = items.length > 1 ? items[(currentIndex + 1) % items.length] : activeItem;
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % EXCLUSIVES_DATA.length);
+    if (items.length < 2) return;
+    setCurrentIndex((prev) => (prev + 1) % items.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + EXCLUSIVES_DATA.length) % EXCLUSIVES_DATA.length);
+    if (items.length < 2) return;
+    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
   };
 
   return (
     <section className="bg-black py-24 px-6 md:px-12 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="mb-12 animate-in fade-in slide-in-from-top-4 duration-1000">
           <h2 className="font-headline text-3xl md:text-4xl font-light tracking-[0.4em] text-white uppercase mb-3">
             EXCLUSIVES
           </h2>
           <p className="text-white/40 text-xs font-light italic tracking-[0.2em]">
-            Discover the outstanding range of Dubai properties only with APEX RESIDENCES
+            Discover live off-plan opportunities curated for Apex Residences clients
           </p>
         </div>
 
-        {/* Golden Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
-          
-          {/* Left Column: Primary Visual (flex-2 equivalent) */}
-          <div key={`img-${activeItem.id}`} className="lg:col-span-2 relative aspect-[4/5] overflow-hidden group animate-in fade-in duration-1000 zoom-in-105">
-            <Image
-              src={activeItem.image}
-              alt={activeItem.title}
-              fill
-              className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-8 left-8 space-y-2">
-              <div className="flex items-center gap-2 text-[#D1A08B]">
-                <MapPin className="w-3.5 h-3.5" />
-                <span className="text-[9px] font-bold uppercase tracking-widest">{activeItem.location}</span>
-              </div>
-              <h3 className="text-white font-headline text-xl font-bold tracking-wider max-w-xs uppercase">
-                {activeItem.title}
-              </h3>
-            </div>
+        {!activeItem ? (
+          <div className="border border-white/10 bg-white/5 px-8 py-16 text-center text-sm uppercase tracking-[0.3em] text-white/40">
+            {isLoading ? "Loading live exclusives..." : "No live exclusive projects are available right now."}
           </div>
-
-          {/* Center Column: Feature Details (flex-2 equivalent) */}
-          <div key={`details-${activeItem.id}`} className="lg:col-span-2 flex flex-col justify-between py-2 space-y-10 animate-in fade-in slide-in-from-right-8 duration-1000">
-            {/* Feature Grid */}
-            <div className="grid grid-cols-2 gap-x-10 gap-y-12">
-              {activeItem.features.map((feature, idx) => (
-                <div key={idx} className="space-y-3 relative group">
-                  <h4 className="text-[#D1A08B] text-[9px] font-bold uppercase tracking-[0.3em]">
-                    {feature.label}
-                  </h4>
-                  <p className="text-white/60 text-[11px] font-light leading-relaxed">
-                    {feature.value}
-                  </p>
-                  <div className="absolute -bottom-6 left-0 w-full h-[1px] bg-white/5 group-even:hidden" />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+              <div key={`img-${activeItem.id}`} className="lg:col-span-2 relative aspect-[4/5] overflow-hidden group animate-in fade-in duration-1000 zoom-in-105">
+                <Image
+                  src={activeItem.image}
+                  alt={activeItem.title}
+                  fill
+                  className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-8 left-8 space-y-2">
+                  <div className="flex items-center gap-2 text-[#D1A08B]">
+                    <MapPin className="w-3.5 h-3.5" />
+                    <span className="text-[9px] font-bold uppercase tracking-widest">{activeItem.location}</span>
+                  </div>
+                  <h3 className="text-white font-headline text-xl font-bold tracking-wider max-w-xs uppercase">
+                    {activeItem.title}
+                  </h3>
                 </div>
-              ))}
-            </div>
-
-            {/* Summary & Handover */}
-            <div className="space-y-6">
-              <p className="text-white/40 text-xs font-light leading-loose tracking-wide">
-                {activeItem.summary}
-              </p>
-              <div className="pt-6 border-t border-white/10">
-                <p className="text-white text-[10px] font-bold uppercase tracking-[0.3em]">
-                  Handover date: <span className="text-[#D1A08B]">{activeItem.handover}</span>
-                </p>
               </div>
+
+              <div key={`details-${activeItem.id}`} className="lg:col-span-2 flex flex-col justify-between py-2 space-y-10 animate-in fade-in slide-in-from-right-8 duration-1000">
+                <div className="grid grid-cols-2 gap-x-10 gap-y-12">
+                  {activeItem.features.map((feature, idx) => (
+                    <div key={idx} className="space-y-3 relative group">
+                      <h4 className="text-[#D1A08B] text-[9px] font-bold uppercase tracking-[0.3em]">
+                        {feature.label}
+                      </h4>
+                      <p className="text-white/60 text-[11px] font-light leading-relaxed">
+                        {feature.value}
+                      </p>
+                      <div className="absolute -bottom-6 left-0 w-full h-[1px] bg-white/5 group-even:hidden" />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="space-y-6">
+                  <p className="text-white/40 text-xs font-light leading-loose tracking-wide">
+                    {activeItem.summary}
+                  </p>
+                  <div className="pt-6 border-t border-white/10">
+                    <p className="text-white text-[10px] font-bold uppercase tracking-[0.3em]">
+                      Handover date: <span className="text-[#D1A08B]">{activeItem.handover}</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-4 pt-4">
+                  <ConsultationDialog>
+                    <Button className="bg-[#D1A08B] hover:bg-[#D1A08B]/90 text-white rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold">
+                      Enquire now
+                    </Button>
+                  </ConsultationDialog>
+                  <Button asChild variant="outline" className="border-[#B8860B]/30 text-[#B8860B] hover:bg-[#B8860B]/5 rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold bg-transparent">
+                    <Link href={activeItem.href}>Learn more</Link>
+                  </Button>
+                </div>
+              </div>
+
+              {nextItem && items.length > 1 && (
+                <div key={`peek-${nextItem.id}`} className="hidden lg:block lg:col-span-1 relative h-full grayscale opacity-20 group cursor-pointer transition-all duration-1000 hover:opacity-40 animate-in fade-in slide-in-from-right-12" onClick={handleNext}>
+                  <Image
+                    src={nextItem.image}
+                    alt="Next Property"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/50" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                     <span className="text-white text-[9px] font-bold uppercase tracking-[0.5em] -rotate-90 whitespace-nowrap">NEXT PROPERTY</span>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              <ConsultationDialog>
-                <Button className="bg-[#D1A08B] hover:bg-[#D1A08B]/90 text-white rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold">
-                  Enquire now
-                </Button>
-              </ConsultationDialog>
-              <Button variant="outline" className="border-[#B8860B]/30 text-[#B8860B] hover:bg-[#B8860B]/5 rounded-none px-10 h-12 uppercase tracking-[0.3em] text-[9px] font-bold bg-transparent">
-                Learn more
-              </Button>
+            <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
+              <button
+                onClick={handlePrev}
+                className="text-white/20 hover:text-[#D1A08B] transition-colors text-[9px] font-bold uppercase tracking-[0.4em]"
+              >
+                PREV
+              </button>
+
+              <div className="text-white font-light tracking-[0.4em] text-[10px]">
+                <span className="text-white font-bold">{currentIndex + 1}</span>
+                <span className="mx-3 text-white/10">/</span>
+                <span className="text-white/30">{items.length}</span>
+              </div>
+
+              <button
+                onClick={handleNext}
+                className="text-white/20 hover:text-[#D1A08B] transition-colors text-[9px] font-bold uppercase tracking-[0.4em]"
+              >
+                NEXT
+              </button>
             </div>
-          </div>
-
-          {/* Right Column: Peek-Ahead (flex-1 equivalent) */}
-          <div key={`peek-${nextItem.id}`} className="hidden lg:block lg:col-span-1 relative h-full grayscale opacity-20 group cursor-pointer transition-all duration-1000 hover:opacity-40 animate-in fade-in slide-in-from-right-12" onClick={handleNext}>
-            <Image
-              src={nextItem.image}
-              alt="Next Property"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/50" />
-            <div className="absolute inset-0 flex items-center justify-center">
-               <span className="text-white text-[9px] font-bold uppercase tracking-[0.5em] -rotate-90 whitespace-nowrap">NEXT PROPERTY</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Carousel Controls */}
-        <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
-          <button 
-            onClick={handlePrev}
-            className="text-white/20 hover:text-[#D1A08B] transition-colors text-[9px] font-bold uppercase tracking-[0.4em]"
-          >
-            PREV
-          </button>
-          
-          <div className="text-white font-light tracking-[0.4em] text-[10px]">
-            <span className="text-white font-bold">{currentIndex + 1}</span>
-            <span className="mx-3 text-white/10">/</span>
-            <span className="text-white/30">{EXCLUSIVES_DATA.length}</span>
-          </div>
-
-          <button 
-            onClick={handleNext}
-            className="text-white/20 hover:text-[#D1A08B] transition-colors text-[9px] font-bold uppercase tracking-[0.4em]"
-          >
-            NEXT
-          </button>
-        </div>
+          </>
+        )}
       </div>
     </section>
   );
