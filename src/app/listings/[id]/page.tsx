@@ -9,6 +9,7 @@ import type { OffPlanProject } from "@/lib/off-plan-projects";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
 import { BrochureDialog } from "@/components/listings/brochure-dialog";
+import { ListingImageLightbox } from "@/components/listings/listing-image-lightbox";
 import { ListingCard } from "@/components/listings/listing-card";
 import { LocationMap } from "@/components/shared/location-map";
 import { cn } from "@/lib/utils";
@@ -42,12 +43,6 @@ import {
   FileText,
   Copy
 } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { getProperties, getPropertyById as getLivePropertyById } from "@/lib/api";
 import { toApexOffPlanProject, toApexProperty } from "@/lib/live-mappers";
 
@@ -189,6 +184,11 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
     });
   };
 
+  const openGalleryAt = (index: number) => {
+    setActiveImage(index);
+    setIsGalleryOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32 w-full">
       <main className="pt-24 w-full">
@@ -204,49 +204,83 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 aspect-[16/10] md:aspect-[16/7]">
-            <div className="md:col-span-3 relative group overflow-hidden">
-              <Image 
-                src={property.gallery[activeImage]} 
-                alt={property.title} 
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 aspect-[16/10] md:aspect-[16/7]">
+              <div
+                className="md:col-span-3 relative group overflow-hidden cursor-zoom-in"
+                role="button"
+                tabIndex={0}
+                aria-label={`Open gallery image ${activeImage + 1} of ${property.gallery.length}`}
+                onClick={() => setIsGalleryOpen(true)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setIsGalleryOpen(true);
+                  }
+                }}
+              >
+                <Image 
+                  src={property.gallery[activeImage]} 
+                  alt={property.title} 
                 fill 
                 className="object-cover transition-transform duration-1000 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               
               {/* Mobile Slide Controls */}
-              <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
-                <button 
-                  onClick={() => setActiveImage((prev) => (prev - 1 + property.gallery.length) % property.gallery.length)}
-                  className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button 
-                  onClick={() => setActiveImage((prev) => (prev + 1) % property.gallery.length)}
-                  className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
-                >
-                  <ChevronRight className="w-6 h-6" />
+                <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
+                  <button 
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setActiveImage((prev) => (prev - 1 + property.gallery.length) % property.gallery.length);
+                    }}
+                    className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button 
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setActiveImage((prev) => (prev + 1) % property.gallery.length);
+                    }}
+                    className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                  >
+                    <ChevronRight className="w-6 h-6" />
                 </button>
               </div>
 
               {/* Mobile View All Button */}
-              <div className="absolute bottom-4 right-4 md:hidden z-20">
-                <Button 
-                  onClick={() => setIsGalleryOpen(true)}
-                  className="bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-none h-10 px-4 gap-2 text-[10px] font-bold uppercase tracking-widest hover:bg-black/80 transition-all"
-                >
-                  <Images className="w-4 h-4" />
+                <div className="absolute bottom-4 right-4 md:hidden z-20">
+                  <Button 
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setIsGalleryOpen(true);
+                    }}
+                    className="bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-none h-10 px-4 gap-2 text-[10px] font-bold uppercase tracking-widest hover:bg-black/80 transition-all"
+                  >
+                    <Images className="w-4 h-4" />
                   View all {property.gallery.length} photos
                 </Button>
               </div>
-            </div>
-            <div className="hidden md:flex flex-col gap-6">
-              {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
-                <div key={idx} className="relative flex-1 group overflow-hidden cursor-pointer" onClick={() => setActiveImage(property.gallery.indexOf(img))}>
-                  <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
-                </div>
+              </div>
+              <div className="hidden md:flex flex-col gap-6">
+                {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
+                  <div
+                    key={`${img}-${idx}`}
+                    className="relative flex-1 group overflow-hidden cursor-zoom-in"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open gallery image ${property.gallery.indexOf(img) + 1} of ${property.gallery.length}`}
+                    onClick={() => openGalleryAt(property.gallery.indexOf(img))}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        openGalleryAt(property.gallery.indexOf(img));
+                      }
+                    }}
+                  >
+                    <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
+                  </div>
               ))}
             </div>
           </div>
@@ -406,27 +440,21 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
         </section>
       </main>
 
-      {/* Gallery Dialog for Mobile */}
-      <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
-        <DialogContent className="max-w-[95vw] h-[90vh] bg-black border-white/10 p-0 overflow-hidden flex flex-col rounded-none">
-          <DialogHeader className="p-6 border-b border-white/5 shrink-0">
-            <DialogTitle className="text-white font-headline text-lg uppercase tracking-widest">{property.title}</DialogTitle>
-          </DialogHeader>
-          <div className="flex-grow overflow-y-auto p-4 space-y-4">
-            {property.gallery.map((img, idx) => (
-              <div key={idx} className="relative aspect-video w-full border border-white/10">
-                <Image src={img} alt={`Gallery image ${idx + 1}`} fill className="object-cover" />
-              </div>
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
+      <ListingImageLightbox
+        images={property.gallery}
+        title={property.title}
+        open={isGalleryOpen}
+        activeIndex={activeImage}
+        onOpenChange={setIsGalleryOpen}
+        onActiveIndexChange={setActiveImage}
+      />
     </div>
   );
 }
 
 function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanProject; similarProjects: OffPlanProject[] }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
@@ -444,6 +472,11 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
       title: "Link Copied",
       description: "The listing URL has been copied to your clipboard.",
     });
+  };
+
+  const openGalleryAt = (index: number) => {
+    setActiveImage(index);
+    setIsGalleryOpen(true);
   };
 
   return (
@@ -470,7 +503,19 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
           <div className="lg:w-[75%] space-y-24">
             {/* Visual Gallery */}
             <section className="space-y-6">
-              <div className="relative aspect-[16/9] overflow-hidden group border border-white/5 bg-[#0a0a0a]">
+              <div
+                className="relative aspect-[16/9] overflow-hidden group border border-white/5 bg-[#0a0a0a] cursor-zoom-in"
+                role="button"
+                tabIndex={0}
+                aria-label={`Open gallery image ${activeImage + 1} of ${allImages.length}`}
+                onClick={() => setIsGalleryOpen(true)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setIsGalleryOpen(true);
+                  }
+                }}
+              >
                 <Image 
                   src={allImages[activeImage]} 
                   alt={project.title} 
@@ -482,13 +527,19 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
                 {/* Mobile Slide Controls for Off-Plan */}
                 <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
                   <button 
-                    onClick={() => setActiveImage((prev) => (prev - 1 + allImages.length) % allImages.length)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setActiveImage((prev) => (prev - 1 + allImages.length) % allImages.length);
+                    }}
                     className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button 
-                    onClick={() => setActiveImage((prev) => (prev + 1) % allImages.length)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setActiveImage((prev) => (prev + 1) % allImages.length);
+                    }}
                     className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
                   >
                     <ChevronRight className="w-6 h-6" />
@@ -499,7 +550,7 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
                 {allImages.map((img, idx) => (
                   <button 
                     key={idx} 
-                    onClick={() => setActiveImage(idx)}
+                    onClick={() => openGalleryAt(idx)}
                     className={cn(
                       "relative w-32 aspect-video flex-shrink-0 border-2 transition-all duration-300",
                       activeImage === idx ? "border-[#B8860B] opacity-100" : "border-white/5 opacity-40 hover:opacity-100"
@@ -712,6 +763,15 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
           </div>
         </section>
       </main>
+
+      <ListingImageLightbox
+        images={allImages}
+        title={project.title}
+        open={isGalleryOpen}
+        activeIndex={activeImage}
+        onOpenChange={setIsGalleryOpen}
+        onActiveIndexChange={setActiveImage}
+      />
     </div>
   );
 }
