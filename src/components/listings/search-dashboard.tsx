@@ -208,11 +208,11 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
         </div>
 
         {/* Bottom Action Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/5">
-          <div className="flex flex-wrap items-center gap-6">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 pt-8 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row items-center gap-6 w-full lg:w-auto">
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" className="h-12 border-white/10 text-white rounded-none uppercase text-[11px] font-bold tracking-[0.3em] px-8 hover:bg-white hover:text-black gap-2">
+                <Button variant="outline" className="w-full sm:w-auto h-12 border-white/10 text-white rounded-none uppercase text-[11px] font-bold tracking-[0.3em] px-8 hover:bg-white hover:text-black gap-2">
                   <SlidersHorizontal className="w-3.5 h-3.5" />
                   All Filters
                 </Button>
@@ -255,10 +255,10 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
               </DialogContent>
             </Dialog>
 
-            <div className="flex items-center gap-3">
-              <span className="text-[14px] text-white/40 font-bold uppercase tracking-widest">Sort By:</span>
+            <div className="flex items-center justify-between sm:justify-start gap-3 w-full sm:w-auto">
+              <span className="text-[12px] text-white/40 font-bold uppercase tracking-widest whitespace-nowrap">Sort By:</span>
               <Select defaultValue="popularity">
-                <SelectTrigger className="w-[200px] bg-transparent border border-white/10 text-white rounded-none h-11 px-4 uppercase text-[11px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
+                <SelectTrigger className="flex-1 sm:w-[200px] bg-transparent border border-white/10 text-white rounded-none h-11 px-4 uppercase text-[11px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-black border-white/10 text-white rounded-none">
@@ -271,15 +271,18 @@ export function SearchDashboard({ title }: SearchDashboardProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-8">
-            <div className="text-[#B8860B] text-[16px] font-bold uppercase tracking-[0.4em]">
+          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 w-full lg:w-auto">
+            <div className="text-[#B8860B] text-[14px] font-bold uppercase tracking-[0.4em] order-2 sm:order-1">
               1,248 PROJECTS
             </div>
-            <button className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest" onClick={handleReset}>
+            <button 
+              className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest order-3 sm:order-2" 
+              onClick={handleReset}
+            >
               <RefreshCcw className="w-4 h-4" />
               Reset all filters
             </button>
-            <Button className="bg-transparent border border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-black rounded-none h-14 px-12 uppercase text-[12px] font-bold tracking-[0.4em] transition-all">
+            <Button className="w-full sm:w-auto bg-transparent border border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-black rounded-none h-14 px-12 uppercase text-[12px] font-bold tracking-[0.4em] transition-all order-1 sm:order-3">
               SEARCH
             </Button>
           </div>
