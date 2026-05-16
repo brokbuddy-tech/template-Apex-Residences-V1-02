@@ -45,9 +45,7 @@ Neighborhood Features: {{{neighborhoodFeatures}}}
 Craft a narrative that paints an appealing picture of living in this home and neighborhood. Focus on benefits and emotional connection, not just facts.
 
 Please provide the description in JSON format, adhering strictly to the following schema:
-```json
 {{jsonSchema GeneratePropertyDescriptionOutputSchema}}
-```
 `,
 });
 

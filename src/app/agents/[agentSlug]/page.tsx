@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Mail, Phone, MessageCircle } from "lucide-react";
 import { getAgentProfile, getSiteConfig, toSocialUrl } from "@/lib/api";
 import { ListingCard } from "@/components/listings/listing-card";
+import type { Property } from "@/lib/properties";
 import { getAgencyDisplayName, toApexProperty } from "@/lib/live-mappers";
 import { resolveTemplateImage } from "@/lib/media";
 
@@ -26,7 +27,7 @@ export default async function AgentProfilePage({
   const agent = profileResponse.agent;
   const coverImage = resolveTemplateImage(agent.coverImageUrl || agent.coverImage, 'hero-bg', `${agent.name} cover`);
   const avatar = resolveTemplateImage(agent.avatarUrl || agent.avatar, 'agent-1', agent.name);
-  const activeListings = profileResponse.activeListings.map(toApexProperty);
+  const activeListings: Property[] = profileResponse.activeListings.map(toApexProperty);
   const whatsappHref = toSocialUrl('whatsapp', agent.whatsapp || agent.phone);
 
   return (

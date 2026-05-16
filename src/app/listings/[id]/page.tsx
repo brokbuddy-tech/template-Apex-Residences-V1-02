@@ -68,6 +68,15 @@ export default function ListingDetails() {
     let active = true;
 
     async function loadListing() {
+      if (!listingId) {
+        setProperty(null);
+        setOffPlanProject(null);
+        setSimilarProperties([]);
+        setSimilarProjects([]);
+        setIsLoaded(true);
+        return;
+      }
+
       try {
         const liveProperty = await getLivePropertyById(listingId);
         if (!active) return;
@@ -127,9 +136,7 @@ export default function ListingDetails() {
       }
     }
 
-    if (listingId) {
-      void loadListing();
-    }
+    void loadListing();
 
     return () => {
       active = false;

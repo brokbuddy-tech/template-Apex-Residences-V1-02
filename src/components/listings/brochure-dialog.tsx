@@ -14,7 +14,10 @@ import { OffPlanProject } from "@/lib/off-plan-projects";
 
 interface BrochureDownloaderProps {
   property: Property | OffPlanProject;
-  children: React.ReactNode;
+  children: React.ReactElement<{
+    disabled?: boolean;
+    children?: React.ReactNode;
+  }>;
 }
 
 /**
@@ -49,7 +52,7 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
   return (
     <>
       <div onClick={handleDownload} className="cursor-pointer w-full">
-        {React.cloneElement(children as React.ReactElement, {
+        {React.cloneElement(children, {
           disabled: isPreparing,
           children: isPreparing ? (
             <div className="flex items-center justify-center gap-2">
@@ -57,7 +60,7 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
               PREPARING...
             </div>
           ) : (
-            (children as React.ReactElement).props.children
+            children.props.children
           )
         })}
       </div>
