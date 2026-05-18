@@ -3,11 +3,22 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { getSiteConfig } from "@/lib/api";
+import { getAgencyDisplayName } from "@/lib/live-mappers";
+import { getRequestAgencySlug } from "@/lib/server-agency";
 
-export const metadata: Metadata = {
-  title: 'Apex Residences | Ultra-Luxury Real Estate Dubai',
-  description: 'Precision, Performance, and Due Diligence. Discover your signature address with Apex Residences.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const agencySlug = await getRequestAgencySlug();
+  const siteConfig = await getSiteConfig(agencySlug);
+  const agencyName = getAgencyDisplayName(siteConfig);
+
+  return {
+    title: siteConfig.branding?.metaTitle || `${agencyName} | Ultra-Luxury Real Estate Dubai`,
+    description:
+      siteConfig.branding?.metaDescription
+      || `Precision, Performance, and Due Diligence. Discover your signature address with ${agencyName}.`,
+  };
+}
 
 export default function RootLayout({
   children,

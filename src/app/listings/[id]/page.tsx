@@ -43,8 +43,9 @@ import {
   FileText,
   Copy
 } from "lucide-react";
-import { getProperties, getPropertyById as getLivePropertyById } from "@/lib/api";
-import { toApexOffPlanProject, toApexProperty } from "@/lib/live-mappers";
+import { getProperties, getPropertyById as getLivePropertyById, getSiteConfig } from "@/lib/api";
+import type { SiteConfig } from "@/lib/live-types";
+import { getAgencyDisplayName, toApexOffPlanProject, toApexProperty } from "@/lib/live-mappers";
 
 function getLocationSegment(location: string) {
   return location.split(",")[0]?.trim().toLowerCase() || null;
@@ -53,11 +54,35 @@ function getLocationSegment(location: string) {
 export default function ListingDetails() {
   const { id } = useParams();
   const listingId = Array.isArray(id) ? id[0] : id;
+  const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null);
   const [property, setProperty] = useState<Property | null>(null);
   const [offPlanProject, setOffPlanProject] = useState<OffPlanProject | null>(null);
   const [similarProperties, setSimilarProperties] = useState<Property[]>([]);
   const [similarProjects, setSimilarProjects] = useState<OffPlanProject[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadSiteConfig() {
+      try {
+        const nextSiteConfig = await getSiteConfig();
+        if (active) {
+          setSiteConfig(nextSiteConfig);
+        }
+      } catch {
+        if (active) {
+          setSiteConfig(null);
+        }
+      }
+    }
+
+    void loadSiteConfig();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -158,17 +183,26 @@ export default function ListingDetails() {
   }
 
   if (offPlanProject) {
-    return <OffPlanProjectDetail project={offPlanProject} similarProjects={similarProjects} />;
+    return <OffPlanProjectDetail project={offPlanProject} similarProjects={similarProjects} siteConfig={siteConfig} />;
   }
 
-  return <PropertyDetail property={property!} similarProperties={similarProperties} />;
+  return <PropertyDetail property={property!} similarProperties={similarProperties} siteConfig={siteConfig} />;
 }
 
-function PropertyDetail({ property, similarProperties }: { property: Property; similarProperties: Property[] }) {
+function PropertyDetail({
+  property,
+  similarProperties,
+  siteConfig,
+}: {
+  property: Property;
+  similarProperties: Property[];
+  siteConfig?: SiteConfig | null;
+}) {
   const [activeImage, setActiveImage] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
+  const agencyName = getAgencyDisplayName(siteConfig);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -395,7 +429,7 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
                   <p className="text-[11px] font-bold text-[#D1A08B] uppercase tracking-widest">{property.agent.role}</p>
                 </div>
                 <div className="w-full pt-4 space-y-4">
-                  <BrochureDialog property={property}>
+                  <BrochureDialog property={property} siteConfig={siteConfig}>
                     <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)
@@ -424,7 +458,7 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
                   <div className="flex justify-between items-end"><p className="text-white/40 text-[11px] uppercase font-bold tracking-widest">Avg. Area Price</p><p className="text-xl font-bold text-white">{property.marketStats.avgAreaPrice}</p></div>
                   <div className="flex justify-between items-end"><p className="text-white/40 text-[11px] uppercase font-bold tracking-widest">Price / sq.ft</p><p className="text-xl font-bold text-white">{property.marketStats.pricePerSqFt}</p></div>
                   <p className="text-[11px] text-white/40 font-light leading-relaxed italic">
-                    Market data is analyzed weekly to ensure precise valuation and ROI projections for Apex Residences clients.
+                    Market data is analyzed weekly to ensure precise valuation and ROI projections for {agencyName} clients.
                   </p>
                 </div>
               </div>
@@ -452,7 +486,15 @@ function PropertyDetail({ property, similarProperties }: { property: Property; s
   );
 }
 
-function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanProject; similarProjects: OffPlanProject[] }) {
+function OffPlanProjectDetail({
+  project,
+  similarProjects,
+  siteConfig,
+}: {
+  project: OffPlanProject;
+  similarProjects: OffPlanProject[];
+  siteConfig?: SiteConfig | null;
+}) {
   const [activeImage, setActiveImage] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -661,7 +703,7 @@ function OffPlanProjectDetail({ project, similarProjects }: { project: OffPlanPr
                   <p className="text-[11px] font-bold text-[#B8860B] uppercase tracking-widest">{project.agent.role}</p>
                 </div>
                 <div className="w-full space-y-4">
-                  <BrochureDialog property={project}>
+                  <BrochureDialog property={project} siteConfig={siteConfig}>
                     <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)

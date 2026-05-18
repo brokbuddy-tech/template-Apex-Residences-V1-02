@@ -37,7 +37,7 @@ export function Footer() {
   const displayName = getAgencyDisplayName(siteConfig);
   const logoUrl = siteConfig?.profile?.logo || null;
   const phone = getAgencyPhone(siteConfig) || '+971 4 123 4567';
-  const email = getAgencyEmail(siteConfig) || 'concierge@apexresidences.com';
+  const email = getAgencyEmail(siteConfig) || 'contact@agencywebsite.com';
   const address = siteConfig?.profile?.officeAddress || 'Marina Plaza, 12th Floor, Dubai Marina';
   const description = siteConfig?.branding?.bio
     || siteConfig?.profile?.aboutCompany

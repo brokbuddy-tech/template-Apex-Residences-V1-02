@@ -17,7 +17,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function Hero() {
+type HeroProps = {
+  agencyName: string;
+  ownerRelationsEmail?: string | null;
+};
+
+export function Hero({ agencyName, ownerRelationsEmail }: HeroProps) {
   const [activeTab, setActiveTab] = useState("manual");
   const [currency, setCurrency] = useState("AED");
   const heroImage = PlaceHolderImages.find(img => img.id === "hero-bg");
@@ -43,7 +48,7 @@ export function Hero() {
             <h1 className="font-headline text-3xl md:text-4xl xl:text-5xl font-thin tracking-[0.1em] leading-tight text-white uppercase">
               Invest in <br />
               Luxury Living <br />
-              with <span className="font-bold">Apex Residences</span>
+              with <span className="font-bold">{agencyName}</span>
             </h1>
             <p className="text-white/60 text-sm md:text-base font-light italic tracking-wider">
               "Precision, Performance, and Due Diligence at Your Service"
@@ -56,7 +61,7 @@ export function Hero() {
                 Leave a request
               </Button>
             </ConsultationDialog>
-            <OwnerRelationsDialog>
+            <OwnerRelationsDialog agencyName={agencyName} ownerRelationsEmail={ownerRelationsEmail}>
               <Button className="btn-outline-white px-12 h-14">
                 Already an owner?
               </Button>

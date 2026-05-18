@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { replaceTemplateBranding } from "@/lib/live-mappers";
 
 const FAQ_DATA = [
   {
@@ -19,10 +20,10 @@ const FAQ_DATA = [
   },
   {
     question: "DO YOU OFFER OFF-PLAN INVESTMENT CONSULTATIONS?",
-    answer: "Yes, APEX RESIDENCES specializes in off-plan launches from top developers like Emaar, Nakheel, and Select Group. We provide exclusive access to pre-launch units and performance data.",
+    answer: "Yes, {{agencyName}} specializes in off-plan launches from top developers like Emaar, Nakheel, and Select Group. We provide exclusive access to pre-launch units and performance data.",
   },
   {
-    question: "CAN APEX RESIDENCES MANAGE MY INVESTMENT PORTFOLIO?",
+    question: "CAN {{agencyName}} MANAGE MY INVESTMENT PORTFOLIO?",
     answer: "Our Asset Management division handles everything from high-yield short-term rentals to long-term maintenance, ensuring your signature address remains a high-performing asset.",
   },
   {
@@ -31,7 +32,12 @@ const FAQ_DATA = [
   },
 ];
 
-export function FaqSection() {
+export function FaqSection({ agencyName }: { agencyName: string }) {
+  const faqItems = FAQ_DATA.map((faq) => ({
+    question: replaceTemplateBranding(faq.question, agencyName),
+    answer: replaceTemplateBranding(faq.answer, agencyName),
+  }));
+
   return (
     <section className="bg-black py-32 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-4xl mx-auto">
@@ -45,7 +51,7 @@ export function FaqSection() {
         </div>
 
         <Accordion type="single" collapsible className="w-full space-y-4">
-          {FAQ_DATA.map((faq, index) => (
+          {faqItems.map((faq, index) => (
             <AccordionItem 
               key={index} 
               value={`item-${index}`}

@@ -11,11 +11,19 @@ import { ContactSection } from "@/components/home/contact-section";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Gem, Globe } from "lucide-react";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
+import { getSiteConfig } from "@/lib/api";
+import { getAgencyDisplayName, getAgencyEmail } from "@/lib/live-mappers";
+import { getRequestAgencySlug } from "@/lib/server-agency";
 
-export default function Home() {
+export default async function Home() {
+  const agencySlug = await getRequestAgencySlug();
+  const siteConfig = await getSiteConfig(agencySlug);
+  const agencyName = getAgencyDisplayName(siteConfig);
+  const ownerRelationsEmail = getAgencyEmail(siteConfig) || 'contact@agencywebsite.com';
+
   return (
     <div className="min-h-screen bg-background">
-      <Hero />
+      <Hero agencyName={agencyName} ownerRelationsEmail={ownerRelationsEmail} />
       
       {/* Category Icons */}
       <section className="py-8 bg-card border-b">
@@ -38,7 +46,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ExclusivesSection />
+      <ExclusivesSection agencyName={agencyName} />
 
       <ListingSection />
       
@@ -64,9 +72,9 @@ export default function Home() {
 
       <TeamSection />
 
-      <ReviewsSection />
+      <ReviewsSection agencyName={agencyName} />
 
-      <FaqSection />
+      <FaqSection agencyName={agencyName} />
 
       <NewsSection />
       

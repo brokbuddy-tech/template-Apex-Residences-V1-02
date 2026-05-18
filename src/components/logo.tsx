@@ -7,7 +7,7 @@ type LogoProps = {
 };
 
 export function Logo({ className, logoUrl, name }: LogoProps) {
-  const displayName = name || 'Apex Residences';
+  const displayName = name || 'Agency Website';
 
   return (
     <div className={`flex items-center gap-2 md:gap-3 ${className || ''}`}>

@@ -40,7 +40,7 @@ export function ContactSection() {
 
   const agencyName = getAgencyDisplayName(siteConfig);
   const phone = getAgencyPhone(siteConfig) || '+971 4 123 4567';
-  const email = getAgencyEmail(siteConfig) || 'concierge@apexresidences.com';
+  const email = getAgencyEmail(siteConfig) || 'contact@agencywebsite.com';
   const address = siteConfig?.profile?.officeAddress || 'Marina Plaza, 12th Floor, Dubai Marina';
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {

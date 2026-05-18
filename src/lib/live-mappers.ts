@@ -218,3 +218,19 @@ export function getAgencyPhone(siteConfig?: SiteConfig | null) {
     || null
   );
 }
+
+function getPossessiveName(name: string) {
+  const trimmedName = name.trim();
+  if (!trimmedName) return 'Agency Website';
+  return /s$/i.test(trimmedName) ? `${trimmedName}'` : `${trimmedName}'s`;
+}
+
+export function replaceTemplateBranding(text: string, agencyName: string) {
+  const normalizedAgencyName = agencyName.trim() || 'Agency Website';
+
+  return text
+    .replace(/{{agencyName}}/g, normalizedAgencyName)
+    .replace(/Apex's/gi, getPossessiveName(normalizedAgencyName))
+    .replace(/Apex Residences/gi, normalizedAgencyName)
+    .replace(/\bApex\b/gi, normalizedAgencyName);
+}

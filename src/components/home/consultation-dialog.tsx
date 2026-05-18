@@ -67,7 +67,7 @@ export function ConsultationDialog({ children }: ConsultationDialogProps) {
         name: String(formData.get('name') || '').trim(),
         email: String(formData.get('email') || '').trim(),
         phone: String(formData.get('phone') || '').trim(),
-        message: 'Prompt consultation request from Apex Residences template.',
+        message: `Prompt consultation request from ${agencyName}.`,
         source: 'consultation-dialog',
       });
 

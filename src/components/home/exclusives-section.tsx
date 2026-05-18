@@ -39,7 +39,7 @@ function toExclusiveItem(project: OffPlanProject): ExclusiveItem {
   };
 }
 
-export function ExclusivesSection() {
+export function ExclusivesSection({ agencyName }: { agencyName: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [items, setItems] = useState<ExclusiveItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -103,7 +103,7 @@ export function ExclusivesSection() {
             EXCLUSIVES
           </h2>
           <p className="text-white/40 text-xs font-light italic tracking-[0.2em]">
-            Discover live off-plan opportunities curated for Apex Residences clients
+            Discover live off-plan opportunities curated for {agencyName} clients
           </p>
         </div>
 

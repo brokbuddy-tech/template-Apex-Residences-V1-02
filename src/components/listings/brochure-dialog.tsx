@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
+import {
   Phone, 
   Mail, 
   MapPin, 
@@ -11,9 +11,12 @@ import {
 } from "lucide-react";
 import { Property } from "@/lib/properties";
 import { OffPlanProject } from "@/lib/off-plan-projects";
+import type { SiteConfig } from "@/lib/live-types";
+import { getAgencyDisplayName, getAgencyEmail, getAgencyPhone } from "@/lib/live-mappers";
 
 interface BrochureDownloaderProps {
   property: Property | OffPlanProject;
+  siteConfig?: SiteConfig | null;
   children: React.ReactElement<{
     disabled?: boolean;
     children?: React.ReactNode;
@@ -24,7 +27,7 @@ interface BrochureDownloaderProps {
  * @fileOverview A dedicated component for generating and downloading property brochures.
  * It bypasses the preview modal and triggers a professional single-page A4 PDF download.
  */
-export function BrochureDialog({ property, children }: BrochureDownloaderProps) {
+export function BrochureDialog({ property, siteConfig, children }: BrochureDownloaderProps) {
   const [isPreparing, setIsPreparing] = useState(false);
 
   // Data mapping for consistency between properties and off-plan projects
@@ -36,6 +39,19 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
   const description = 'longDescription' in property ? property.longDescription : property.description;
   const dldPermit = 'reraNumber' in property ? property.reraNumber : "238290231";
   const features = 'features' in property ? property.features : (property as any).amenities || [];
+  const agencyName = getAgencyDisplayName(siteConfig);
+  const phone = getAgencyPhone(siteConfig) || '+971 4 123 4567';
+  const email = getAgencyEmail(siteConfig) || 'contact@agencywebsite.com';
+  const address = siteConfig?.profile?.officeAddress || 'Dubai, UAE';
+  const websiteLabel = (
+    siteConfig?.branding?.website
+    || siteConfig?.organization?.publicAgencyUrl
+    || agencyName
+  )
+    .replace(/^https?:\/\//i, '')
+    .replace(/^www\./i, '')
+    .replace(/\/$/, '')
+    .toUpperCase();
 
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -121,8 +137,8 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
                   <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50 10L10 90H30L50 50L70 90H90L50 10Z" fill="#B8860B" />
                   </svg>
-                  <span className="text-white font-headline text-[9px] font-bold tracking-[0.2em] uppercase leading-tight">
-                    APEX <br/> <span className="font-light">RESIDENCES</span>
+                  <span className="max-w-[140px] break-words text-center text-white font-headline text-[9px] font-bold tracking-[0.2em] uppercase leading-tight">
+                    {agencyName}
                   </span>
                 </div>
               </div>
@@ -195,19 +211,19 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
                     <div className="w-8 h-8 border border-[#B8860B]/30 flex items-center justify-center text-[#B8860B] shrink-0">
                       <Phone className="w-4 h-4" />
                     </div>
-                    <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/80 truncate">+971 4 123 4567</span>
+                    <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/80 truncate">{phone}</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-8 border border-[#B8860B]/30 flex items-center justify-center text-[#B8860B] shrink-0">
                       <Mail className="w-4 h-4" />
                     </div>
-                    <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/80 truncate">concierge@apexresidences.com</span>
+                    <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/80 truncate">{email}</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-8 border border-[#B8860B]/30 flex items-center justify-center text-[#B8860B] shrink-0">
                       <MapPin className="w-4 h-4" />
                     </div>
-                    <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/80 truncate">Dubai Marina, UAE</span>
+                    <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/80 truncate">{address}</span>
                   </div>
                 </div>
               </div>
@@ -220,9 +236,7 @@ export function BrochureDialog({ property, children }: BrochureDownloaderProps) 
                   <p className="text-[7px] font-bold tracking-[0.5em] uppercase text-white/30">DLD PERMIT NO</p>
                   <p className="text-xs font-bold tracking-[0.2em] text-white uppercase font-headline">{dldPermit}</p>
                 </div>
-                <p className="text-[8px] font-bold tracking-[0.4em] uppercase text-[#B8860B]">
-                  APEXRESIDENCES.COM
-                </p>
+                <p className="text-[8px] font-bold tracking-[0.4em] uppercase text-[#B8860B]">{websiteLabel}</p>
               </div>
             </div>
           </div>

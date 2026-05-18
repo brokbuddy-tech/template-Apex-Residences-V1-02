@@ -10,18 +10,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { replaceTemplateBranding } from "@/lib/live-mappers";
 
 const REVIEWS_DATA = [
   {
     id: 1,
     author: "OMER KHAN",
-    text: "APEX RESIDENCES provided an exceptional service. Their attention to detail in finding our penthouse in Downtown Dubai was unmatched. Truly the gold standard of real estate.",
+    text: "{{agencyName}} provided an exceptional service. Their attention to detail in finding our penthouse in Downtown Dubai was unmatched. Truly the gold standard of real estate.",
     rating: 5,
   },
   {
     id: 2,
     author: "SARAH JENKINS",
-    text: "The team at APEX is professional and highly discrete. They truly understand the luxury market in Dubai and helped us secure a signature villa in Palm Jumeirah.",
+    text: "The team at {{agencyName}} is professional and highly discrete. They truly understand the luxury market in Dubai and helped us secure a signature villa in Palm Jumeirah.",
     rating: 5,
   },
   {
@@ -38,7 +39,12 @@ const REVIEWS_DATA = [
   },
 ];
 
-export function ReviewsSection() {
+export function ReviewsSection({ agencyName }: { agencyName: string }) {
+  const reviews = REVIEWS_DATA.map((review) => ({
+    ...review,
+    text: replaceTemplateBranding(review.text, agencyName),
+  }));
+
   return (
     <section className="bg-black py-32 px-6 md:px-12 overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto">
@@ -59,7 +65,7 @@ export function ReviewsSection() {
           className="w-full relative"
         >
           <CarouselContent className="-ml-6">
-            {REVIEWS_DATA.map((review) => (
+            {reviews.map((review) => (
               <CarouselItem key={review.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
                 <div className="h-full bg-white/[0.03] border border-white/10 p-10 md:p-12 flex flex-col justify-between group hover:border-white/20 transition-all duration-500">
                   <div className="space-y-8">

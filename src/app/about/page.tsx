@@ -1,9 +1,10 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import { TeamSection } from "@/components/home/team-section";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { getSiteConfig } from "@/lib/api";
+import { getAgencyDisplayName } from "@/lib/live-mappers";
+import { getRequestAgencySlug } from "@/lib/server-agency";
 
 const STATS = [
   { label: "AGENCIES WORLDWIDE", value: "1,000+" },
@@ -33,8 +34,12 @@ const JOURNEY_STEPS = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const agencySlug = await getRequestAgencySlug();
+  const siteConfig = await getSiteConfig(agencySlug);
+  const agencyName = getAgencyDisplayName(siteConfig);
   const leadershipImg = PlaceHolderImages.find(img => img.id === "about-hero")?.imageUrl || "";
+  const aboutSummary = `${agencyName} is a global authority in luxury real estate. Our methodology combines deep market intelligence with an unwavering commitment to confidentiality and bespoke service. We don't just find houses; we secure signature assets.`;
 
   return (
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white">
@@ -42,7 +47,7 @@ export default function AboutPage() {
       <section className="relative h-[80vh] flex flex-col items-center justify-center overflow-hidden border-b border-white/5">
         <Image
           src={leadershipImg}
-          alt="Apex Residences Leadership"
+          alt={`${agencyName} Leadership`}
           fill
           className="object-cover brightness-[0.3]"
           priority
@@ -51,7 +56,7 @@ export default function AboutPage() {
         
         <div className="relative z-10 text-center space-y-8 px-6 max-w-5xl">
           <h1 className="font-headline text-3xl md:text-4xl xl:text-5xl font-thin tracking-[0.2em] uppercase leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            ABOUT <span className="font-bold">APEX RESIDENCES</span>
+            ABOUT <span className="font-bold">{agencyName}</span>
           </h1>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left pt-16 max-w-4xl mx-auto border-t border-white/10 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300">
@@ -59,7 +64,7 @@ export default function AboutPage() {
               "We provide discrete real estate services for the world's most discerning individuals, guided by precision and performance."
             </p>
             <p className="text-white/50 text-[13px] font-light leading-loose tracking-wide">
-              Apex Residences is a global authority in luxury real estate. Our methodology combines deep market intelligence with an unwavering commitment to confidentiality and bespoke service. We don't just find houses; we secure signature assets.
+              {aboutSummary}
             </p>
           </div>
         </div>
