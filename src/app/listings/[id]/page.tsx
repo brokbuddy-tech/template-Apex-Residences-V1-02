@@ -20,15 +20,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { 
-  MapPin, 
-  Bed, 
-  Bath, 
-  Maximize, 
-  CheckCircle2, 
-  QrCode, 
-  Phone, 
-  Share2, 
+import {
+  MapPin,
+  Bed,
+  Bath,
+  Maximize,
+  CheckCircle2,
+  QrCode,
+  Phone,
+  Share2,
   Download,
   TrendingUp,
   School,
@@ -238,83 +238,83 @@ function PropertyDetail({
             </div>
           </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 aspect-[16/10] md:aspect-[16/7]">
-              <div
-                className="md:col-span-3 relative group overflow-hidden cursor-zoom-in"
-                role="button"
-                tabIndex={0}
-                aria-label={`Open gallery image ${activeImage + 1} of ${property.gallery.length}`}
-                onClick={() => setIsGalleryOpen(true)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setIsGalleryOpen(true);
-                  }
-                }}
-              >
-                <Image 
-                  src={property.gallery[activeImage]} 
-                  alt={property.title} 
-                fill 
-                className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 aspect-[16/10] md:aspect-[16/7]">
+            <div
+              className="md:col-span-3 relative group overflow-hidden cursor-zoom-in"
+              role="button"
+              tabIndex={0}
+              aria-label={`Open gallery image ${activeImage + 1} of ${property.gallery.length}`}
+              onClick={() => setIsGalleryOpen(true)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setIsGalleryOpen(true);
+                }
+              }}
+            >
+              <Image
+                src={property.gallery[activeImage]}
+                alt={property.title}
+                fill
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              
+
               {/* Mobile Slide Controls */}
-                <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
-                  <button 
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setActiveImage((prev) => (prev - 1 + property.gallery.length) % property.gallery.length);
-                    }}
-                    className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button 
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setActiveImage((prev) => (prev + 1) % property.gallery.length);
-                    }}
-                    className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
-                  >
-                    <ChevronRight className="w-6 h-6" />
+              <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
+                <button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setActiveImage((prev) => (prev - 1 + property.gallery.length) % property.gallery.length);
+                  }}
+                  className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setActiveImage((prev) => (prev + 1) % property.gallery.length);
+                  }}
+                  className="w-10 h-10 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white rounded-full border border-white/10"
+                >
+                  <ChevronRight className="w-6 h-6" />
                 </button>
               </div>
 
               {/* Mobile View All Button */}
-                <div className="absolute bottom-4 right-4 md:hidden z-20">
-                  <Button 
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setIsGalleryOpen(true);
-                    }}
-                    className="bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-none h-10 px-4 gap-2 text-[10px] font-bold uppercase tracking-widest hover:bg-black/80 transition-all"
-                  >
-                    <Images className="w-4 h-4" />
+              <div className="absolute bottom-4 right-4 md:hidden z-20">
+                <Button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setIsGalleryOpen(true);
+                  }}
+                  className="bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-none h-10 px-4 gap-2 text-[10px] font-bold uppercase tracking-widest hover:bg-black/80 transition-all"
+                >
+                  <Images className="w-4 h-4" />
                   View all {property.gallery.length} photos
                 </Button>
               </div>
-              </div>
-              <div className="hidden md:flex flex-col gap-6">
-                {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
-                  <div
-                    key={`${img}-${idx}`}
-                    className="relative flex-1 group overflow-hidden cursor-zoom-in"
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`Open gallery image ${property.gallery.indexOf(img) + 1} of ${property.gallery.length}`}
-                    onClick={() => openGalleryAt(property.gallery.indexOf(img))}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        openGalleryAt(property.gallery.indexOf(img));
-                      }
-                    }}
-                  >
-                    <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
-                  </div>
+            </div>
+            <div className="hidden md:flex flex-col gap-6">
+              {property.gallery.filter((_, i) => i !== activeImage).slice(0, 2).map((img, idx) => (
+                <div
+                  key={`${img}-${idx}`}
+                  className="relative flex-1 group overflow-hidden cursor-zoom-in"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Open gallery image ${property.gallery.indexOf(img) + 1} of ${property.gallery.length}`}
+                  onClick={() => openGalleryAt(property.gallery.indexOf(img))}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      openGalleryAt(property.gallery.indexOf(img));
+                    }
+                  }}
+                >
+                  <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
+                </div>
               ))}
             </div>
           </div>
@@ -324,7 +324,7 @@ function PropertyDetail({
               <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">Listing Price</p>
               <p className="text-xl md:text-4xl font-bold text-[#D1A08B]">{property.price}</p>
             </div>
-            
+
             <Popover>
               <PopoverTrigger asChild>
                 <button className="w-12 h-12 border border-[#D1A08B]/20 flex items-center justify-center text-[#D1A08B] hover:bg-[#D1A08B] hover:text-white transition-all duration-500">
@@ -335,13 +335,13 @@ function PropertyDetail({
                 <div className="space-y-4">
                   <h4 className="font-headline text-[10px] font-bold uppercase tracking-widest text-[#D1A08B]">Share Listing</h4>
                   <div className="flex gap-2">
-                    <Input 
-                      readOnly 
-                      value={currentUrl} 
+                    <Input
+                      readOnly
+                      value={currentUrl}
                       className="h-10 bg-white/5 border-white/10 rounded-none text-xs focus:ring-0"
                     />
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       className="btn-copper h-10 px-4 gap-2"
                       onClick={handleCopyLink}
                     >
@@ -367,7 +367,7 @@ function PropertyDetail({
             <div className="space-y-10">
               <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B]">Description</h2>
               <p className="text-white/50 font-light leading-relaxed text-lg italic whitespace-pre-line">{property.description}</p>
-              
+
               <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
                 <DetailRow label="Location" value={property.location} />
                 <DetailRow label="Property Type" value={property.type} />
@@ -376,7 +376,7 @@ function PropertyDetail({
                 <div className="md:col-span-2 pt-10 flex items-center justify-between border-t border-white/5 mt-6">
                   <div className="space-y-2">
                     <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">RERA Permit</p>
-                    <p className="text-xl font-bold tracking-widest text-white">{property.reraNumber}</p>
+                    <p className="text-[11px] font-bold tracking-widest text-white">{property.reraNumber}</p>
                   </div>
                   <div className="p-3 bg-white"><QrCode className="w-16 h-16 text-black" /></div>
                 </div>
@@ -558,17 +558,17 @@ function OffPlanProjectDetail({
                   }
                 }}
               >
-                <Image 
-                  src={allImages[activeImage]} 
-                  alt={project.title} 
-                  fill 
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+                <Image
+                  src={allImages[activeImage]}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   priority
                 />
-                
+
                 {/* Mobile Slide Controls for Off-Plan */}
                 <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
-                  <button 
+                  <button
                     onClick={(event) => {
                       event.stopPropagation();
                       setActiveImage((prev) => (prev - 1 + allImages.length) % allImages.length);
@@ -577,7 +577,7 @@ function OffPlanProjectDetail({
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
-                  <button 
+                  <button
                     onClick={(event) => {
                       event.stopPropagation();
                       setActiveImage((prev) => (prev + 1) % allImages.length);
@@ -590,8 +590,8 @@ function OffPlanProjectDetail({
               </div>
               <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
                 {allImages.map((img, idx) => (
-                  <button 
-                    key={idx} 
+                  <button
+                    key={idx}
                     onClick={() => openGalleryAt(idx)}
                     className={cn(
                       "relative w-32 aspect-video flex-shrink-0 border-2 transition-all duration-300",
@@ -622,7 +622,7 @@ function OffPlanProjectDetail({
                   )}
                 </div>
                 <div className="pt-2">
-                  <button 
+                  <button
                     onClick={() => setIsExpanded(!isExpanded)}
                     className="text-[#B8860B] text-[11px] font-bold uppercase tracking-[0.4em] border-b border-[#B8860B]/30 pb-1 hover:text-white transition-colors"
                   >
@@ -649,21 +649,21 @@ function OffPlanProjectDetail({
 
             {/* Atmosphere Block (Horizontal Split) */}
             <section className="grid grid-cols-1 md:grid-cols-2 gap-0 bg-white/[0.02] border border-white/10 overflow-hidden">
-               <div className="relative aspect-square md:aspect-auto overflow-hidden group">
-                 <Image 
-                   src={project.gallery[1] || project.image} 
-                   alt="Atmosphere" 
-                   fill 
-                   className="object-cover transition-all duration-[2000ms] group-hover:scale-110" 
-                 />
-               </div>
-               <div className="p-12 md:p-20 flex flex-col justify-center space-y-6">
-                 <h3 className="text-xl md:text-2xl font-headline font-bold uppercase tracking-[0.2em] text-[#B8860B]">ATMOSPHERE</h3>
-                 <p className="text-white/40 font-light leading-loose tracking-wide text-base italic whitespace-pre-line">
-                   {project.description}
-                 </p>
-                 <div className="w-10 h-[1px] bg-[#B8860B]/40" />
-               </div>
+              <div className="relative aspect-square md:aspect-auto overflow-hidden group">
+                <Image
+                  src={project.gallery[1] || project.image}
+                  alt="Atmosphere"
+                  fill
+                  className="object-cover transition-all duration-[2000ms] group-hover:scale-110"
+                />
+              </div>
+              <div className="p-12 md:p-20 flex flex-col justify-center space-y-6">
+                <h3 className="text-xl md:text-2xl font-headline font-bold uppercase tracking-[0.2em] text-[#B8860B]">ATMOSPHERE</h3>
+                <p className="text-white/40 font-light leading-loose tracking-wide text-base italic whitespace-pre-line">
+                  {project.description}
+                </p>
+                <div className="w-10 h-[1px] bg-[#B8860B]/40" />
+              </div>
             </section>
 
             {/* Structured Payment Plan */}
@@ -758,13 +758,13 @@ function OffPlanProjectDetail({
                     <div className="space-y-4">
                       <h4 className="font-headline text-[10px] font-bold uppercase tracking-widest text-[#B8860B]">Share Listing</h4>
                       <div className="flex gap-2">
-                        <Input 
-                          readOnly 
-                          value={currentUrl} 
+                        <Input
+                          readOnly
+                          value={currentUrl}
                           className="h-10 bg-white/5 border-white/10 rounded-none text-xs focus:ring-0"
                         />
-                        <Button 
-                          size="sm" 
+                        <Button
+                          size="sm"
                           className="btn-copper h-10 px-4 gap-2"
                           onClick={handleCopyLink}
                         >
@@ -794,11 +794,11 @@ function OffPlanProjectDetail({
                 <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-110 transition-all duration-1000" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-0 left-0 right-0 p-10 space-y-3">
-                   <h3 className="text-white font-headline text-lg font-bold tracking-widest uppercase leading-tight">{p.title}</h3>
-                   <div className="flex items-center gap-3">
-                     <p className="text-[#B8860B] text-[9px] font-bold uppercase tracking-widest">{p.developer}</p>
-                     <div className="w-6 h-[1px] bg-white/20 group-hover:w-12 group-hover:bg-[#B8860B] transition-all" />
-                   </div>
+                  <h3 className="text-white font-headline text-lg font-bold tracking-widest uppercase leading-tight">{p.title}</h3>
+                  <div className="flex items-center gap-3">
+                    <p className="text-[#B8860B] text-[9px] font-bold uppercase tracking-widest">{p.developer}</p>
+                    <div className="w-6 h-[1px] bg-white/20 group-hover:w-12 group-hover:bg-[#B8860B] transition-all" />
+                  </div>
                 </div>
               </Link>
             ))}
