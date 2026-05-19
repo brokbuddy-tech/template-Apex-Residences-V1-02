@@ -435,30 +435,36 @@ function PropertyDetail({
           <div className="lg:col-span-4">
             <div className="sticky top-32 space-y-8 no-print">
               {/* Agent Profile Card First */}
-              <div className="border border-white/10 bg-[#0a0a0a] p-10 flex flex-col items-center text-center space-y-8">
-                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#D1A08B]/40 p-1">
-                  <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover rounded-full" />
+              <div className="border border-white/10 bg-[#0a0a0a] p-7 md:p-8 flex flex-col space-y-6">
+                <div className="flex items-center gap-4 text-left">
+                  <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-[1.25rem] border border-[#D1A08B]/30 bg-white/[0.02]">
+                    <Image src={property.agent.image} alt={property.agent.name} fill className="object-cover" />
+                  </div>
+                  <div className="min-w-0 space-y-1.5">
+                    <h4 className="text-lg md:text-xl font-headline font-bold uppercase tracking-[0.16em] text-white leading-tight">
+                      {property.agent.name}
+                    </h4>
+                    <p className="text-[10px] font-bold text-[#D1A08B] uppercase tracking-[0.28em]">
+                      {property.agent.role}
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-xl font-headline font-bold uppercase tracking-wider text-white">{property.agent.name}</h4>
-                  <p className="text-[11px] font-bold text-[#D1A08B] uppercase tracking-widest">{property.agent.role}</p>
-                </div>
-                <div className="w-full pt-4 space-y-4">
+                <div className="w-full pt-1 space-y-3">
                   <BrochureDialog property={property} siteConfig={siteConfig}>
-                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-11 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)
                     </Button>
                   </BrochureDialog>
                   <ConsultationDialog>
-                    <Button className="w-full btn-copper h-12 gap-2 text-sm">Inquiry</Button>
+                    <Button className="w-full btn-copper h-11 gap-2 text-sm">Inquiry</Button>
                   </ConsultationDialog>
                   {property.agent.phone ? (
-                    <Button asChild variant="outline" className="w-full btn-outline-white h-12 gap-2 text-sm border-white/10">
+                    <Button asChild variant="outline" className="w-full btn-outline-white h-11 gap-2 text-sm border-white/10">
                       <a href={`tel:${property.agent.phone}`}><Phone className="w-4 h-4" /> Call Specialist</a>
                     </Button>
                   ) : (
-                    <Button variant="outline" className="w-full btn-outline-white h-12 gap-2 text-sm border-white/10" disabled><Phone className="w-4 h-4" /> Call Specialist</Button>
+                    <Button variant="outline" className="w-full btn-outline-white h-11 gap-2 text-sm border-white/10" disabled><Phone className="w-4 h-4" /> Call Specialist</Button>
                   )}
                 </div>
               </div>
@@ -723,31 +729,37 @@ function OffPlanProjectDetail({
           <div className="lg:w-[25%] no-print">
             <div className="sticky top-32 space-y-10">
               {/* Agent Profile Card Card */}
-              <div className="bg-[#0a0a0a] border border-white/10 p-10 flex flex-col items-center text-center space-y-8">
-                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#B8860B]/20 p-1">
-                  <Image src={project.agent.image} alt={project.agent.name} fill className="object-cover rounded-full" />
+              <div className="bg-[#0a0a0a] border border-white/10 p-7 md:p-8 flex flex-col space-y-6">
+                <div className="flex items-center gap-4 text-left">
+                  <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-[1.25rem] border border-[#B8860B]/25 bg-white/[0.02]">
+                    <Image src={project.agent.image} alt={project.agent.name} fill className="object-cover" />
+                  </div>
+                  <div className="min-w-0 space-y-1.5">
+                    <h4 className="text-lg md:text-xl font-headline font-bold uppercase tracking-[0.16em] text-white leading-tight">
+                      {project.agent.name}
+                    </h4>
+                    <p className="text-[10px] font-bold text-[#B8860B] uppercase tracking-[0.28em]">
+                      {project.agent.role}
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-xl font-headline font-bold uppercase tracking-wider text-white">{project.agent.name}</h4>
-                  <p className="text-[11px] font-bold text-[#B8860B] uppercase tracking-widest">{project.agent.role}</p>
-                </div>
-                <div className="w-full space-y-4">
+                <div className="w-full space-y-3">
                   <BrochureDialog property={project} siteConfig={siteConfig}>
-                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-12 uppercase text-[10px] font-bold tracking-widest gap-2">
+                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-11 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)
                     </Button>
                   </BrochureDialog>
                   <div className="flex gap-3">
                     {project.agent.phone ? (
-                      <Button asChild variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10">
+                      <Button asChild variant="outline" className="flex-1 btn-outline-white h-11 text-[9px] font-bold border-white/10">
                         <a href={`tel:${project.agent.phone}`}>CALL US</a>
                       </Button>
                     ) : (
-                      <Button variant="outline" className="flex-1 btn-outline-white h-12 text-[9px] font-bold border-white/10" disabled>CALL US</Button>
+                      <Button variant="outline" className="flex-1 btn-outline-white h-11 text-[9px] font-bold border-white/10" disabled>CALL US</Button>
                     )}
                     <ConsultationDialog>
-                      <Button className="flex-1 btn-copper h-12 text-[9px] font-bold">INQUIRY</Button>
+                      <Button className="flex-1 btn-copper h-11 text-[9px] font-bold">INQUIRY</Button>
                     </ConsultationDialog>
                   </div>
                 </div>
