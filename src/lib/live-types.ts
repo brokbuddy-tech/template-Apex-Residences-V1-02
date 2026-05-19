@@ -71,6 +71,7 @@ export type LiveProperty = {
   handoverDate?: string;
   latitude?: number | null;
   longitude?: number | null;
+  virtualTourUrl?: string | null;
   paymentPlanData?: Record<string, unknown> | null;
   constructionTimelineData?: Record<string, unknown> | null;
   organizationName?: string;

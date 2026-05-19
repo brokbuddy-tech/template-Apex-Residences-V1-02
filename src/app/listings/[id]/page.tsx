@@ -41,6 +41,7 @@ import {
   ChevronLeft,
   ChevronRight,
   FileText,
+  Video,
   Copy
 } from "lucide-react";
 import { getProperties, getPropertyById as getLivePropertyById, getSiteConfig } from "@/lib/api";
@@ -259,6 +260,20 @@ function PropertyDetail({
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+
+              {property.virtualTourUrl ? (
+                <Button
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    window.open(property.virtualTourUrl!, "_blank", "noopener,noreferrer");
+                  }}
+                  className="absolute bottom-4 left-4 z-20 rounded-full bg-white/90 px-5 text-black shadow-lg hover:bg-white"
+                >
+                  <Video className="w-4 h-4 mr-2" />
+                  Virtual Tour
+                </Button>
+              ) : null}
 
               {/* Mobile Slide Controls */}
               <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">
@@ -565,6 +580,20 @@ function OffPlanProjectDetail({
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   priority
                 />
+
+                {project.virtualTourUrl ? (
+                  <Button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      window.open(project.virtualTourUrl!, "_blank", "noopener,noreferrer");
+                    }}
+                    className="absolute bottom-4 left-4 z-20 rounded-full bg-white/90 px-5 text-black shadow-lg hover:bg-white"
+                  >
+                    <Video className="w-4 h-4 mr-2" />
+                    Virtual Tour
+                  </Button>
+                ) : null}
 
                 {/* Mobile Slide Controls for Off-Plan */}
                 <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 md:hidden z-20">

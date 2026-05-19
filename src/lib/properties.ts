@@ -19,6 +19,7 @@ export interface Property {
   listingType: 'Buy' | 'Rent';
   image: string;
   gallery: string[];
+  virtualTourUrl?: string | null;
   description: string;
   features: string[];
   furnishing: string;

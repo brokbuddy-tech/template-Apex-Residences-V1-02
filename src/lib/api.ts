@@ -306,6 +306,17 @@ export function mapListingToProperty(listing: any, agencySlug?: string | null): 
     description: normalizeListingDescription(listing.description),
     transactionType: listing.transactionType === 'RENT' ? 'Rent' : 'Sale',
     status: listing.readiness?.toUpperCase() === 'OFFPLAN' ? 'Off-plan' : 'Ready',
+    virtualTourUrl:
+      getStringValue(
+        listing.virtualTourUrl,
+        listing.videoTourUrl,
+        listing.fields?.virtualTourUrl,
+        listing.fields?.virtualTour,
+        listing.fields?.virtualTourLink,
+        listing.fields?.tourUrl,
+        listing.fields?.videoTourUrl,
+        listing.fields?.matterportUrl,
+      ) || null,
     featured: Boolean(listing.featured || listing.isFeatured),
     dldPermitLink: listing.dldPermitLink || listing.fields?.dldPermitLink || undefined,
     handoverDate: listing.handoverDate || listing.fields?.handoverDate || undefined,

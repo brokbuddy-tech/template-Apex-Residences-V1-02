@@ -14,6 +14,7 @@ export interface OffPlanProject {
   latitude?: number | null;
   longitude?: number | null;
   price: string;
+  virtualTourUrl?: string | null;
   handoverDate: string;
   exclusive?: boolean;
   description: string;
