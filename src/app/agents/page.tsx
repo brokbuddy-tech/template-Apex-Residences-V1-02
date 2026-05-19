@@ -36,34 +36,44 @@ export default async function AgentsPage() {
                 const avatar = resolveTemplateImage(agent.avatarUrl || agent.avatar, 'agent-1', agent.name);
 
                 return (
-                  <article key={agent.slug || agent.id || agent.name} className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
-                    <div className="relative aspect-[4/5] bg-white/5">
+                  <article
+                    key={agent.slug || agent.id || agent.name}
+                    className="flex h-full flex-col border border-white/10 bg-[#0a0a0a] overflow-hidden"
+                  >
+                    <div className="relative aspect-[9/10] bg-white/5">
                       {avatar && (
                         <Image
                           src={avatar.src}
                           alt={avatar.alt}
                           data-ai-hint={avatar.hint}
                           fill
-                          className="object-cover"
+                          className="object-cover object-top"
                         />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                     </div>
 
-                    <div className="p-8 space-y-6">
-                      <div className="space-y-2">
+                    <div className="flex flex-1 flex-col p-6 space-y-4 md:p-7">
+                      <div className="space-y-1.5">
                         <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#B8860B]">
                           {agent.title || 'Property Consultant'}
                         </p>
-                        <h2 className="font-headline text-2xl font-bold uppercase tracking-wider">{agent.name}</h2>
+                        <h2 className="font-headline text-[1.75rem] font-bold uppercase tracking-[0.16em] leading-tight">
+                          {agent.name}
+                        </h2>
                         {agent.tagline && (
-                          <p className="text-white/50 font-light">{agent.tagline}</p>
+                          <p className="line-clamp-2 text-sm leading-6 text-white/50 font-light">
+                            {agent.tagline}
+                          </p>
                         )}
                       </div>
 
-                      <div className="space-y-3 text-sm text-white/60">
+                      <div className="space-y-2.5 text-sm text-white/60">
                         {agent.email && (
-                          <a href={`mailto:${agent.email}`} className="flex items-center gap-3 hover:text-white transition-colors">
+                          <a
+                            href={`mailto:${agent.email}`}
+                            className="flex items-center gap-3 break-all hover:text-white transition-colors"
+                          >
                             <Mail className="w-4 h-4 text-[#B8860B]" />
                             {agent.email}
                           </a>
@@ -76,7 +86,10 @@ export default async function AgentsPage() {
                         )}
                       </div>
 
-                      <Link href={`/agents/${agent.slug || agent.id}`} className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-[#B8860B]">
+                      <Link
+                        href={`/agents/${agent.slug || agent.id}`}
+                        className="mt-auto inline-flex items-center gap-2 pt-2 text-[10px] font-bold uppercase tracking-[0.3em] text-[#B8860B]"
+                      >
                         View Profile
                         <ArrowRight className="w-4 h-4" />
                       </Link>
