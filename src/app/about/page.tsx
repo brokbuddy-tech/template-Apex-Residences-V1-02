@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import { ReviewsSection } from "@/components/home/reviews-section";
 import { TeamSection } from "@/components/home/team-section";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { getSiteConfig } from "@/lib/api";
+import { getSiteConfig, getTestimonials } from "@/lib/api";
 import { getAgencyDisplayName } from "@/lib/live-mappers";
 import { getRequestAgencySlug } from "@/lib/server-agency";
 
@@ -36,7 +37,10 @@ const JOURNEY_STEPS = [
 
 export default async function AboutPage() {
   const agencySlug = await getRequestAgencySlug();
-  const siteConfig = await getSiteConfig(agencySlug);
+  const [siteConfig, testimonials] = await Promise.all([
+    getSiteConfig(agencySlug),
+    getTestimonials(agencySlug),
+  ]);
   const agencyName = getAgencyDisplayName(siteConfig);
   const leadershipImg = PlaceHolderImages.find(img => img.id === "about-hero")?.imageUrl || "";
   const aboutSummary = `${agencyName} is a global authority in luxury real estate. Our methodology combines deep market intelligence with an unwavering commitment to confidentiality and bespoke service. We don't just find houses; we secure signature assets.`;
@@ -116,7 +120,10 @@ export default async function AboutPage() {
       {/* 4. Team Discovery Section */}
       <TeamSection />
 
-      {/* 5. Impact Statistics & Media */}
+      {/* 5. Client Reviews */}
+      <ReviewsSection agencyName={agencyName} testimonials={testimonials} />
+
+      {/* 6. Impact Statistics & Media */}
       <section className="py-32 bg-white/[0.01] border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">

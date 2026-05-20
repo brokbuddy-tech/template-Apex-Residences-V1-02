@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,38 +11,91 @@ import {
 } from "@/components/ui/carousel";
 import { replaceTemplateBranding } from "@/lib/live-mappers";
 
-const REVIEWS_DATA = [
+type ReviewCard = {
+  id: string;
+  author: string;
+  text: string;
+  rating: number;
+  location?: string;
+};
+
+const REVIEWS_DATA: ReviewCard[] = [
   {
-    id: 1,
+    id: "omer-khan",
     author: "OMER KHAN",
     text: "{{agencyName}} provided an exceptional service. Their attention to detail in finding our penthouse in Downtown Dubai was unmatched. Truly the gold standard of real estate.",
     rating: 5,
   },
   {
-    id: 2,
+    id: "sarah-jenkins",
     author: "SARAH JENKINS",
     text: "The team at {{agencyName}} is professional and highly discrete. They truly understand the luxury market in Dubai and helped us secure a signature villa in Palm Jumeirah.",
     rating: 5,
   },
   {
-    id: 3,
+    id: "david-chen",
     author: "DAVID CHEN",
     text: "Found my signature address through their exclusive portfolio. Highly recommended for high-net-worth investors looking for precision and due diligence.",
     rating: 5,
   },
   {
-    id: 4,
+    id: "elena-rodriguez",
     author: "ELENA RODRIGUEZ",
     text: "Seamless experience from start to finish. The property management team is also top-notch, handling every aspect of our investment with care.",
     rating: 5,
   },
 ];
 
-export function ReviewsSection({ agencyName }: { agencyName: string }) {
-  const reviews = REVIEWS_DATA.map((review) => ({
+function normalizeReviews(testimonials: unknown[], agencyName: string): ReviewCard[] {
+  const normalized: ReviewCard[] = [];
+
+  testimonials.forEach((item, index) => {
+    const review = item as {
+      id?: string;
+      author?: string | null;
+      name?: string | null;
+      clientName?: string | null;
+      quote?: string | null;
+      content?: string | null;
+      rating?: number | null;
+      location?: string | null;
+      property?: string | null;
+    };
+
+    const text = review.quote?.trim() || review.content?.trim() || "";
+    if (!text) return;
+
+    const author =
+      review.author?.trim() ||
+      review.name?.trim() ||
+      review.clientName?.trim() ||
+      "Anonymous";
+
+    normalized.push({
+      id: review.id || `${author}-${index}`,
+      author,
+      text: replaceTemplateBranding(text, agencyName),
+      rating: typeof review.rating === "number" ? review.rating : 5,
+      location: review.location?.trim() || review.property?.trim() || undefined,
+    });
+  });
+
+  return normalized;
+}
+
+export function ReviewsSection({
+  agencyName,
+  testimonials = [],
+}: {
+  agencyName: string;
+  testimonials?: unknown[];
+}) {
+  const fallbackReviews = REVIEWS_DATA.map((review) => ({
     ...review,
     text: replaceTemplateBranding(review.text, agencyName),
   }));
+  const liveReviews = normalizeReviews(testimonials, agencyName);
+  const reviews = liveReviews.length > 0 ? liveReviews : fallbackReviews;
 
   return (
     <section className="bg-black py-32 px-6 md:px-12 overflow-hidden border-t border-white/5">
@@ -77,15 +129,22 @@ export function ReviewsSection({ agencyName }: { agencyName: string }) {
                     </p>
                   </div>
 
-                  <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
-                    <div className="flex gap-1">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-[#D1A08B] text-[#D1A08B]" />
-                      ))}
+                  <div className="mt-12 flex items-end justify-between border-t border-white/5 pt-8">
+                    <div>
+                      <div className="flex gap-1">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 fill-[#D1A08B] text-[#D1A08B]" />
+                        ))}
+                      </div>
+                      {review.location ? (
+                        <p className="mt-4 text-[9px] font-bold tracking-[0.3em] uppercase text-white/30">
+                          {review.location}
+                        </p>
+                      ) : null}
                     </div>
-                    <button className="text-[#D1A08B] text-[9px] font-bold tracking-[0.3em] uppercase hover:text-white transition-colors">
-                      READ MORE
-                    </button>
+                    <span className="text-[#D1A08B] text-[9px] font-bold tracking-[0.3em] uppercase">
+                      {review.location ? "Verified Client" : "Client Review"}
+                    </span>
                   </div>
                 </div>
               </CarouselItem>
