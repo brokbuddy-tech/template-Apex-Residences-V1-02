@@ -11,13 +11,16 @@ import { ContactSection } from "@/components/home/contact-section";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Gem, Globe } from "lucide-react";
 import { ConsultationDialog } from "@/components/home/consultation-dialog";
-import { getSiteConfig } from "@/lib/api";
+import { getSiteConfig, getTestimonials } from "@/lib/api";
 import { getAgencyDisplayName, getAgencyEmail } from "@/lib/live-mappers";
 import { getRequestAgencySlug } from "@/lib/server-agency";
 
 export default async function Home() {
   const agencySlug = await getRequestAgencySlug();
-  const siteConfig = await getSiteConfig(agencySlug);
+  const [siteConfig, testimonials] = await Promise.all([
+    getSiteConfig(agencySlug),
+    getTestimonials(agencySlug),
+  ]);
   const agencyName = getAgencyDisplayName(siteConfig);
   const ownerRelationsEmail = getAgencyEmail(siteConfig) || 'contact@agencywebsite.com';
 
@@ -72,7 +75,7 @@ export default async function Home() {
 
       <TeamSection />
 
-      <ReviewsSection agencyName={agencyName} />
+      <ReviewsSection agencyName={agencyName} testimonials={testimonials} />
 
       <FaqSection agencyName={agencyName} />
 

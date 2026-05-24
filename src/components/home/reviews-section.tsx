@@ -17,34 +17,8 @@ type ReviewCard = {
   text: string;
   rating: number;
   location?: string;
+  badgeLabel?: string;
 };
-
-const REVIEWS_DATA: ReviewCard[] = [
-  {
-    id: "omer-khan",
-    author: "OMER KHAN",
-    text: "{{agencyName}} provided an exceptional service. Their attention to detail in finding our penthouse in Downtown Dubai was unmatched. Truly the gold standard of real estate.",
-    rating: 5,
-  },
-  {
-    id: "sarah-jenkins",
-    author: "SARAH JENKINS",
-    text: "The team at {{agencyName}} is professional and highly discrete. They truly understand the luxury market in Dubai and helped us secure a signature villa in Palm Jumeirah.",
-    rating: 5,
-  },
-  {
-    id: "david-chen",
-    author: "DAVID CHEN",
-    text: "Found my signature address through their exclusive portfolio. Highly recommended for high-net-worth investors looking for precision and due diligence.",
-    rating: 5,
-  },
-  {
-    id: "elena-rodriguez",
-    author: "ELENA RODRIGUEZ",
-    text: "Seamless experience from start to finish. The property management team is also top-notch, handling every aspect of our investment with care.",
-    rating: 5,
-  },
-];
 
 function normalizeReviews(testimonials: unknown[], agencyName: string): ReviewCard[] {
   const normalized: ReviewCard[] = [];
@@ -55,14 +29,16 @@ function normalizeReviews(testimonials: unknown[], agencyName: string): ReviewCa
       author?: string | null;
       name?: string | null;
       clientName?: string | null;
+      message?: string | null;
       quote?: string | null;
       content?: string | null;
       rating?: number | null;
       location?: string | null;
       property?: string | null;
+      badgeLabel?: string | null;
     };
 
-    const text = review.quote?.trim() || review.content?.trim() || "";
+    const text = review.message?.trim() || review.quote?.trim() || review.content?.trim() || "";
     if (!text) return;
 
     const author =
@@ -77,6 +53,7 @@ function normalizeReviews(testimonials: unknown[], agencyName: string): ReviewCa
       text: replaceTemplateBranding(text, agencyName),
       rating: typeof review.rating === "number" ? review.rating : 5,
       location: review.location?.trim() || review.property?.trim() || undefined,
+      badgeLabel: review.badgeLabel?.trim() || "Client Review",
     });
   });
 
@@ -90,12 +67,9 @@ export function ReviewsSection({
   agencyName: string;
   testimonials?: unknown[];
 }) {
-  const fallbackReviews = REVIEWS_DATA.map((review) => ({
-    ...review,
-    text: replaceTemplateBranding(review.text, agencyName),
-  }));
-  const liveReviews = normalizeReviews(testimonials, agencyName);
-  const reviews = liveReviews.length > 0 ? liveReviews : fallbackReviews;
+  const reviews = normalizeReviews(testimonials, agencyName);
+
+  if (!reviews.length) return null;
 
   return (
     <section className="bg-black py-32 px-6 md:px-12 overflow-hidden border-t border-white/5">
@@ -143,7 +117,7 @@ export function ReviewsSection({
                       ) : null}
                     </div>
                     <span className="text-[#D1A08B] text-[9px] font-bold tracking-[0.3em] uppercase">
-                      {review.location ? "Verified Client" : "Client Review"}
+                      {review.badgeLabel || "Client Review"}
                     </span>
                   </div>
                 </div>

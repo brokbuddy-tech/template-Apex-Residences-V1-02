@@ -29,6 +29,7 @@ export default async function AgentProfilePage({
   const avatar = resolveTemplateImage(agent.avatarUrl || agent.avatar, 'agent-1', agent.name);
   const activeListings: Property[] = profileResponse.activeListings.map(toApexProperty);
   const whatsappHref = toSocialUrl('whatsapp', agent.whatsapp || agent.phone);
+  const brokerRegistrationNumber = agent.brn || agent.licenseNumber;
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -117,6 +118,12 @@ export default async function AgentProfilePage({
                     <div>
                       <p className="text-white/30 uppercase tracking-[0.3em] text-[10px]">Experience</p>
                       <p>{agent.yearsExperience}+ years</p>
+                    </div>
+                  )}
+                  {brokerRegistrationNumber && (
+                    <div>
+                      <p className="text-white/30 uppercase tracking-[0.3em] text-[10px]">BRN</p>
+                      <p>{brokerRegistrationNumber}</p>
                     </div>
                   )}
                 </div>
