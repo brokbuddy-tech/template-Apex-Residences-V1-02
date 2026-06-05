@@ -25,7 +25,6 @@ import {
   Bed,
   Bath,
   Maximize,
-  CheckCircle2,
   QrCode,
   Phone,
   Share2,
@@ -47,6 +46,7 @@ import {
 import { getProperties, getPropertyById as getLivePropertyById, getSiteConfig } from "@/lib/api";
 import type { SiteConfig } from "@/lib/live-types";
 import { getAgencyDisplayName, toApexOffPlanProject, toApexProperty } from "@/lib/live-mappers";
+import { AmenityIcon } from "@/components/amenity-icon";
 
 function getLocationSegment(location: string) {
   return location.split(",")[0]?.trim().toLowerCase() || null;
@@ -400,7 +400,7 @@ function PropertyDetail({
               <div className="pt-10 grid grid-cols-2 md:grid-cols-4 border-l border-t border-white/10">
                 {property.features.map((f, i) => (
                   <div key={i} className="p-8 border-r border-b border-white/10 flex items-center gap-3 hover:bg-[#D1A08B]/5 transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-[#D1A08B]" />
+                    <AmenityIcon name={f} className="h-4 w-4 brightness-0 invert opacity-80" />
                     <span className="text-[12px] font-bold uppercase tracking-widest text-white/70">{f}</span>
                   </div>
                 ))}
@@ -675,7 +675,7 @@ function OffPlanProjectDetail({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-white/10">
                 {project.amenities.map((amenity, idx) => (
                   <div key={idx} className="p-10 border-r border-b border-white/10 group hover:bg-[#B8860B]/5 transition-colors">
-                    <CheckCircle2 className="w-5 h-5 text-[#B8860B] mb-4" />
+                    <AmenityIcon name={amenity} className="mb-4 h-5 w-5 brightness-0 invert opacity-80" />
                     <span className="text-[13px] font-bold uppercase tracking-widest text-white/80">{amenity}</span>
                   </div>
                 ))}

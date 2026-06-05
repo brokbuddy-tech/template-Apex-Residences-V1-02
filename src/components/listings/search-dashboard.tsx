@@ -20,6 +20,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { SlidersHorizontal, RefreshCcw, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AmenityIcon } from "@/components/amenity-icon";
 
 interface SearchDashboardProps {
   title: string;
@@ -235,7 +236,10 @@ export function SearchDashboard({
                       {AMENITIES.map((amenity) => (
                         <div key={amenity} className="flex items-center space-x-3">
                           <Checkbox id={amenity} className="border-white/20 data-[state=checked]:bg-[#B8860B] data-[state=checked]:border-[#B8860B]" />
-                          <label htmlFor={amenity} className="text-[10px] font-bold tracking-widest cursor-pointer hover:text-[#B8860B] transition-colors uppercase">{amenity}</label>
+                          <label htmlFor={amenity} className="flex items-center gap-2 text-[10px] font-bold tracking-widest cursor-pointer hover:text-[#B8860B] transition-colors uppercase">
+                            <AmenityIcon name={amenity} className="h-4 w-4 brightness-0 invert opacity-80" />
+                            {amenity}
+                          </label>
                         </div>
                       ))}
                     </div>

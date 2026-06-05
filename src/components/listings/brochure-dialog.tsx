@@ -7,13 +7,13 @@ import {
   Mail,
   MapPin,
   QrCode,
-  CheckCircle2,
   Loader2,
 } from "lucide-react";
 import { Property } from "@/lib/properties";
 import { OffPlanProject } from "@/lib/off-plan-projects";
 import type { SiteConfig } from "@/lib/live-types";
 import { getAgencyDisplayName, getAgencyEmail, getAgencyPhone } from "@/lib/live-mappers";
+import { AmenityIcon } from "@/components/amenity-icon";
 
 interface BrochureDownloaderProps {
   property: Property | OffPlanProject;
@@ -243,7 +243,7 @@ export function BrochureDialog({ property, siteConfig, children }: BrochureDownl
                       <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                         {features.slice(0, 8).map((feature: string, index: number) => (
                           <div key={`${feature}-${index}`} className="flex items-center gap-2">
-                            <CheckCircle2 className="w-3 h-3 text-[#B8860B]" />
+                            <AmenityIcon name={feature} className="h-3 w-3" />
                             <span className="text-[8.5px] font-bold uppercase tracking-widest text-black/60 truncate">{feature}</span>
                           </div>
                         ))}
