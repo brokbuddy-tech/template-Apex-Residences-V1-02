@@ -53,7 +53,7 @@ export default async function AgentsPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                     </div>
 
-                    <div className="flex min-h-[276px] flex-1 flex-col space-y-4 p-6">
+                    <div className="flex min-h-[276px] flex-1 flex-col gap-4 p-6">
                       <div className="space-y-1.5">
                         <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#B8860B]">
                           {agent.title || 'Property Consultant'}
