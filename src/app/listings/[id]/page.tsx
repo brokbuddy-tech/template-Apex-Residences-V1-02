@@ -326,11 +326,17 @@ function PropertyDetail({
                       openGalleryAt(property.gallery.indexOf(img));
                     }
                   }}
-                >
-                  <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
-                </div>
-              ))}
+                  >
+                    <Image src={img} alt="Property view" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all" />
+                    {idx === 1 ? (
+                      <div className="pointer-events-none absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 bg-black/70 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-white shadow-xl backdrop-blur-md">
+                        <Images className="h-4 w-4" />
+                        View More
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
             </div>
           </div>
 
