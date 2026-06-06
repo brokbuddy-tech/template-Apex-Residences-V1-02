@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -21,6 +22,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { SlidersHorizontal, RefreshCcw, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AmenityIcon } from "@/components/amenity-icon";
+import { cleanQueryForCategory, normalizeCategory } from "@/lib/search-utils";
 
 interface SearchDashboardProps {
   title: string;
@@ -63,11 +65,24 @@ export function SearchDashboard({
   resultCount,
   resultLabel = "LISTINGS",
 }: SearchDashboardProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const searchKey = searchParams.toString();
   const [beds, setBeds] = useState<string[]>([]);
   const [baths, setBaths] = useState<string[]>([]);
   const [unit, setUnit] = useState<"SQ.M" | "SQ.FT">("SQ.FT");
   const [currency, setCurrency] = useState("AED");
   const [aiQuery, setAiQuery] = useState("");
+  const [propertyType, setPropertyType] = useState("any");
+
+  useEffect(() => {
+    const category = normalizeCategory(searchParams.get("category"));
+    setAiQuery(cleanQueryForCategory(searchParams.get("q"), category) || "");
+    setPropertyType(category || "any");
+    setBeds(searchParams.get("bedrooms") ? [searchParams.get("bedrooms") as string] : []);
+    setBaths(searchParams.get("bathrooms") ? [searchParams.get("bathrooms") as string] : []);
+  }, [searchKey, searchParams]);
 
   const toggleBed = (val: string) => {
     setBeds(prev => prev.includes(val) ? prev.filter(b => b !== val) : [...prev, val]);
@@ -81,6 +96,22 @@ export function SearchDashboard({
     setBeds([]);
     setBaths([]);
     setAiQuery("");
+    setPropertyType("any");
+    router.push(pathname);
+  };
+
+  const handleSearch = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    const category = normalizeCategory(propertyType);
+    const query = cleanQueryForCategory(aiQuery, category);
+
+    if (query) params.set("q", query); else params.delete("q");
+    if (category) params.set("category", category); else params.delete("category");
+    if (beds[0]) params.set("bedrooms", beds[0]); else params.delete("bedrooms");
+    if (baths[0]) params.set("bathrooms", baths[0]); else params.delete("bathrooms");
+
+    const serialized = params.toString();
+    router.push(`${pathname}${serialized ? `?${serialized}` : ""}`);
   };
 
   return (
@@ -109,15 +140,17 @@ export function SearchDashboard({
           {/* B. Property Type Select */}
           <div className="space-y-4">
             <label className="text-[14px] uppercase font-bold tracking-widest text-white/40">Property Type</label>
-            <Select>
+            <Select value={propertyType} onValueChange={setPropertyType}>
               <SelectTrigger className="bg-transparent border-white/10 text-white rounded-none h-11 uppercase text-[12px] tracking-widest focus:ring-0 focus:ring-offset-0 hover:border-[#B8860B]/50 transition-colors">
                 <SelectValue placeholder="ANY" />
               </SelectTrigger>
               <SelectContent className="bg-black border-white/10 text-white rounded-none">
-                <SelectItem value="apartments">Apartments</SelectItem>
-                <SelectItem value="penthouses">Penthouses</SelectItem>
-                <SelectItem value="villas">Villas</SelectItem>
-                <SelectItem value="mansions">Mansions</SelectItem>
+                <SelectItem value="any">Any</SelectItem>
+                <SelectItem value="Apartment">Apartments</SelectItem>
+                <SelectItem value="Penthouse">Penthouses</SelectItem>
+                <SelectItem value="Villa">Villas</SelectItem>
+                <SelectItem value="House">Mansions</SelectItem>
+                <SelectItem value="Townhouse">Townhouses</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -294,7 +327,7 @@ export function SearchDashboard({
               <RefreshCcw className="w-4 h-4" />
               Reset all filters
             </button>
-            <Button className="w-full sm:w-auto bg-transparent border border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-black rounded-none h-14 px-12 uppercase text-[12px] font-bold tracking-[0.4em] transition-all order-1 sm:order-3">
+            <Button onClick={handleSearch} className="w-full sm:w-auto bg-transparent border border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-black rounded-none h-14 px-12 uppercase text-[12px] font-bold tracking-[0.4em] transition-all order-1 sm:order-3">
               SEARCH
             </Button>
           </div>

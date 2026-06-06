@@ -14,6 +14,7 @@ import {
 import type { OffPlanProject } from "@/lib/off-plan-projects";
 import { getProperties } from "@/lib/api";
 import { toApexOffPlanProject } from "@/lib/live-mappers";
+import { cleanQueryForCategory, matchesTemplateCategory, normalizeCategory } from "@/lib/search-utils";
 
 function OffPlanPageContent() {
   const searchParams = useSearchParams();
@@ -29,19 +30,20 @@ function OffPlanPageContent() {
       try {
         const liveResponse = await getProperties({
           readiness: 'OFFPLAN',
-          q: searchParams.get('q') || undefined,
-          category: searchParams.get('category') || undefined,
+          q: cleanQueryForCategory(searchParams.get('q'), normalizeCategory(searchParams.get('category'))),
           minPrice: searchParams.get('minPrice') || undefined,
           maxPrice: searchParams.get('maxPrice') || undefined,
           bedrooms: searchParams.get('bedrooms') || undefined,
           bathrooms: searchParams.get('bathrooms') || undefined,
           minArea: searchParams.get('minArea') || undefined,
           maxArea: searchParams.get('maxArea') || undefined,
-          limit: 48,
+          limit: searchParams.get('category') ? 96 : 48,
         });
         if (!active) return;
 
-        const liveProjects = liveResponse.properties.map(toApexOffPlanProject);
+        const liveProjects = liveResponse.properties
+          .filter((property) => matchesTemplateCategory(property, searchParams.get('category')))
+          .map(toApexOffPlanProject);
         setProjects(liveProjects);
       } catch {
         if (active) {

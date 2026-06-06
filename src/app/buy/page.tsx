@@ -8,11 +8,14 @@ import type { Property } from "@/lib/properties";
 import { Button } from "@/components/ui/button";
 import { getProperties } from "@/lib/api";
 import { toApexProperty } from "@/lib/live-mappers";
+import { cleanQueryForCategory, matchesTemplateCategory, normalizeCategory } from "@/lib/search-utils";
 
 function BuyPageContent() {
   const searchParams = useSearchParams();
   const searchKey = searchParams.toString();
-  const locationFilter = searchParams.get("q") || searchParams.get("location");
+  const category = normalizeCategory(searchParams.get("category"));
+  const locationFilter = cleanQueryForCategory(searchParams.get("q") || searchParams.get("location"), category);
+  const headingFilter = locationFilter || category;
   const [properties, setProperties] = useState<Property[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,8 +27,7 @@ function BuyPageContent() {
       try {
         const liveResponse = await getProperties({
           transactionType: 'SALE',
-          q: searchParams.get('q') || searchParams.get('location') || undefined,
-          category: searchParams.get('category') || undefined,
+          q: cleanQueryForCategory(searchParams.get('q') || searchParams.get('location'), normalizeCategory(searchParams.get('category'))),
           minPrice: searchParams.get('minPrice') || undefined,
           maxPrice: searchParams.get('maxPrice') || undefined,
           bedrooms: searchParams.get('bedrooms') || undefined,
@@ -33,11 +35,13 @@ function BuyPageContent() {
           minArea: searchParams.get('minArea') || undefined,
           maxArea: searchParams.get('maxArea') || undefined,
           readiness: searchParams.get('readiness') || undefined,
-          limit: 48,
+          limit: searchParams.get('category') ? 96 : 48,
         });
         if (!active) return;
 
-        const liveProperties = liveResponse.properties.map(toApexProperty);
+        const liveProperties = liveResponse.properties
+          .filter((property) => matchesTemplateCategory(property, searchParams.get('category')))
+          .map(toApexProperty);
         setProperties(liveProperties);
       } catch {
         if (active) {
@@ -63,7 +67,7 @@ function BuyPageContent() {
     <div className="min-h-screen bg-black">
       <div className="pt-24">
         <SearchDashboard
-          title={locationFilter ? `PROPERTIES IN ${locationFilter.toUpperCase()}` : "PROPERTIES FOR SALE IN DUBAI"}
+          title={headingFilter ? `PROPERTIES IN ${headingFilter.toUpperCase()}` : "PROPERTIES FOR SALE IN DUBAI"}
           resultCount={buyProperties.length}
           resultLabel="LISTINGS"
         />

@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cleanQueryForCategory, normalizeCategory } from "@/lib/search-utils";
 
 type HeroProps = {
   agencyName: string;
@@ -46,7 +47,13 @@ function getDestination(filters: AiSearchFilters, fallbackMode: 'buy' | 'rent') 
 
 function buildSearchHref(filters: AiSearchFilters, fallbackMode: 'buy' | 'rent') {
   const params = new URLSearchParams();
-  Object.entries(filters).forEach(([key, value]) => {
+  const category = normalizeCategory(filters.category);
+  const normalizedFilters = {
+    ...filters,
+    category,
+    q: cleanQueryForCategory(filters.q, category),
+  };
+  Object.entries(normalizedFilters).forEach(([key, value]) => {
     if (!value || value === 'any') return;
     if (key === 'type' || key === 'transactionType' || key === 'propertyType') return;
     params.set(key, value);
@@ -71,9 +78,9 @@ export function Hero({ agencyName, ownerRelationsEmail }: HeroProps) {
   const heroImage = PlaceHolderImages.find(img => img.id === "hero-bg");
 
   const getCurrentFilters = (): AiSearchFilters => ({
-    q: searchQuery.trim() || undefined,
+    q: cleanQueryForCategory(searchQuery, propertyType),
     transactionType: listingMode === 'rent' ? 'RENT' : 'SALE',
-    category: propertyType !== 'any' ? propertyType : undefined,
+    category: normalizeCategory(propertyType),
     bedrooms: bedrooms !== 'any' ? bedrooms : undefined,
     bathrooms: bathrooms !== 'any' ? bathrooms : undefined,
     minPrice: minPrice || undefined,
