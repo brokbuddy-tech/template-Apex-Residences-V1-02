@@ -451,7 +451,7 @@ function PropertyDetail({
                 </div>
                 <div className="w-full pt-1 space-y-3">
                   <BrochureDialog property={property} siteConfig={siteConfig}>
-                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-11 uppercase text-[10px] font-bold tracking-widest gap-2">
+                    <Button variant="outline" className="w-full border-[#D1A08B]/60 text-[#D1A08B] hover:bg-[#D1A08B]/10 hover:text-[#D1A08B] bg-transparent rounded-none h-11 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)
                     </Button>
@@ -745,7 +745,7 @@ function OffPlanProjectDetail({
                 </div>
                 <div className="w-full space-y-3">
                   <BrochureDialog property={project} siteConfig={siteConfig}>
-                    <Button variant="outline" className="w-full border-white text-white hover:bg-white/5 bg-transparent rounded-none h-11 uppercase text-[10px] font-bold tracking-widest gap-2">
+                    <Button variant="outline" className="w-full border-[#B8860B]/60 text-[#B8860B] hover:bg-[#B8860B]/10 hover:text-[#B8860B] bg-transparent rounded-none h-11 uppercase text-[10px] font-bold tracking-widest gap-2">
                       <FileText className="w-4 h-4" />
                       DOWNLOAD BROCHURE (PDF)
                     </Button>
