@@ -74,6 +74,12 @@ export default async function AgentProfilePage({
             )}
 
             <div className="flex flex-wrap gap-6 text-sm text-white/70">
+              {brokerRegistrationNumber && (
+                <span className="flex items-center gap-2 text-white/80">
+                  <span className="text-[#B8860B]">BRN</span>
+                  {brokerRegistrationNumber}
+                </span>
+              )}
               {agent.email && (
                 <a href={`mailto:${agent.email}`} className="flex items-center gap-2 hover:text-white transition-colors">
                   <Mail className="w-4 h-4 text-[#B8860B]" />
