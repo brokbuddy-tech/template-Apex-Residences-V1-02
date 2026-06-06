@@ -31,16 +31,16 @@ export default async function AgentsPage() {
       <section className="px-6 md:px-12 py-20">
         <div className="max-w-[1600px] mx-auto">
           {agents.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
               {agents.map((agent) => {
                 const avatar = resolveTemplateImage(agent.avatarUrl || agent.avatar, 'agent-1', agent.name);
 
                 return (
                   <article
                     key={agent.slug || agent.id || agent.name}
-                    className="flex h-full flex-col border border-white/10 bg-[#0a0a0a] overflow-hidden"
+                    className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] shadow-sm"
                   >
-                    <div className="relative aspect-[9/10] bg-white/5">
+                    <div className="relative aspect-[4/3] bg-white/5">
                       {avatar && (
                         <Image
                           src={avatar.src}
@@ -53,7 +53,7 @@ export default async function AgentsPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                     </div>
 
-                    <div className="flex flex-1 flex-col p-6 space-y-4 md:p-7">
+                    <div className="flex min-h-[276px] flex-1 flex-col space-y-4 p-6">
                       <div className="space-y-1.5">
                         <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#B8860B]">
                           {agent.title || 'Property Consultant'}
