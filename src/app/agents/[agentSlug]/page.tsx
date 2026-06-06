@@ -7,6 +7,8 @@ import { ListingCard } from "@/components/listings/listing-card";
 import type { Property } from "@/lib/properties";
 import { getAgencyDisplayName, toApexProperty } from "@/lib/live-mappers";
 import { resolveTemplateImage } from "@/lib/media";
+import { ReviewCarousel } from "@/components/review-carousel";
+import { normalizeBrokerReviewCards } from "@/lib/reviews";
 
 export default async function AgentProfilePage({
   params,
@@ -30,6 +32,7 @@ export default async function AgentProfilePage({
   const activeListings: Property[] = profileResponse.activeListings.map(toApexProperty);
   const whatsappHref = toSocialUrl('whatsapp', agent.whatsapp || agent.phone);
   const brokerRegistrationNumber = agent.brn || agent.licenseNumber;
+  const brokerReviews = normalizeBrokerReviewCards(agent.reviewSources);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -150,6 +153,14 @@ export default async function AgentProfilePage({
           </aside>
 
           <div className="space-y-10">
+            <ReviewCarousel
+              title="What My Clients Say"
+              description={`Verified feedback from clients who worked directly with ${agent.name}.`}
+              items={brokerReviews}
+              variant="gold"
+              className="border border-white/10 bg-[#0a0a0a] px-0 py-12"
+            />
+
             <div className="flex items-end justify-between gap-6">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#B8860B]">Portfolio</p>
