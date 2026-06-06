@@ -16,6 +16,8 @@ interface PropertyCardProps {
   sqft: number;
   image: string;
   type: string;
+  featured?: boolean;
+  recentlyListed?: boolean;
 }
 
 export function PropertyCard({
@@ -28,6 +30,8 @@ export function PropertyCard({
   sqft,
   image,
   type,
+  featured,
+  recentlyListed,
 }: PropertyCardProps) {
   return (
     <div className="group relative bg-[#0a0a0a] overflow-hidden border border-white/5 transition-all duration-700 hover:border-[#B8860B]/30 shadow-2xl">
@@ -43,6 +47,20 @@ export function PropertyCard({
             <span className="text-white text-[9px] font-bold uppercase tracking-widest">{type}</span>
           </div>
         </div>
+        {(featured || recentlyListed) && (
+          <div className="absolute top-4 right-4 z-10 flex flex-col items-end gap-2">
+            {featured && (
+              <div className="border border-[#B8860B]/40 bg-[#B8860B]/90 px-3 py-1 backdrop-blur-md">
+                <span className="text-white text-[9px] font-bold uppercase tracking-widest">Featured</span>
+              </div>
+            )}
+            {recentlyListed && (
+              <div className="border border-white/10 bg-black/60 px-3 py-1 backdrop-blur-md">
+                <span className="text-white text-[9px] font-bold uppercase tracking-widest">Recently Listed</span>
+              </div>
+            )}
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
           <Link href={`/listings/${id}`} className="w-full">
             <Button className="w-full btn-copper h-12">View Details</Button>

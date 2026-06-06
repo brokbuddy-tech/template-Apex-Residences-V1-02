@@ -18,6 +18,8 @@ type ExclusiveItem = {
   features: Array<{ label: string; value: string }>;
   summary: string;
   handover: string;
+  featured?: boolean;
+  recentlyListed?: boolean;
   href: string;
 };
 
@@ -35,6 +37,8 @@ function toExclusiveItem(project: OffPlanProject): ExclusiveItem {
     ],
     summary: project.description,
     handover: project.handoverDate,
+    featured: project.featured,
+    recentlyListed: project.recentlyListed,
     href: `/listings/${project.id}`,
   };
 }
@@ -122,6 +126,20 @@ export function ExclusivesSection({ agencyName }: { agencyName: string }) {
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                {(activeItem.featured || activeItem.recentlyListed) && (
+                  <div className="absolute top-6 left-6 z-10 flex flex-col items-start gap-2">
+                    {activeItem.featured && (
+                      <span className="border border-[#D1A08B]/40 bg-[#D1A08B]/90 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.3em] text-white backdrop-blur-md">
+                        Featured
+                      </span>
+                    )}
+                    {activeItem.recentlyListed && (
+                      <span className="border border-white/10 bg-black/60 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.3em] text-white backdrop-blur-md">
+                        Recently Listed
+                      </span>
+                    )}
+                  </div>
+                )}
                 <div className="absolute bottom-8 left-8 space-y-2">
                   <div className="flex items-center gap-2 text-[#D1A08B]">
                     <MapPin className="w-3.5 h-3.5" />

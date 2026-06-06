@@ -17,6 +17,9 @@ export interface Property {
   sqft: number;
   type: string;
   listingType: 'Buy' | 'Rent';
+  featured?: boolean;
+  createdAt?: string;
+  recentlyListed?: boolean;
   image: string;
   gallery: string[];
   virtualTourUrl?: string | null;

@@ -17,6 +17,9 @@ export interface OffPlanProject {
   virtualTourUrl?: string | null;
   handoverDate: string;
   exclusive?: boolean;
+  featured?: boolean;
+  createdAt?: string;
+  recentlyListed?: boolean;
   description: string;
   longDescription: string;
   gallery: string[];
