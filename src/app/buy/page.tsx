@@ -11,7 +11,8 @@ import { toApexProperty } from "@/lib/live-mappers";
 
 function BuyPageContent() {
   const searchParams = useSearchParams();
-  const locationFilter = searchParams.get("location");
+  const searchKey = searchParams.toString();
+  const locationFilter = searchParams.get("q") || searchParams.get("location");
   const [properties, setProperties] = useState<Property[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,8 +20,21 @@ function BuyPageContent() {
     let active = true;
 
     async function loadProperties() {
+      setIsLoading(true);
       try {
-        const liveResponse = await getProperties({ transactionType: 'SALE', limit: 48 });
+        const liveResponse = await getProperties({
+          transactionType: 'SALE',
+          q: searchParams.get('q') || searchParams.get('location') || undefined,
+          category: searchParams.get('category') || undefined,
+          minPrice: searchParams.get('minPrice') || undefined,
+          maxPrice: searchParams.get('maxPrice') || undefined,
+          bedrooms: searchParams.get('bedrooms') || undefined,
+          bathrooms: searchParams.get('bathrooms') || undefined,
+          minArea: searchParams.get('minArea') || undefined,
+          maxArea: searchParams.get('maxArea') || undefined,
+          readiness: searchParams.get('readiness') || undefined,
+          limit: 48,
+        });
         if (!active) return;
 
         const liveProperties = liveResponse.properties.map(toApexProperty);
@@ -41,14 +55,9 @@ function BuyPageContent() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [searchKey, searchParams]);
 
-  const buyProperties = properties.filter((property) => {
-    const matchesLocation = locationFilter
-      ? property.location.toLowerCase().includes(locationFilter.toLowerCase())
-      : true;
-    return property.listingType === 'Buy' && matchesLocation;
-  });
+  const buyProperties = properties.filter((property) => property.listingType === 'Buy');
 
   return (
     <div className="min-h-screen bg-black">
@@ -70,7 +79,7 @@ function BuyPageContent() {
             ) : (
               <div className="text-center py-20 border border-white/10 bg-white/5">
                 <p className="text-white/40 uppercase tracking-[0.4em] font-light">
-                  {isLoading ? 'Loading properties...' : `No properties found in ${locationFilter || 'this area'}.`}
+                  {isLoading ? 'Loading properties...' : 'No properties found for this search.'}
                 </p>
               </div>
             )}

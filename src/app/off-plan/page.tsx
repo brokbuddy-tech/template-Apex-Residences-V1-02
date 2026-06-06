@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -14,7 +15,9 @@ import type { OffPlanProject } from "@/lib/off-plan-projects";
 import { getProperties } from "@/lib/api";
 import { toApexOffPlanProject } from "@/lib/live-mappers";
 
-export default function OffPlanPage() {
+function OffPlanPageContent() {
+  const searchParams = useSearchParams();
+  const searchKey = searchParams.toString();
   const [projects, setProjects] = useState<OffPlanProject[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,8 +25,20 @@ export default function OffPlanPage() {
     let active = true;
 
     async function loadProjects() {
+      setIsLoading(true);
       try {
-        const liveResponse = await getProperties({ readiness: 'OFFPLAN', limit: 48 });
+        const liveResponse = await getProperties({
+          readiness: 'OFFPLAN',
+          q: searchParams.get('q') || undefined,
+          category: searchParams.get('category') || undefined,
+          minPrice: searchParams.get('minPrice') || undefined,
+          maxPrice: searchParams.get('maxPrice') || undefined,
+          bedrooms: searchParams.get('bedrooms') || undefined,
+          bathrooms: searchParams.get('bathrooms') || undefined,
+          minArea: searchParams.get('minArea') || undefined,
+          maxArea: searchParams.get('maxArea') || undefined,
+          limit: 48,
+        });
         if (!active) return;
 
         const liveProjects = liveResponse.properties.map(toApexOffPlanProject);
@@ -44,7 +59,7 @@ export default function OffPlanPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [searchKey, searchParams]);
 
   return (
     <div className="min-h-screen bg-black text-white font-body">
@@ -110,6 +125,14 @@ export default function OffPlanPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function OffPlanPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><p className="text-white tracking-widest uppercase text-xs">Loading off-plan projects...</p></div>}>
+      <OffPlanPageContent />
+    </Suspense>
   );
 }
 
