@@ -11,12 +11,20 @@ export async function generateMetadata(): Promise<Metadata> {
   const agencySlug = await getRequestAgencySlug();
   const siteConfig = await getSiteConfig(agencySlug);
   const agencyName = getAgencyDisplayName(siteConfig);
+  const logoIconUrl = siteConfig.profile?.logo?.trim() || undefined;
 
   return {
     title: siteConfig.branding?.metaTitle || `${agencyName} | Ultra-Luxury Real Estate Dubai`,
     description:
       siteConfig.branding?.metaDescription
       || `Precision, Performance, and Due Diligence. Discover your signature address with ${agencyName}.`,
+    icons: logoIconUrl
+      ? {
+          icon: [{ url: logoIconUrl }],
+          shortcut: [{ url: logoIconUrl }],
+          apple: [{ url: logoIconUrl }],
+        }
+      : undefined,
   };
 }
 
