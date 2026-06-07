@@ -1,8 +1,9 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -21,6 +22,9 @@ import {
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null);
+  const pathname = usePathname();
+  const desktopNavRef = useRef<HTMLElement | null>(null);
+  const desktopLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +68,34 @@ export function Header() {
   ];
   const displayName = getAgencyDisplayName(siteConfig);
   const logoUrl = siteConfig?.profile?.logo || null;
+  const activeNavHref = navLinks.find((link) => pathname === link.href || pathname.startsWith(`${link.href}/`))?.href;
+  const [activeUnderline, setActiveUnderline] = useState<{ left: number; width: number } | null>(null);
+
+  useEffect(() => {
+    const updateUnderline = () => {
+      if (!activeNavHref || !desktopNavRef.current) {
+        setActiveUnderline(null);
+        return;
+      }
+
+      const activeLink = desktopLinkRefs.current[activeNavHref];
+      if (!activeLink) {
+        setActiveUnderline(null);
+        return;
+      }
+
+      const navRect = desktopNavRef.current.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      setActiveUnderline({
+        left: linkRect.left - navRect.left,
+        width: linkRect.width,
+      });
+    };
+
+    updateUnderline();
+    window.addEventListener("resize", updateUnderline);
+    return () => window.removeEventListener("resize", updateUnderline);
+  }, [activeNavHref]);
 
   return (
     <header
@@ -77,9 +109,29 @@ export function Header() {
           <Logo logoUrl={logoUrl} name={displayName} />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-10 text-[12px] font-bold uppercase tracking-[0.2em] text-white/80">
+        <nav ref={desktopNavRef} className="relative hidden lg:flex items-center gap-10 pb-2 text-[12px] font-bold uppercase tracking-[0.2em] text-white/80">
+          {activeUnderline && (
+            <span
+              className="pointer-events-none absolute bottom-0 h-px bg-[#B8860B] transition-all duration-300 ease-out"
+              style={{
+                left: activeUnderline.left,
+                width: activeUnderline.width,
+              }}
+            />
+          )}
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-[#B8860B] transition-colors">
+            <Link
+              key={link.href}
+              href={link.href}
+              ref={(node) => {
+                desktopLinkRefs.current[link.href] = node;
+              }}
+              aria-current={link.href === activeNavHref ? "page" : undefined}
+              className={cn(
+                "relative py-1 hover:text-[#B8860B] transition-colors",
+                link.href === activeNavHref && "text-[#B8860B]"
+              )}
+            >
               {link.label}
             </Link>
           ))}
