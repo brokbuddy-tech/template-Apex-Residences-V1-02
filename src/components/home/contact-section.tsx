@@ -56,7 +56,8 @@ export function ContactSection() {
         email: String(formData.get('email') || '').trim(),
         phone: String(formData.get('phone') || '').trim(),
         message: String(formData.get('message') || '').trim(),
-        source: 'home-contact',
+        templateName: 'Apex Residences',
+        formContext: 'home-contact',
       });
 
       toast({
@@ -136,7 +137,7 @@ export function ContactSection() {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-tighter text-muted-foreground">Message</label>
-                <Textarea name="message" placeholder="I'm interested in..." className="bg-background border-muted rounded-xl min-h-[120px]" required />
+                <Textarea name="message" placeholder="I'm interested in..." className="bg-background border-muted rounded-xl min-h-[120px]" required minLength={10} />
               </div>
               <Button disabled={isSubmitting} className="w-full h-14 bg-primary text-primary-foreground font-bold rounded-xl text-sm uppercase tracking-widest hover:bg-primary/90 transition-all shadow-lg">
                 {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
