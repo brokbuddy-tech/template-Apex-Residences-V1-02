@@ -167,7 +167,13 @@ export function toApexProperty(listing: LiveProperty): Property {
       email: listing.agent?.email || undefined,
       whatsapp: listing.agent?.whatsapp || undefined,
       slug: listing.agent?.slug || undefined,
+      brn: listing.agent?.brn || null,
     },
+    dldPermitNo: listing.reraPermit || undefined,
+    trakheesi: listing.trakheesi,
+    reraPermit: listing.reraPermit,
+    dldPermitLink: listing.dldPermitLink,
+    floorPlans: listing.floorPlans,
   };
 }
 

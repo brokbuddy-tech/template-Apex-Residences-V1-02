@@ -53,6 +53,7 @@ export function ListingCard({
           </div>
         </div>
 
+
         <Link href={`/listings/${id}`} className="absolute inset-0 z-0" />
       </div>
 
@@ -77,20 +78,24 @@ export function ListingCard({
 
         {/* Metadata Row */}
         <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2 text-white/40">
-              <Bed className="w-3 h-3" />
-              <span className="text-[9px] uppercase font-bold tracking-widest">Beds</span>
+          {beds > 0 && (
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-2 text-white/40">
+                <Bed className="w-3 h-3" />
+                <span className="text-[9px] uppercase font-bold tracking-widest">Beds</span>
+              </div>
+              <span className="text-sm font-light text-white">{beds}</span>
             </div>
-            <span className="text-sm font-light text-white">{beds}</span>
-          </div>
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2 text-white/40">
-              <Bath className="w-3 h-3" />
-              <span className="text-[9px] uppercase font-bold tracking-widest">Baths</span>
+          )}
+          {baths > 0 && (
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-2 text-white/40">
+                <Bath className="w-3 h-3" />
+                <span className="text-[9px] uppercase font-bold tracking-widest">Baths</span>
+              </div>
+              <span className="text-sm font-light text-white">{baths}</span>
             </div>
-            <span className="text-sm font-light text-white">{baths}</span>
-          </div>
+          )}
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2 text-white/40">
               <Maximize className="w-3 h-3" />

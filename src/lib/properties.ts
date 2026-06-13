@@ -42,5 +42,11 @@ export interface Property {
     email?: string;
     whatsapp?: string;
     slug?: string;
+    brn?: string | null;
   };
+  dldPermitNo?: string;
+  trakheesi?: string;
+  reraPermit?: string;
+  dldPermitLink?: string | null;
+  floorPlans?: any[];
 }

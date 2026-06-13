@@ -11,6 +11,7 @@ import { ConsultationDialog } from "@/components/home/consultation-dialog";
 import { BrochureDialog } from "@/components/listings/brochure-dialog";
 import { ListingImageLightbox } from "@/components/listings/listing-image-lightbox";
 import { ListingCard } from "@/components/listings/listing-card";
+import { MortgageCalculator } from "@/components/listings/mortgage-calculator";
 import { LocationMap } from "@/components/shared/location-map";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -20,6 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   MapPin,
   Bed,
@@ -224,6 +226,17 @@ function PropertyDetail({
     setIsGalleryOpen(true);
   };
 
+  const availableFloorPlans = (property.floorPlans ?? []).filter(
+    (fp) => typeof fp?.url === 'string' && fp.url.trim().length > 0
+  );
+  const hasRegulatoryInfo = Boolean(
+    property.trakheesi ||
+    property.dldPermitNo ||
+    property.reraPermit ||
+    property.agent.brn ||
+    property.dldPermitLink
+  );
+
   return (
     <div className="min-h-screen bg-black text-white font-body selection:bg-[#D1A08B] selection:text-white pb-32 w-full">
       <main className="pt-24 w-full">
@@ -379,8 +392,8 @@ function PropertyDetail({
         <div className="px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16">
           <div className="lg:col-span-8 space-y-20">
             <div className="flex flex-wrap items-center gap-10 py-10 border-y border-white/5">
-              <SpecIcon label="Bedrooms" value={property.beds.toString()} icon={Bed} />
-              <SpecIcon label="Bathrooms" value={property.baths.toString()} icon={Bath} />
+              {property.beds > 0 && <SpecIcon label="Bedrooms" value={property.beds.toString()} icon={Bed} />}
+              {property.baths > 0 && <SpecIcon label="Bathrooms" value={property.baths.toString()} icon={Bath} />}
               <SpecIcon label="Total Area" value={`${property.sqft.toLocaleString()} sq.ft`} icon={Maximize} />
               <SpecIcon label="Furnishing" value={property.furnishing} icon={Building2} />
             </div>
@@ -389,18 +402,44 @@ function PropertyDetail({
               <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B]">Description</h2>
               <p className="text-white/50 font-light leading-relaxed text-lg italic whitespace-pre-line">{property.description}</p>
 
+              {availableFloorPlans.length > 0 && (
+                <div className="space-y-6">
+                  <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B]">Floor Plans</h2>
+                  <Tabs defaultValue={availableFloorPlans[0]?.type || '0'} className="w-full">
+                    <TabsList className="w-full justify-start border-b border-white/10 rounded-none h-auto p-0 bg-transparent mb-6 overflow-x-auto flex-nowrap">
+                      {availableFloorPlans.map((fp, i) => (
+                        <TabsTrigger
+                          key={i}
+                          value={fp.type || `${i}`}
+                          className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-[#D1A08B] data-[state=active]:shadow-none rounded-none px-4 py-3 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap text-white/50 data-[state=active]:text-[#D1A08B]"
+                        >
+                          {fp.type || fp.title || `Plan ${i + 1}`}
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                    {availableFloorPlans.map((fp, i) => (
+                      <TabsContent key={i} value={fp.type || `${i}`} className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+                        <div className="relative aspect-[16/9] bg-white/[0.02] border border-white/5 group">
+                          <Image src={fp.url} alt={fp.title || fp.type || 'Floor plan'} fill className="object-contain p-10 opacity-80" />
+                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <a href={fp.url} target="_blank" rel="noopener noreferrer">
+                              <Button className="btn-copper px-10 h-14 gap-2">
+                                <Maximize className="w-5 h-5" /> View Full Size
+                              </Button>
+                            </a>
+                          </div>
+                        </div>
+                      </TabsContent>
+                    ))}
+                  </Tabs>
+                </div>
+              )}
+
               <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
                 <DetailRow label="Location" value={property.location} />
                 <DetailRow label="Property Type" value={property.type} />
                 <DetailRow label="Listing ID" value={property.id} />
                 <DetailRow label="Status" value="Available" />
-                <div className="md:col-span-2 pt-10 flex items-center justify-between border-t border-white/5 mt-6">
-                  <div className="space-y-2">
-                    <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">RERA Permit</p>
-                    <p className="text-[11px] font-bold tracking-widest text-white">{property.reraNumber}</p>
-                  </div>
-                  <div className="p-3 bg-white"><QrCode className="w-16 h-16 text-black" /></div>
-                </div>
               </div>
 
               <div className="pt-10 grid grid-cols-2 md:grid-cols-4 border-l border-t border-white/10">
@@ -411,6 +450,45 @@ function PropertyDetail({
                   </div>
                 ))}
               </div>
+
+              {property.listingType === 'Buy' && (
+                <MortgageCalculator propertyPrice={property.priceValue} />
+              )}
+
+              {hasRegulatoryInfo && (
+                <div className="pt-2">
+                  <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B] mb-6">Regulatory Information</h2>
+                  <div className="flex items-center justify-between bg-white/[0.02] border border-white/5 p-6 md:p-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 flex-1">
+                      {(property.trakheesi || property.dldPermitNo) && (
+                        <div className="space-y-2">
+                          <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">Permit Number</p>
+                          <p className="text-[11px] font-bold tracking-widest text-white">
+                            {property.trakheesi || property.dldPermitNo}
+                          </p>
+                        </div>
+                      )}
+                      {property.reraPermit && (
+                        <div className="space-y-2">
+                          <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">RERA Project Number</p>
+                          <p className="text-[11px] font-bold tracking-widest text-white">{property.reraPermit}</p>
+                        </div>
+                      )}
+                      {property.agent.brn && (
+                        <div className="space-y-2">
+                          <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">BRN Number</p>
+                          <p className="text-[11px] font-bold tracking-widest text-white">{property.agent.brn}</p>
+                        </div>
+                      )}
+                    </div>
+                    {property.dldPermitLink && (
+                      <div className="p-4 bg-white/5 border border-white/10 shrink-0 ml-8">
+                        <Image src={property.dldPermitLink} alt="Trakheesi Permit QR Code" width={80} height={80} className="object-contain" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="space-y-10">
@@ -427,15 +505,6 @@ function PropertyDetail({
               </div>
             </div>
 
-            <div className="space-y-8">
-              <h2 className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#D1A08B]">Floor Plan</h2>
-              <div className="relative aspect-[16/9] bg-white/[0.02] border border-white/5 flex items-center justify-center group">
-                <Image src={property.floorPlan} alt="Floor plan" fill className="object-contain p-10 opacity-80" />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button className="btn-copper px-10 h-14 gap-2"><Download className="w-5 h-5" /> Download PDF</Button>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div className="lg:col-span-4">
