@@ -146,11 +146,30 @@ export function SearchDashboard({
               </SelectTrigger>
               <SelectContent className="bg-black border-white/10 text-white rounded-none">
                 <SelectItem value="any">Any</SelectItem>
-                <SelectItem value="Apartment">Apartments</SelectItem>
-                <SelectItem value="Penthouse">Penthouses</SelectItem>
-                <SelectItem value="Villa">Villas</SelectItem>
-                <SelectItem value="House">Mansions</SelectItem>
-                <SelectItem value="Townhouse">Townhouses</SelectItem>
+                <SelectItem value="Apartment">Apartment</SelectItem>
+                <SelectItem value="Studio">Studio</SelectItem>
+                <SelectItem value="Penthouse">Penthouse</SelectItem>
+                <SelectItem value="Duplex">Duplex</SelectItem>
+                <SelectItem value="Duplex Apartment">Duplex Apartment</SelectItem>
+                <SelectItem value="Hotel Apartment">Hotel Apartment</SelectItem>
+                <SelectItem value="Flat">Flat</SelectItem>
+                <SelectItem value="Villa">Villa</SelectItem>
+                <SelectItem value="Townhouse">Townhouse</SelectItem>
+                <SelectItem value="Mansion">Mansion</SelectItem>
+                <SelectItem value="Bungalow">Bungalow</SelectItem>
+                <SelectItem value="Villa Compound">Villa Compound</SelectItem>
+                <SelectItem value="Compound">Compound</SelectItem>
+                <SelectItem value="House">House</SelectItem>
+                <SelectItem value="Residential Floor">Residential Floor</SelectItem>
+                <SelectItem value="Full Floor">Full Floor</SelectItem>
+                <SelectItem value="Half Floor">Half Floor</SelectItem>
+                <SelectItem value="Floor">Floor</SelectItem>
+                <SelectItem value="Bulk Rent unit">Bulk Rent Unit</SelectItem>
+                <SelectItem value="Building">Building</SelectItem>
+                <SelectItem value="Residential Building">Residential Building</SelectItem>
+                <SelectItem value="Whole building">Whole Building</SelectItem>
+                <SelectItem value="Land">Land</SelectItem>
+                <SelectItem value="Residential Land">Residential Land</SelectItem>
               </SelectContent>
             </Select>
           </div>
