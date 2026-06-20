@@ -470,7 +470,7 @@ function PropertyDetail({
                       )}
                       {property.reraPermit && (
                         <div className="space-y-2">
-                          <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">RERA Project Number</p>
+                          <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.3em]">RERA Licence</p>
                           <p className="text-[11px] font-bold tracking-widest text-white">{property.reraPermit}</p>
                         </div>
                       )}
@@ -482,8 +482,20 @@ function PropertyDetail({
                       )}
                     </div>
                     {property.dldPermitLink && (
-                      <div className="p-4 bg-white/5 border border-white/10 shrink-0 ml-8">
-                        <Image src={property.dldPermitLink} alt="Trakheesi Permit QR Code" width={80} height={80} className="object-contain" />
+                      <div className="flex flex-col items-center shrink-0 ml-8">
+                        <div className="p-3 bg-white border border-white/10">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent(property.dldPermitLink)}`}
+                            alt="Trakheesi Permit QR Code"
+                            width={80}
+                            height={80}
+                            className="object-contain"
+                          />
+                        </div>
+                        <a href={property.dldPermitLink} target="_blank" rel="noopener noreferrer" className="mt-2 text-[9px] text-[#D1A08B] hover:underline tracking-widest">
+                          VERIFY →
+                        </a>
                       </div>
                     )}
                   </div>
