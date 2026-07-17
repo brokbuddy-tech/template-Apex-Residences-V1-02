@@ -49,6 +49,7 @@ import { getProperties, getPropertyById as getLivePropertyById, getSiteConfig } 
 import type { SiteConfig } from "@/lib/live-types";
 import { getAgencyDisplayName, toApexOffPlanProject, toApexProperty } from "@/lib/live-mappers";
 import { AmenityIcon } from "@/components/amenity-icon";
+import { ListingViewTracker } from "@/components/listing-view-tracker";
 
 function getLocationSegment(location: string) {
   return location.split(",")[0]?.trim().toLowerCase() || null;
@@ -186,10 +187,20 @@ export default function ListingDetails() {
   }
 
   if (offPlanProject) {
-    return <OffPlanProjectDetail project={offPlanProject} similarProjects={similarProjects} siteConfig={siteConfig} />;
+    return (
+      <>
+        <ListingViewTracker canonicalListingId={offPlanProject.id} />
+        <OffPlanProjectDetail project={offPlanProject} similarProjects={similarProjects} siteConfig={siteConfig} />
+      </>
+    );
   }
 
-  return <PropertyDetail property={property!} similarProperties={similarProperties} siteConfig={siteConfig} />;
+  return (
+    <>
+      <ListingViewTracker canonicalListingId={property!.id} />
+      <PropertyDetail property={property!} similarProperties={similarProperties} siteConfig={siteConfig} />
+    </>
+  );
 }
 
 function PropertyDetail({
