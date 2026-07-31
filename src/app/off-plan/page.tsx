@@ -190,7 +190,7 @@ function ProjectCard({ title, type, developer, image, exclusive, id }: OffPlanPr
         </div>
 
         <div className="pt-4">
-          <Link href={`/listings/${id}`} className="inline-block">
+          <Link href={`/properties/${id}`} className="inline-block">
             <span className="text-white/60 group-hover:text-[#B8860B] transition-colors text-[10px] font-bold tracking-[0.3em] uppercase flex items-center gap-2">
               EXPLORE
               <span className="w-8 h-[1px] bg-white/20 group-hover:bg-[#B8860B]/40 group-hover:w-12 transition-all" />

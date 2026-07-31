@@ -54,13 +54,13 @@ export function ListingCard({
         </div>
 
 
-        <Link href={`/listings/${id}`} className="absolute inset-0 z-0" />
+        <Link href={`/properties/${id}`} className="absolute inset-0 z-0" />
       </div>
 
       {/* Content Details */}
       <div className="p-8 flex flex-col flex-1 space-y-6">
         <div className="space-y-1">
-          <Link href={`/listings/${id}`}>
+          <Link href={`/properties/${id}`}>
             <h3 className="font-headline text-lg font-bold tracking-wider text-white line-clamp-2 hover:text-[#B8860B] transition-colors leading-tight">
               {title}
             </h3>

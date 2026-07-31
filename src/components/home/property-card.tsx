@@ -62,7 +62,7 @@ export function PropertyCard({
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-          <Link href={`/listings/${id}`} className="w-full">
+          <Link href={`/properties/${id}`} className="w-full">
             <Button className="w-full btn-copper h-12">View Details</Button>
           </Link>
         </div>

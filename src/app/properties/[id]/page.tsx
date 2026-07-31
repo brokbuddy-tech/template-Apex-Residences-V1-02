@@ -929,7 +929,7 @@ function OffPlanProjectDetail({
           <h2 className="text-[12px] font-bold tracking-[0.5em] uppercase text-[#B8860B] mb-16">SIMILAR PROJECTS</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {similarProjects.map(p => (
-              <Link key={p.id} href={`/listings/${p.id}`} className="group relative aspect-[3/4] overflow-hidden border border-white/10 bg-[#0a0a0a]">
+              <Link key={p.id} href={`/properties/${p.id}`} className="group relative aspect-[3/4] overflow-hidden border border-white/10 bg-[#0a0a0a]">
                 <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-110 transition-all duration-1000" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-0 left-0 right-0 p-10 space-y-3">

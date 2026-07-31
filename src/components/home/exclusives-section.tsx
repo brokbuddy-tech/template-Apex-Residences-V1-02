@@ -39,7 +39,7 @@ function toExclusiveItem(project: OffPlanProject): ExclusiveItem {
     handover: project.handoverDate,
     featured: project.featured,
     recentlyListed: project.recentlyListed,
-    href: `/listings/${project.id}`,
+    href: `/properties/${project.id}`,
   };
 }
 
